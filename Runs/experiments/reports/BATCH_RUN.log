@@ -1,0 +1,19 @@
+====================================================
+[batch] measuring model: nvidia/nemotron-3-nano-4b  (idle 4m)
+====================================================
+[batch] nvidia/nemotron-3-nano-4b done, harness exit=0
+====================================================
+[batch] measuring model: gemma-4-e4b-it  (idle 4m)
+====================================================
+[batch] gemma-4-e4b-it done, harness exit=0
+====================================================
+[batch] measuring model: microsoft/phi-4-reasoning-plus  (idle 4m)
+====================================================
+[batch] microsoft/phi-4-reasoning-plus done, harness exit=0
+====================================================
+[batch] measuring model: qwen/qwen3.5-9b  (idle 4m)
+====================================================
+[batch] qwen/qwen3.5-9b done, harness exit=1
+====================================================
+[batch] ALL 4 MEASUREMENTS COMPLETE
+====================================================

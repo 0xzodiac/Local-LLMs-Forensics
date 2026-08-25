@@ -1,0 +1,3 @@
+{"ts":1782217361.567,"pid":2748263,"tid":138727619631360,"call":"connect","fd":22,"family":1,"rc":-1,"errno":111,"err":"Connection refused"}
+{"ts":1782217361.567,"pid":2748263,"tid":138727619631360,"call":"connect","fd":22,"family":1,"rc":0,"errno":0,"err":""}
+{"ts":1782217361.594,"pid":2748263,"tid":138727619631360,"call":"connect","fd":27,"family":1,"rc":0,"errno":0,"err":""}

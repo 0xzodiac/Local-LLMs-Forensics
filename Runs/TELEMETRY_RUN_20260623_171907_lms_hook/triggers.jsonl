@@ -1,0 +1,4 @@
+{"ts": 1782224352.902818, "name": "server_status", "ok": true, "err": "", "dur_s": 0.32}
+{"ts": 1782224353.2266998, "name": "model_load", "ok": true, "err": "", "dur_s": 26.84}
+{"ts": 1782224383.0826874, "name": "benign_chat", "ok": true, "err": "", "dur_s": 11.4}
+{"ts": 1782224394.4842694, "name": "canary_chat", "ok": true, "err": "", "dur_s": 17.06}

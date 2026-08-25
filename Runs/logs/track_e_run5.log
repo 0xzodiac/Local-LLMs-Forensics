@@ -1,0 +1,18 @@
+[20:58:28.297] ERROR (#10949): failed {
+  ref: "err_65cf1cfd",
+  error: {
+    providerID: "openrouter",
+    modelID: "nex-agi/nex-n2-pro:free",
+    suggestions: [ "nex-agi/nex-n2-pro", "qwen/qwen3-next-80b-a3b-instruct:free", "qwen/qwen3-coder-next" ],
+    _tag: "ProviderModelNotFoundError",
+  },
+  cause: "ProviderModelNotFoundError: \n    at <anonymous> (/$bunfs/root/chunk-9dzgnn7g.js:687:64599)\n    at SessionPrompt.getModel (/$bunfs/root/chunk-e4nspvjx.js:1015:1895)\n    at SessionPrompt.getModel (definition) (/$bunfs/root/chunk-e4nspvjx.js:1014:1062)\n    at SessionPrompt.run (/$bunfs/root/chunk-e4nspvjx.js:1015:5632)\n    at SessionPrompt.run (definition) (/$bunfs/root/chunk-e4nspvjx.js:1015:904)\n    at SessionRunState.ensureRunning (/$bunfs/root/chunk-e4nspvjx.js:1015:5603)\n    at SessionRunState.ensureRunning (definition) (/$bunfs/root/chunk-e4nspvjx.js:2:8043)\n    at SessionPrompt.loop (/$bunfs/root/chunk-e4nspvjx.js:1015:628)\n    at SessionPrompt.loop (definition) (/$bunfs/root/chunk-e4nspvjx.js:1015:5539)\n    at SessionPrompt.prompt (/$bunfs/root/chunk-e6zcxa2p.js:3:13189)\n    at SessionPrompt.prompt (definition) (/$bunfs/root/chunk-e4nspvjx.js:1015:247)",
+}
+[91m[1mError: [0m{
+  "name": "UnknownError",
+  "data": {
+    "message": "Unexpected server error. Check server logs for details.",
+    "ref": "err_65cf1cfd"
+  }
+}
+[91m[1mError: [0mModel not found: openrouter/nex-agi/nex-n2-pro:free. Did you mean: nex-agi/nex-n2-pro, qwen/qwen3-next-80b-a3b-instruct:free, qwen/qwen3-coder-next?

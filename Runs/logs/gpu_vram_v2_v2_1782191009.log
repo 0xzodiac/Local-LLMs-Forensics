@@ -1,0 +1,6 @@
+[08:03:29] Gap 5 v2 VRAM probe, canary=VRAM_CANARY_BAREMETAL_7777_807a75b5
+[08:03:29] baseline VRAM: (81, 8192)
+[08:03:29] spawning cuda-gdb (parent of llama-server child)
+[08:03:29]   cuda-gdb pid 2031602
+[08:03:29] waiting for server under cuda-gdb (slower than usual)
+[08:08:29] server never became healthy under gdb

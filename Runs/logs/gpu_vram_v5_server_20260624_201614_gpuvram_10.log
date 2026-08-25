@@ -1,0 +1,80 @@
+0.00.117.401 I log_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.117.404 I device_info:
+0.00.274.012 I   - CUDA0   : Quadro RTX 4000 (7785 MiB, 7579 MiB free)
+0.00.274.029 I   - CPU     : Intel(R) Core(TM) i7-9850H CPU @ 2.60GHz (15740 MiB, 15740 MiB free)
+0.00.274.143 I system_info: n_threads = 8 (n_threads_batch = 8) / 12 | CUDA : ARCHS = 750 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+0.00.274.263 I srv          init: using 11 threads for HTTP server
+0.00.274.833 I srv         start: binding port with default address family
+0.00.276.102 I srv  llama_server: loading model
+0.00.276.229 I srv    load_model: loading model '/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf'
+0.00.276.246 I common_init_result: fitting params to device memory ...
+0.00.276.247 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.01.541.859 W llama_context: n_ctx_seq (2048) < n_ctx_train (1048576) -- the full capacity of the model will not be utilized
+0.01.552.871 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.01.577.395 I srv    load_model: initializing slots, n_slots = 1
+0.01.589.767 W srv    load_model: speculative decoding will use checkpoints
+0.01.589.772 W common_speculative_init: no implementations specified for speculative decoding
+0.01.589.774 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 2048
+0.01.589.849 I srv    load_model: prompt cache is disabled - use `--cache-ram N` to enable it
+0.01.589.850 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.01.589.850 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+0.01.589.868 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.01.625.941 I init: chat template, example_format: '<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+<think></think>Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+<think>
+'
+0.01.658.048 I srv          init: init: chat template, thinking = 1
+0.01.658.089 I srv  llama_server: model loaded
+0.01.658.093 I srv  llama_server: server is listening on http://127.0.0.1:8091
+0.01.658.098 I srv  update_slots: all slots are idle
+0.02.083.509 I srv    operator(): Chat format: peg-native
+0.02.083.822 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.02.083.907 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.02.132.451 I slot create_check: id  0 | task 0 | created context checkpoint 1 of 32 (pos_min = 5, pos_max = 5, n_tokens = 6, size = 81.088 MiB)
+0.02.362.109 I slot print_timing: id  0 | task 0 | prompt eval time =     100.53 ms /    55 tokens (    1.83 ms per token,   547.12 tokens per second)
+0.02.362.112 I slot print_timing: id  0 | task 0 |        eval time =     177.64 ms /    16 tokens (   11.10 ms per token,    90.07 tokens per second)
+0.02.362.113 I slot print_timing: id  0 | task 0 |       total time =     278.17 ms /    71 tokens
+0.02.362.116 I slot print_timing: id  0 | task 0 |    graphs reused =         15
+0.02.362.142 I slot      release: id  0 | task 0 | stop processing: n_tokens = 70, truncated = 0
+0.02.362.146 I srv  update_slots: all slots are idle
+0.02.410.551 I srv    operator(): Chat format: peg-native
+0.02.410.809 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, sim_best = 0.273 (> 0.100 thold), f_keep = 0.300
+0.02.410.862 I slot launch_slot_: id  0 | task 19 | processing task, is_child = 0
+0.02.410.869 I slot   operator(): id  0 | task 19 | Checking checkpoint with [5, 5] against 21...
+0.02.428.127 W slot   operator(): id  0 | task 19 | restored context checkpoint (pos_min = 5, pos_max = 5, n_tokens = 6, n_past = 6, size = 81.088 MiB)
+0.02.670.389 I slot print_timing: id  0 | task 19 | prompt eval time =      80.72 ms /    71 tokens (    1.14 ms per token,   879.58 tokens per second)
+0.02.670.392 I slot print_timing: id  0 | task 19 |        eval time =     178.79 ms /    16 tokens (   11.17 ms per token,    89.49 tokens per second)
+0.02.670.393 I slot print_timing: id  0 | task 19 |       total time =     259.51 ms /    87 tokens
+0.02.670.393 I slot print_timing: id  0 | task 19 |    graphs reused =         29
+0.02.670.435 I slot      release: id  0 | task 19 | stop processing: n_tokens = 92, truncated = 0
+0.02.670.447 I srv  update_slots: all slots are idle
+0.03.648.767 I srv    operator(): Chat format: peg-native
+0.03.649.036 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, sim_best = 0.404 (> 0.100 thold), f_keep = 0.228
+0.03.649.089 I slot launch_slot_: id  0 | task 37 | processing task, is_child = 0
+0.03.649.096 I slot   operator(): id  0 | task 37 | Checking checkpoint with [5, 5] against 21...
+0.03.666.831 W slot   operator(): id  0 | task 37 | restored context checkpoint (pos_min = 5, pos_max = 5, n_tokens = 6, n_past = 6, size = 81.088 MiB)
+0.03.896.011 I slot print_timing: id  0 | task 37 | prompt eval time =      67.47 ms /    46 tokens (    1.47 ms per token,   681.74 tokens per second)
+0.03.896.015 I slot print_timing: id  0 | task 37 |        eval time =     179.44 ms /    16 tokens (   11.21 ms per token,    89.17 tokens per second)
+0.03.896.015 I slot print_timing: id  0 | task 37 |       total time =     246.91 ms /    62 tokens
+0.03.896.016 I slot print_timing: id  0 | task 37 |    graphs reused =         43
+0.03.896.031 I slot      release: id  0 | task 37 | stop processing: n_tokens = 67, truncated = 0
+0.03.896.037 I srv  update_slots: all slots are idle
+0.04.904.677 I srv    operator(): Chat format: peg-native
+0.04.905.094 I slot get_availabl: id  0 | task -1 | selected slot by LCP similarity, sim_best = 0.423 (> 0.100 thold), f_keep = 0.328
+0.04.905.178 I slot launch_slot_: id  0 | task 55 | processing task, is_child = 0
+0.04.905.188 I slot   operator(): id  0 | task 55 | Checking checkpoint with [5, 5] against 22...
+0.04.922.370 W slot   operator(): id  0 | task 55 | restored context checkpoint (pos_min = 5, pos_max = 5, n_tokens = 6, n_past = 6, size = 81.088 MiB)
+0.05.152.520 I slot print_timing: id  0 | task 55 | prompt eval time =      65.50 ms /    46 tokens (    1.42 ms per token,   702.32 tokens per second)
+0.05.152.525 I slot print_timing: id  0 | task 55 |        eval time =     181.83 ms /    16 tokens (   11.36 ms per token,    88.00 tokens per second)
+0.05.152.526 I slot print_timing: id  0 | task 55 |       total time =     247.32 ms /    62 tokens
+0.05.152.527 I slot print_timing: id  0 | task 55 |    graphs reused =         57
+0.05.152.548 I slot      release: id  0 | task 55 | stop processing: n_tokens = 67, truncated = 0
+0.05.152.557 I srv  update_slots: all slots are idle
+0.06.544.900 I srv    operator(): operator(): cleaning up before exit...

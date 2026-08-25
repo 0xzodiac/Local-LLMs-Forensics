@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local secrets
+.sudo-helper
+
+# Excluded subdirs
+llama-cpp-build/
+tifs/paper/

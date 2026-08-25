@@ -1,0 +1,520 @@
+{
+  "run_id": "patched_run2",
+  "pid": 208281,
+  "canaries": [
+    "T1_d2baec4333924ec6be864ac67ca76e6f",
+    "T2_c2d7ae1841de4ce3895ad5cd46951506",
+    "T3_948ea800c81043e394ead3b102d04049",
+    "T4_4a6658077bc8488c802795ac5d6c2156"
+  ],
+  "history": {
+    "T1_d2baec4333924ec6be864ac67ca76e6f": [
+      {
+        "phase": "post-T1",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T2",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71163c000000-71163c021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T2_c2d7ae1841de4ce3895ad5cd46951506": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 13,
+        "top5": [
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "71141c000000-71141c021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T3_948ea800c81043e394ead3b102d04049": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 13,
+        "top5": [
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 13,
+        "top5": [
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 13,
+        "top5": [
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711414000000-711414021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T4_4a6658077bc8488c802795ac5d6c2156": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 13,
+        "top5": [
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 13,
+        "top5": [
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "711418000000-711418021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "T1_full_hits": [
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 3226,
+      "abs_offset": 124340309855386,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 13067,
+      "abs_offset": 124340309865227,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 13291,
+      "abs_offset": 124340309865451,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 14075,
+      "abs_offset": 124340309866235,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 14910,
+      "abs_offset": 124340309867070,
+      "context": "..................C.c-.q...pn.u.j=ote. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test................%.......c.c-.q...:.<.q..."
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 15278,
+      "abs_offset": 124340309867438,
+      "context": "..................c.c-.q..e this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test................%.......S.b-.q..........."
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 23155,
+      "abs_offset": 124340309875315,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.<|end|><|assistantp.......t.........c-.q"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 24078,
+      "abs_offset": 124340309876238,
+      "context": "..................U.c-.q...pn.u.j=ote. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.....\\..................e.c-.q...pn.u.j=."
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 29971,
+      "abs_offset": 124340309882131,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test.<|end|><|assistant|>...............l.<.q"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 30334,
+      "abs_offset": 124340309882494,
+      "context": "....................c......pn.u.j=ote. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test...m_end|>......Q..........<.q.....<.q..."
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 50030,
+      "abs_offset": 124340309902190,
+      "context": "..0.................c-.q...pn.u.j=ote. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test................U.......\\Nc-.q...pn.u.j=."
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 53150,
+      "abs_offset": 124340309905310,
+      "context": "..@.................c.....e this note. Canary (do not include): T1_d2baec4333924ec6be864ac67ca76e6f. Note: monitoring test................Q..........<.q.. P.<.q..X"
+    },
+    {
+      "range": "71163c000000-71163c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 59283,
+      "abs_offset": 124340309911443,
+      "context": "d|><|end|><|user|>Sum.arize tP..<.q..`..<.q..`..<.q.. include): T1_d2baec4333924ec6be864ac67ca76e6f. .ote: mo...<.q.....<.q.....<.q..ssistant|>..............P..<.q"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+[22:59:02] D7: end-to-end PII attack-chain demo (synthetic PII, not real)
+[22:59:02] synthetic_pii = 'SSN 000-00-3373 (SYNTHETIC_TEST_PII_3373281163, not a real person)'
+[22:59:02] logSensitiveData config flag = True
+[22:59:02] ensuring lms server is up + model loaded ...
+[22:59:08] model load rc=0
+[22:59:10] llmster pid = 814260
+[22:59:10] Step 1: send chat request containing the synthetic PII string
+[22:59:15] Step 2: scan process memory for the synthetic PII (heap-residue channel)
+[22:59:15]   /proc/814260/mem hits: 0
+[22:59:15] Step 3: grep on-disk server logs for the synthetic PII (disk-log channel)
+[22:59:15]   disk log hits: 0 file(s)
+[22:59:15] === WROTE /home/elaref/research/logs/d7_pii_chain_20260624_201614_d7_qwen35_18.json ===
+[22:59:15] === chain_confirmed (both channels hit) = False ===

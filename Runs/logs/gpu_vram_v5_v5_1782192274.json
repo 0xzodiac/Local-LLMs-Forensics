@@ -1,0 +1,85 @@
+{
+  "run_id": "v5_1782192274",
+  "pid": 2071769,
+  "canary": "VRAM_BYPASS_0e5394d2",
+  "vram_after_load": [
+    2850,
+    8192
+  ],
+  "vram_after_canary": [
+    2850,
+    8192
+  ],
+  "vram_after_release": [
+    2854,
+    8192
+  ],
+  "vram_after_shutdown": [
+    81,
+    8192
+  ],
+  "canary_hit_count": 9,
+  "canary_hit_samples": [
+    {
+      "range": "642f05cae000-642f0f3c5000",
+      "path": "[heap]",
+      "context": "im_start|>user.Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "\", \"content\": \"Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "\", \"content\": \"Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "\", \"content\": \"Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": ".......Q.......0/...x.. 8...x..................do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "....x..........xO...x..V}..(6.(istant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "im_start|>user.Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    },
+    {
+      "range": "78bc92ee9000-78bc98034000",
+      "path": "[anon]",
+      "context": "im_start|>user.Note for the assistant. Canary (do not include): VRAM_BYPASS_0e5394d2. The note is about a generic monitoring test, please summarize "
+    }
+  ],
+  "extra_tenants": [
+    {
+      "canary": "VT2_85a811e2",
+      "hits": 16,
+      "sample_contexts": [
+        "im_start|>user.Note for the assistant. Canary (do not include): VT2_85a811e2. The note is about a generic monitoring tes",
+        "\", \"content\": \"Note for the assistant. Canary (do not include): VT2_85a811e2. The note is about a generic monitoring tes",
+        "\", \"content\": \"Note for the assistant. Canary (do not include): VT2_85a811e2. The note is about a generic monitoring tes"
+      ]
+    },
+    {
+      "canary": "VT3_5c985bd3",
+      "hits": 16,
+      "sample_contexts": [
+        "\", \"content\": \"Note for the assistant. Canary (do not include): VT3_5c985bd3. The note is about a generic monitoring tes",
+        "\", \"content\": \"Note for the assistant. Canary (do not include): VT3_5c985bd3. The note is about a generic monitoring tes",
+        "\", \"content\": \"Note for the assistant. Canary (do not include): VT3_5c985bd3. The note is about a generic monitoring tes"
+      ]
+    }
+  ],
+  "server_log": "/home/elaref/research/logs/gpu_vram_v5_server_v5_1782192274.log"
+}

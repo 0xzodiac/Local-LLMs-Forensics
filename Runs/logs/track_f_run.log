@@ -1,0 +1,56 @@
+[0m
+> build · big-pickle
+[0m
+[0m→ [0mRead .
+[0m✱ [0mGlob "**/RESEARCH_PROGRESS_MASTER.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob "**/deep_leak_probe.py"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/PHASE2_CROSS_MODEL_REPORT.md"[90m in . · 1 match[0m
+[0m→ [0mRead RESEARCH_PROGRESS_MASTER.md
+[0m→ [0mRead scripts
+[0m→ [0mRead PHASE2_CROSS_MODEL_REPORT.md
+[0m→ [0mRead scripts/deep_leak_probe.py
+[0m→ [0mRead scripts/lms_common.py
+[0m
+[0m$ [0mls -la "/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0/llama-server" 2>&1 && ls -la "/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf" 2>&1
+-rwxr-xr-x 1 elaref elaref 17912 Jun  8 22:04 /home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0/llama-server
+-rw-rw-r-- 1 elaref elaref 9053116128 Jun 22 15:43 /home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf
+[0m
+[0m# [0mTodos
+[ ] Item (2): DEEP_LEAK persistence for phi4 — port deep_leak_probe.py, run on this box
+[ ] Item (3): Context-overflow test — run with proper --ctx-size for qwen35, nemotron, phi4
+[ ] Write MUST_RETEST_RESULTS.md with CONFIRMED/REVISED/RETRACTED/N-A for each item
+[0m
+[0m$ [0mls "/home/elaref/.lmstudio/models/lmstudio-community/" 2>&1
+NVIDIA-Nemotron-3-Nano-4B-GGUF
+Phi-4-reasoning-plus-GGUF
+Qwen3.5-9B-GGUF
+[0m
+[0m$ [0mls /home/elaref/research/logs/ 2>&1
+memorization_volume_v2.json
+track_c.log
+track_d.log
+track_d_run.log
+track_f.log
+track_f_run.log
+track_g.log
+track_h.log
+[0m
+[0m$ [0mwhich python3 && python3 -c "import uuid; print('ok')" 2>&1
+/usr/bin/python3
+ok
+[0m
+[0m$ [0mfind /home/elaref/.lmstudio/models -name "*.gguf" -type f 2>&1
+/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/mmproj-Qwen3.5-9B-BF16.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf
+[0m
+[93m[1m! [0mpermission requested: external_directory (/proc/sys/kernel/yama/*); auto-rejecting
+[0m✗ [0mcat /proc/sys/kernel/yama/ptrace_scope 2>&1 failed
+[91m[1mError: [0mThe user rejected permission to use this specific tool call.
+[0m
+[0m$ [0mfree -h 2>&1
+total        used        free      shared  buff/cache   available
+Mem:            15Gi       4.1Gi       3.0Gi       176Mi       8.8Gi        11Gi
+Swap:          4.3Gi       2.8Gi       1.5Gi
+[0m

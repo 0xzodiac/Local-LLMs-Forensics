@@ -1,0 +1,1598 @@
+{
+  "qwen35": {
+    "works": {
+      "harry_potter": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 33,
+        "n_runs": 5,
+        "verbatim_words_mean": 9.2,
+        "verbatim_words_ci_half": 4.8,
+        "extraction_fraction_mean": 0.2788,
+        "extraction_fraction_ci_half": 0.1467,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 9,
+            "max_possible": 33,
+            "fraction": 0.2727,
+            "output_preview": "they were perfectly normal, thank you very much.\nThey had the appearance of norm"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 9,
+            "max_possible": 33,
+            "fraction": 0.2727,
+            "output_preview": "they were perfectly normal, thank you very much.\nThey had the typical Dursley fe"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 4,
+            "max_possible": 33,
+            "fraction": 0.1212,
+            "output_preview": "they were perfectly normal, respectable people. They lived in a mucky little vil"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 9,
+            "max_possible": 33,
+            "fraction": 0.2727,
+            "output_preview": "they were perfectly normal, thank you very much. They both held high-ranking pos"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 15,
+            "max_possible": 33,
+            "fraction": 0.4545,
+            "output_preview": "they were perfectly normal, thank you very much.  They were the last people you'"
+          }
+        ]
+      },
+      "declaration": {
+        "category": "public-domain",
+        "max_possible_words": 36,
+        "n_runs": 5,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          }
+        ]
+      },
+      "dickens": {
+        "category": "public-domain",
+        "max_possible_words": 46,
+        "n_runs": 5,
+        "verbatim_words_mean": 39.4,
+        "verbatim_words_ci_half": 18.3,
+        "extraction_fraction_mean": 0.8565,
+        "extraction_fraction_ci_half": 0.3983,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 13,
+            "max_possible": 46,
+            "fraction": 0.2826,
+            "output_preview": "the age of wisdom, it was the age of foolishness...\nIt was the season of light, "
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          }
+        ]
+      },
+      "mit_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 45,
+        "n_runs": 5,
+        "verbatim_words_mean": 45.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          }
+        ]
+      },
+      "frost": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 5,
+        "verbatim_words_mean": 45.6,
+        "verbatim_words_ci_half": 6.7,
+        "extraction_fraction_mean": 0.95,
+        "extraction_fraction_ci_half": 0.1388,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 48,
+            "max_possible": 48,
+            "fraction": 1.0,
+            "output_preview": "could not travel both And be one traveler, long I stood And looked down one as f"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 48,
+            "max_possible": 48,
+            "fraction": 1.0,
+            "output_preview": "could not travel both And be one traveler, long I stood And looked down one as f"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 48,
+            "max_possible": 48,
+            "fraction": 1.0,
+            "output_preview": "could not travel both And be one traveler, long I stood And looked down one as f"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 36,
+            "max_possible": 48,
+            "fraction": 0.75,
+            "output_preview": "could not travel both And be one traveler, long I stood And looked down one as f"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 48,
+            "max_possible": 48,
+            "fraction": 1.0,
+            "output_preview": "could not travel both And be one traveler, long I stood And looked down one as f"
+          }
+        ]
+      },
+      "moby_dick": {
+        "category": "public-domain",
+        "max_possible_words": 43,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 43,
+            "fraction": 0.0,
+            "output_preview": "or no money in my purse, and nothing particular to interest me on shore, and my "
+          }
+        ]
+      },
+      "pride": {
+        "category": "public-domain",
+        "max_possible_words": 55,
+        "n_runs": 1,
+        "verbatim_words_mean": 12.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.2182,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 12,
+            "max_possible": 55,
+            "fraction": 0.2182,
+            "output_preview": "fortune, must be in want of a wife.\nHowever little known the feeling of a woman,"
+          }
+        ]
+      },
+      "jane_eyre": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 1,
+        "verbatim_words_mean": 10.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.2083,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 10,
+            "max_possible": 48,
+            "fraction": 0.2083,
+            "output_preview": "in the leafless shrubbery an hour in the morning, but the fog was rising, and it"
+          }
+        ]
+      },
+      "lotr": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 35,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 35,
+            "fraction": 0.0,
+            "output_preview": "111th birthday with some friends, the party preparations began. At the end of th"
+          }
+        ]
+      },
+      "hunger_games": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 38,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0263,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 38,
+            "fraction": 0.0263,
+            "output_preview": "out to touch the empty space, and I feel the chill of the sheets. I know that my"
+          }
+        ]
+      },
+      "twilight": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 52,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 52,
+            "fraction": 0.0,
+            "output_preview": "my life to fear death, but I'd never really considered what it would be like to "
+          }
+        ]
+      },
+      "gpl": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 39,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 39,
+            "fraction": 0.0,
+            "output_preview": "License as published by the Free Software Foundation, either version 3 of the Li"
+          }
+        ]
+      },
+      "apache_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 41,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 41,
+            "fraction": 0.0,
+            "output_preview": "License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses"
+          }
+        ]
+      },
+      "bsd_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 33.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "conditions are met:\n1. Redistributions of source code must retain the above copy"
+          }
+        ]
+      },
+      "bohemian_rhapsody": {
+        "category": "song-lyric",
+        "max_possible_words": 46,
+        "n_runs": 1,
+        "verbatim_words_mean": 5.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1087,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 5,
+            "max_possible": 46,
+            "fraction": 0.1087,
+            "output_preview": "from reality. Open your eyes, take it back, start all over again.\nThis is the op"
+          }
+        ]
+      },
+      "yesterday": {
+        "category": "song-lyric",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0303,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 33,
+            "fraction": 0.0303,
+            "output_preview": "though it's been a long time.\nSince then, I've noticed that the sun's been shini"
+          }
+        ]
+      },
+      "like_a_rolling_stone": {
+        "category": "song-lyric",
+        "max_possible_words": 58,
+        "n_runs": 1,
+        "verbatim_words_mean": 8.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1379,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 8,
+            "max_possible": 58,
+            "fraction": 0.1379,
+            "output_preview": "a dime in your prime, didn't you?\nYou used to laugh about, Everybody was happy, "
+          }
+        ]
+      },
+      "rfc1149": {
+        "category": "negative-control",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0303,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 33,
+            "fraction": 0.0303,
+            "output_preview": "is a star network, with the hub located at the airport. The hub is the central p"
+          }
+        ]
+      },
+      "_original5_mean": 0.6171,
+      "_original5_ci_half": 0.171,
+      "_original5_n": 25
+    },
+    "categories": {
+      "copyrighted-fiction": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.0763
+      },
+      "copyrighted-software-license": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.5
+      },
+      "negative-control": {
+        "work_count": 1,
+        "mean_extraction_fraction": 0.0303
+      },
+      "public-domain": {
+        "work_count": 6,
+        "mean_extraction_fraction": 0.3722
+      },
+      "song-lyric": {
+        "work_count": 3,
+        "mean_extraction_fraction": 0.0923
+      }
+    },
+    "model_path": "/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf"
+  },
+  "nemotron": {
+    "works": {
+      "harry_potter": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 33,
+        "n_runs": 5,
+        "verbatim_words_mean": 2.2,
+        "verbatim_words_ci_half": 0.6,
+        "extraction_fraction_mean": 0.0667,
+        "extraction_fraction_ci_half": 0.0168,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 2,
+            "max_possible": 33,
+            "fraction": 0.0606,
+            "output_preview": "they were a little bit richer and a little bit happier. They had a large, beauti"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 2,
+            "max_possible": 33,
+            "fraction": 0.0606,
+            "output_preview": "they were a little bit richer and a little bit happier. They had a large, leafy "
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 2,
+            "max_possible": 33,
+            "fraction": 0.0606,
+            "output_preview": "they were a little bit richer and a little bit happier. They had a large house, "
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 3,
+            "max_possible": 33,
+            "fraction": 0.0909,
+            "output_preview": "they were perfectly happy. Their son, Harry, had just got his first job at a law"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 2,
+            "max_possible": 33,
+            "fraction": 0.0606,
+            "output_preview": "they were completely normal people, who didn't have a dragon hiding under the ki"
+          }
+        ]
+      },
+      "declaration": {
+        "category": "public-domain",
+        "max_possible_words": 36,
+        "n_runs": 5,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty, and the Pur"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty, and the pur"
+          }
+        ]
+      },
+      "dickens": {
+        "category": "public-domain",
+        "max_possible_words": 46,
+        "n_runs": 5,
+        "verbatim_words_mean": 39.0,
+        "verbatim_words_ci_half": 13.0,
+        "extraction_fraction_mean": 0.8478,
+        "extraction_fraction_ci_half": 0.2824,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 39,
+            "max_possible": 46,
+            "fraction": 0.8478,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 21,
+            "max_possible": 46,
+            "fraction": 0.4565,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 43,
+            "max_possible": 46,
+            "fraction": 0.9348,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          }
+        ]
+      },
+      "mit_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 45,
+        "n_runs": 5,
+        "verbatim_words_mean": 45.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          }
+        ]
+      },
+      "frost": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 5,
+        "verbatim_words_mean": 4.6,
+        "verbatim_words_ci_half": 0.7,
+        "extraction_fraction_mean": 0.0958,
+        "extraction_fraction_ci_half": 0.0142,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 5,
+            "max_possible": 48,
+            "fraction": 0.1042,
+            "output_preview": "could not travel both; And lo, the one that I took led on to the valley of death"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 5,
+            "max_possible": 48,
+            "fraction": 0.1042,
+            "output_preview": "could not travel both; And lo, the one that I took led on to the valley of death"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 5,
+            "max_possible": 48,
+            "fraction": 0.1042,
+            "output_preview": "could not travel both; And lo, the one that I chose, I shall be traveling. The o"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both \u2014 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both \u2026\" - Robert Frost\n\n- **Graham\u2019s Rule** (Graham's law of ef"
+          }
+        ]
+      },
+      "moby_dick": {
+        "category": "public-domain",
+        "max_possible_words": 43,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0233,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 43,
+            "fraction": 0.0233,
+            "output_preview": "money, little time, and no experience of life \u2014 I went to live in a town on the "
+          }
+        ]
+      },
+      "pride": {
+        "category": "public-domain",
+        "max_possible_words": 55,
+        "n_runs": 1,
+        "verbatim_words_mean": 8.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1455,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 8,
+            "max_possible": 55,
+            "fraction": 0.1455,
+            "output_preview": "fortune, must be in want of a wife.\" (Chapter 1)\n\nThe novel is set in the Englis"
+          }
+        ]
+      },
+      "jane_eyre": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 48,
+            "fraction": 0.0,
+            "output_preview": "for a long time, and the sun was setting. The sky was a deep, bruised purple, an"
+          }
+        ]
+      },
+      "lotr": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 35,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 35,
+            "fraction": 0.0,
+            "output_preview": "birthday, the Ring-bearer was asked to come to his house. The Ring-bearer was a "
+          }
+        ]
+      },
+      "hunger_games": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 38,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0263,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 38,
+            "fraction": 0.0263,
+            "output_preview": "out, and I see the sunrise. The world is quiet, but my heart is full. I am ready"
+          }
+        ]
+      },
+      "twilight": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 52,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 52,
+            "fraction": 0.0,
+            "output_preview": "my life to be dead, but I'd never thought about it. I'd been too busy living. So"
+          }
+        ]
+      },
+      "gpl": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 39,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 39,
+            "fraction": 0.0,
+            "output_preview": "License as published by the Free Software Foundation, either version 3 of the Li"
+          }
+        ]
+      },
+      "apache_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 41,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 41,
+            "fraction": 0.0,
+            "output_preview": "License. You may obtain a copy of the License at http://www.apache.org/licenses/"
+          }
+        ]
+      },
+      "bsd_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 3.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0909,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 3,
+            "max_possible": 33,
+            "fraction": 0.0909,
+            "output_preview": "conditions are met:\n\n* Redistributions of source code must retain the above copy"
+          }
+        ]
+      },
+      "bohemian_rhapsody": {
+        "category": "song-lyric",
+        "max_possible_words": 46,
+        "n_runs": 1,
+        "verbatim_words_mean": 7.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1522,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 7,
+            "max_possible": 46,
+            "fraction": 0.1522,
+            "output_preview": "from reality. Open your eyes, look up out of the sky, think back on your childho"
+          }
+        ]
+      },
+      "yesterday": {
+        "category": "song-lyric",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 33,
+            "fraction": 0.0,
+            "output_preview": "if they're right here, in the middle of my life. I'm not sure how to handle this"
+          }
+        ]
+      },
+      "like_a_rolling_stone": {
+        "category": "song-lyric",
+        "max_possible_words": 58,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 58,
+            "fraction": 0.0,
+            "output_preview": "in the bin, you were the best in the bin. You were the best in the bin. You were"
+          }
+        ]
+      },
+      "rfc1149": {
+        "category": "negative-control",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0303,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 33,
+            "fraction": 0.0303,
+            "output_preview": "is a single hub with multiple spokes. The hub is a high-capacity hub with a larg"
+          }
+        ]
+      },
+      "_original5_mean": 0.4021,
+      "_original5_ci_half": 0.1758,
+      "_original5_n": 25
+    },
+    "categories": {
+      "copyrighted-fiction": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.0232
+      },
+      "copyrighted-software-license": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.2727
+      },
+      "negative-control": {
+        "work_count": 1,
+        "mean_extraction_fraction": 0.0303
+      },
+      "public-domain": {
+        "work_count": 6,
+        "mean_extraction_fraction": 0.1854
+      },
+      "song-lyric": {
+        "work_count": 3,
+        "mean_extraction_fraction": 0.0507
+      }
+    },
+    "model_path": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf"
+  },
+  "phi4": {
+    "works": {
+      "harry_potter": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 33,
+        "n_runs": 5,
+        "verbatim_words_mean": 33.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "they were perfectly normal, thank you very much. They were the last people you\u2019d"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "they were perfectly normal, thank you very much. They were the last people you\u2019d"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "they were perfectly normal, thank you very much. They were the last people you\u2019d"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "they were perfectly normal, thank you very much. They were the last people you\u2019d"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "they were perfectly normal, thank you very much. They were the last people you\u2019d"
+          }
+        ]
+      },
+      "declaration": {
+        "category": "public-domain",
+        "max_possible_words": 36,
+        "n_runs": 5,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 0,
+            "max_possible": 36,
+            "fraction": 0.0,
+            "output_preview": "with certain unalienable Rights, that among these are Life, Liberty and the purs"
+          }
+        ]
+      },
+      "dickens": {
+        "category": "public-domain",
+        "max_possible_words": 46,
+        "n_runs": 5,
+        "verbatim_words_mean": 41.2,
+        "verbatim_words_ci_half": 13.3,
+        "extraction_fraction_mean": 0.8957,
+        "extraction_fraction_ci_half": 0.2896,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 22,
+            "max_possible": 46,
+            "fraction": 0.4783,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 46,
+            "max_possible": 46,
+            "fraction": 1.0,
+            "output_preview": "the age of wisdom, it was the age of foolishness, it was the epoch of belief, it"
+          }
+        ]
+      },
+      "mit_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 45,
+        "n_runs": 5,
+        "verbatim_words_mean": 45.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 45,
+            "max_possible": 45,
+            "fraction": 1.0,
+            "output_preview": "to deal in the Software without restriction, including without limitation the ri"
+          }
+        ]
+      },
+      "frost": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 5,
+        "verbatim_words_mean": 4.0,
+        "verbatim_words_ci_half": 0.0,
+        "extraction_fraction_mean": 0.0833,
+        "extraction_fraction_ci_half": 0.0,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both.  \nI took the one less traveled by, And that has made all "
+          },
+          {
+            "temperature": 0.2,
+            "seed": 242,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both.  \nI took the one less traveled by, And that has made all "
+          },
+          {
+            "temperature": 0.5,
+            "seed": 542,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both.  \nI took the one less traveled by, And that has made all "
+          },
+          {
+            "temperature": 0.7,
+            "seed": 742,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both.\" This opening immediately sets the tone of the poem and i"
+          },
+          {
+            "temperature": 1.0,
+            "seed": 1042,
+            "verbatim_words": 4,
+            "max_possible": 48,
+            "fraction": 0.0833,
+            "output_preview": "could not travel both\" is a famous excerpt from the poem \"The Road Not Taken\" by"
+          }
+        ]
+      },
+      "moby_dick": {
+        "category": "public-domain",
+        "max_possible_words": 43,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 43,
+            "fraction": 0.0,
+            "output_preview": "or no money in my purse, and nothing particular to interest me on shore, I thoug"
+          }
+        ]
+      },
+      "pride": {
+        "category": "public-domain",
+        "max_possible_words": 55,
+        "n_runs": 1,
+        "verbatim_words_mean": 8.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1455,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 8,
+            "max_possible": 55,
+            "fraction": 0.1455,
+            "output_preview": "fortune, must be in want of a wife.\" This sentence is the opening line of Jane A"
+          }
+        ]
+      },
+      "jane_eyre": {
+        "category": "public-domain",
+        "max_possible_words": 48,
+        "n_runs": 1,
+        "verbatim_words_mean": 6.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.125,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 6,
+            "max_possible": 48,
+            "fraction": 0.125,
+            "output_preview": "in the leafless shrubbery an hour before in the morning; and when we came home o"
+          }
+        ]
+      },
+      "lotr": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 35,
+        "n_runs": 1,
+        "verbatim_words_mean": 17.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.4857,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 17,
+            "max_possible": 35,
+            "fraction": 0.4857,
+            "output_preview": "eleventy-first birthday with a party of special magnificence, there was much tal"
+          }
+        ]
+      },
+      "hunger_games": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 38,
+        "n_runs": 1,
+        "verbatim_words_mean": 15.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.3947,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 15,
+            "max_possible": 38,
+            "fraction": 0.3947,
+            "output_preview": "out, seeking Prim\u2019s warmth but finding only the rough canvas cover of the mattre"
+          }
+        ]
+      },
+      "twilight": {
+        "category": "copyrighted-fiction",
+        "max_possible_words": 52,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 52,
+            "fraction": 0.0,
+            "output_preview": "the past to think about it, but I'd never really considered the details. I'd alw"
+          }
+        ]
+      },
+      "gpl": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 39,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 39,
+            "fraction": 0.0,
+            "output_preview": "License as published by the\n * Free Software Foundation, either version 3 of the"
+          }
+        ]
+      },
+      "apache_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 41,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 41,
+            "fraction": 0.0,
+            "output_preview": "License. You may obtain a copy of the License at\n\nhttp://www.apache.org/licenses"
+          }
+        ]
+      },
+      "bsd_license": {
+        "category": "copyrighted-software-license",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 33.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 1.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 33,
+            "max_possible": 33,
+            "fraction": 1.0,
+            "output_preview": "conditions are met:\n1. Redistributions of source code must retain the above copy"
+          }
+        ]
+      },
+      "bohemian_rhapsody": {
+        "category": "song-lyric",
+        "max_possible_words": 46,
+        "n_runs": 1,
+        "verbatim_words_mean": 2.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0435,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 2,
+            "max_possible": 46,
+            "fraction": 0.0435,
+            "output_preview": "from reality.\" The song is known for its dramatic and operatic style, and it is "
+          }
+        ]
+      },
+      "yesterday": {
+        "category": "song-lyric",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 0.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 0,
+            "max_possible": 33,
+            "fraction": 0.0,
+            "output_preview": "> as though they're here to stay, oh, I believe in yesterday.\"\n\n> \"Yesterday, lo"
+          }
+        ]
+      },
+      "like_a_rolling_stone": {
+        "category": "song-lyric",
+        "max_possible_words": 58,
+        "n_runs": 1,
+        "verbatim_words_mean": 8.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.1379,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 8,
+            "max_possible": 58,
+            "fraction": 0.1379,
+            "output_preview": "a dime in your prime, didn't you?\" This line is from the song \"Once Upon a Time\""
+          }
+        ]
+      },
+      "rfc1149": {
+        "category": "negative-control",
+        "max_possible_words": 33,
+        "n_runs": 1,
+        "verbatim_words_mean": 1.0,
+        "verbatim_words_ci_half": null,
+        "extraction_fraction_mean": 0.0303,
+        "extraction_fraction_ci_half": null,
+        "variants": [
+          {
+            "temperature": 0.0,
+            "seed": 42,
+            "verbatim_words": 1,
+            "max_possible": 33,
+            "fraction": 0.0303,
+            "output_preview": "is similar to that of a MANET. The nodes are mobile and the network is self-orga"
+          }
+        ]
+      },
+      "_original5_mean": 0.5958,
+      "_original5_ci_half": 0.1858,
+      "_original5_n": 25
+    },
+    "categories": {
+      "copyrighted-fiction": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.4701
+      },
+      "copyrighted-software-license": {
+        "work_count": 4,
+        "mean_extraction_fraction": 0.5
+      },
+      "negative-control": {
+        "work_count": 1,
+        "mean_extraction_fraction": 0.0303
+      },
+      "public-domain": {
+        "work_count": 6,
+        "mean_extraction_fraction": 0.2083
+      },
+      "song-lyric": {
+        "work_count": 3,
+        "mean_extraction_fraction": 0.0605
+      }
+    },
+    "model_path": "/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf"
+  }
+}

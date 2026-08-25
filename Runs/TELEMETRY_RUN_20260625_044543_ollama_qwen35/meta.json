@@ -1,0 +1,20 @@
+{
+  "run_id": "20260625_044543_ollama_qwen35",
+  "tool": "ollama",
+  "model": "qwen35-local",
+  "canary": "TELEMETRY_CANARY_4008cc2e442b",
+  "port": 11434,
+  "netns": "lmns",
+  "capture_iface": "lmns-br",
+  "duration_sec": 180,
+  "hook": false,
+  "architecture": "netns-isolated",
+  "hook_note": "no LD_PRELOAD layer: ollama is a Go binary, syscalls bypass libc",
+  "contamination_note": "capture on lmns-br is pure ns egress; host co-resident traffic cannot appear",
+  "started_iso": "2026-06-25T04:45:43.201563",
+  "layers": {
+    "L1_packet_capture_lmns_br": true,
+    "L2_ld_preload_hook": false
+  },
+  "finished_iso": "2026-06-25T04:48:55.728900"
+}

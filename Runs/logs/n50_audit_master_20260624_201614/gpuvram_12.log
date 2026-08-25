@@ -1,0 +1,20 @@
+[00:24:05] Gap 5 v5 GPU bypass probe, canary=VRAM_BYPASS_29ab9afa
+[00:24:05] baseline VRAM: (101, 8192)
+[00:24:05] Phase 1: spawn CUDA llama-server as Python child
+[00:24:05]   server pid 2284958
+[00:24:07] server healthy; VRAM after load: (2870, 8192)
+[00:24:07] Phase 2: send canary request
+[00:24:08]   canary chat done
+[00:24:08] VRAM after canary: (2870, 8192)
+[00:24:08] Phase 3: send 2nd benign request (slot release)
+[00:24:08] VRAM after slot release: (2874, 8192)
+[00:24:08] Phase 4: scan /proc/<pid>/mem (CUDA pinned memory is host-mapped)
+[00:24:09]   canary hits in /proc/2284958/mem: 10
+[00:24:09] Phase 5: 2 more tenants to test multi-tenant recovery
+[00:24:09]   tenant 2: canary=VT2_a498e4d1
+[00:24:10]     hits: 16
+[00:24:10]   tenant 3: canary=VT3_7a14479a
+[00:24:12]     hits: 16
+[00:24:12] Phase 6: shutdown
+[00:24:12] VRAM after shutdown: (101, 8192)
+[00:24:12] === WROTE /home/elaref/research/logs/gpu_vram_v5_20260624_201614_gpuvram_12.json ===  hits: 10, multi-tenant extra: [16, 16]

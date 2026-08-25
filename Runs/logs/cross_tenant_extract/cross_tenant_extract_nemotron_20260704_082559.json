@@ -1,0 +1,69 @@
+{
+  "model": "nemotron",
+  "run_id": "20260704_082559",
+  "n": 1,
+  "transfer_confirmed_count": 1,
+  "transfer_confirmed_rate": 1.0,
+  "kv_channel_hit_count": 0,
+  "kv_channel_hit_rate": 0.0,
+  "kv_channel_wilson_ci": {
+    "low": 0.0,
+    "high": 0.7934567085261071,
+    "point": 0.0
+  },
+  "memory_channel_hit_count": 1,
+  "memory_channel_hit_rate": 1.0,
+  "memory_channel_wilson_ci": {
+    "low": 0.20654329147389294,
+    "high": 1.0,
+    "point": 1.0
+  },
+  "either_channel_hit_count": 1,
+  "either_channel_hit_rate": 1.0,
+  "either_channel_wilson_ci": {
+    "low": 0.20654329147389294,
+    "high": 1.0,
+    "point": 1.0
+  },
+  "results": [
+    {
+      "i": 0,
+      "secret": "SECRET_ecf19ab44384",
+      "n_saved": 63,
+      "n_restored": 63,
+      "transfer_confirmed": true,
+      "kv_channel_hit": false,
+      "kv_tokens_evaluated": 40,
+      "kv_completion_text": "",
+      "kv_debug": {
+        "rendered_prefix": "<|im_start|>system\n<|im_end|>\n<|im_start|>user\nMy confidential token is SECRET_ecf19ab44384. Acknowledge briefly.<|im_end|>\n<|im_start|>assistant\n<think>\n",
+        "tokens_predicted": 80,
+        "stop_type": "limit",
+        "stopping_word": "",
+        "truncated": false,
+        "tokens_cached": 119,
+        "raw_response_keys": [
+          "index",
+          "content",
+          "tokens",
+          "id_slot",
+          "stop",
+          "model",
+          "tokens_predicted",
+          "tokens_evaluated",
+          "generation_settings",
+          "prompt",
+          "has_new_line",
+          "truncated",
+          "stop_type",
+          "stopping_word",
+          "tokens_cached",
+          "timings"
+        ]
+      },
+      "memory_channel_hits": 20,
+      "memory_channel_hit": true,
+      "either_channel_hit": true
+    }
+  ]
+}

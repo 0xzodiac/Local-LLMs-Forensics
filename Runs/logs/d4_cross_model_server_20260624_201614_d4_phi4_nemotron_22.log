@@ -1,0 +1,70 @@
+0.00.115.227 I log_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.115.230 I device_info:
+0.00.275.951 I   - CUDA0   : Quadro RTX 4000 (7785 MiB, 7579 MiB free)
+0.00.275.965 I   - CPU     : Intel(R) Core(TM) i7-9850H CPU @ 2.60GHz (15740 MiB, 15740 MiB free)
+0.00.276.024 I system_info: n_threads = 8 (n_threads_batch = 8) / 12 | CUDA : ARCHS = 750 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | LLAMAFILE = 1 | OPENMP = 1 | REPACK = 1 | 
+0.00.276.104 I srv          init: using 11 threads for HTTP server
+0.00.276.774 I srv         start: binding port with default address family
+0.00.277.987 I srv  llama_server: loading model
+0.00.278.015 I srv    load_model: loading model '/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf'
+0.00.278.026 I common_init_result: fitting params to device memory ...
+0.00.278.026 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.01.205.449 W llama_context: n_ctx_seq (2048) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+0.01.328.951 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.01.892.881 I srv    load_model: initializing slots, n_slots = 1
+0.02.478.953 W common_speculative_init: no implementations specified for speculative decoding
+0.02.478.961 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 2048
+0.02.479.042 I srv    load_model: prompt cache is disabled - use `--cache-ram N` to enable it
+0.02.479.046 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.02.479.047 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+0.02.479.071 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.02.482.184 I init: chat template, example_format: '<|im_start|>system<|im_sep|>You are Phi, a language model trained by Microsoft to help users. Your role as an assistant involves thoroughly exploring questions through a systematic thinking process before providing the final precise and accurate solutions. This requires engaging in a comprehensive cycle of analysis, summarizing, exploration, reassessment, reflection, backtracing, and iteration to develop well-considered thinking process. Please structure your response into two main sections: Thought and Solution using the specified format: <think> {Thought section} </think> {Solution section}. In the Thought section, detail your reasoning process in steps. Each step should include detailed considerations such as analysing questions, summarizing relevant findings, brainstorming new ideas, verifying the accuracy of the current steps, refining any errors, and revisiting previous steps. In the Solution section, based on various attempts, explorations, and reflections from the Thought section, systematically present the final solution that you deem correct. The Solution section should be logical, accurate, and concise and detail necessary steps needed to reach the conclusion. Now, try to solve the following question through the above guidelines:<|im_end|> You are a helpful assistant<|end|><|user|>Hello<|end|><|assistant|>Hi there<|end|><|user|>How are you?<|end|><|assistant|>'
+0.02.483.909 I srv          init: init: chat template, thinking = 0
+0.02.483.941 I srv  llama_server: model loaded
+0.02.483.945 I srv  llama_server: server is listening on http://127.0.0.1:8097
+0.02.483.949 I srv  update_slots: all slots are idle
+0.06.226.642 I srv    operator(): Chat format: peg-native
+0.06.227.768 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.06.227.816 I slot launch_slot_: id  0 | task 0 | processing task, is_child = 0
+0.13.706.548 I slot print_timing: id  0 | task 0 | prompt eval time =    3679.95 ms /   283 tokens (   13.00 ms per token,    76.90 tokens per second)
+0.13.706.553 I slot print_timing: id  0 | task 0 |        eval time =    3798.76 ms /     8 tokens (  474.85 ms per token,     2.11 tokens per second)
+0.13.706.553 I slot print_timing: id  0 | task 0 |       total time =    7478.72 ms /   291 tokens
+0.13.706.554 I slot print_timing: id  0 | task 0 |    graphs reused =          7
+0.13.706.589 I slot      release: id  0 | task 0 | stop processing: n_tokens = 290, truncated = 0
+0.13.706.595 I srv  update_slots: all slots are idle
+0.14.500.707 I srv    load_model: loading model '/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf'
+0.14.500.710 I common_init_result: fitting params to device memory ...
+0.14.500.710 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.15.389.967 W llama_context: n_ctx_seq (2048) < n_ctx_train (1048576) -- the full capacity of the model will not be utilized
+0.15.448.943 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.15.811.755 I srv    load_model: initializing slots, n_slots = 1
+0.16.048.555 W srv    load_model: speculative decoding will use checkpoints
+0.16.048.562 W common_speculative_init: no implementations specified for speculative decoding
+0.16.048.564 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 2048
+0.16.048.617 I srv    load_model: prompt cache is disabled - use `--cache-ram N` to enable it
+0.16.048.617 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.16.048.617 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+0.16.048.651 W srv          init: --cache-idle-slots requires --cache-ram, disabling
+0.16.086.162 I init: chat template, example_format: '<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+<think></think>Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+<think>
+'
+0.16.119.148 I srv          init: init: chat template, thinking = 1
+0.20.590.429 I srv    operator(): Chat format: peg-native
+0.20.590.783 I slot get_availabl: id  0 | task -1 | selected slot by LRU, t_last = -1
+0.20.590.886 I slot launch_slot_: id  0 | task 10 | processing task, is_child = 0
+0.20.998.471 I slot create_check: id  0 | task 10 | created context checkpoint 1 of 32 (pos_min = 5, pos_max = 5, n_tokens = 6, size = 81.088 MiB)
+0.23.426.267 I slot print_timing: id  0 | task 10 | prompt eval time =    1473.87 ms /    71 tokens (   20.76 ms per token,    48.17 tokens per second)
+0.23.426.271 I slot print_timing: id  0 | task 10 |        eval time =    1361.50 ms /     8 tokens (  170.19 ms per token,     5.88 tokens per second)
+0.23.426.272 I slot print_timing: id  0 | task 10 |       total time =    2835.36 ms /    79 tokens
+0.23.426.272 I slot print_timing: id  0 | task 10 |    graphs reused =          7
+0.23.426.290 I slot      release: id  0 | task 10 | stop processing: n_tokens = 78, truncated = 0
+0.23.426.296 I srv  update_slots: all slots are idle
+0.25.406.119 I srv    operator(): operator(): cleaning up before exit...

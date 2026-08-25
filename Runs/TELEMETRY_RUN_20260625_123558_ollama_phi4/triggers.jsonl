@@ -1,0 +1,2 @@
+{"ts": 1782380161.42582, "name": "model_load_and_benign_generate", "ok": true, "err": "", "dur_s": 6.85}
+{"ts": 1782380168.2753725, "name": "canary_generate", "ok": true, "err": "", "dur_s": 5.43}

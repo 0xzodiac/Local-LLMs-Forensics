@@ -1,0 +1,29 @@
+[08:52:26] Mission: local-LLM provider leak proof. canary=PROVIDER_LEAK_TEST_20b0324f2369
+[08:52:26] Phase 0: baseline conn state
+[08:52:26]   baseline external conn count: 0
+[08:52:26] Phase 1: start LM Studio server
+[08:52:27] lms server start rc=0
+[08:52:27]   stderr: Success! Server is now running on port 1234
+[08:52:27] loading model qwen/qwen3.5-9b...
+[08:52:33] lms load rc=0
+[08:52:33]   stdout: [?25l
+Loading qwen/qwen3.5-9b 0% ⠋[?25l
+Loading qwen/qwen3.5-9b 0% ⠙[?25l
+Loading qwen/qwen3.5-9b 2% ⠙[?25l
+Loading qwen/qwen3.5-9b 2% ⠹[?25l
+Loading qwen/qwen3.5-9b 2% ⠸[?25l
+Loading qwen/qwen3
+[08:52:33]   stderr: Model loaded successfully in 6.03s.
+(6.10 GiB)
+To use the model in the API/SDK, use the identifier "qwen/qwen3.5-9b".
+[08:52:33]   LM Studio server PIDs: []
+[08:52:35] Phase 2: idle conns after load: 0
+[08:52:37] Phase 4: send canary request
+[08:52:46]   chat done
+[08:52:46]   conns after chat: 0
+[08:52:46] Phase 5: 30s post-chat, capture any telemetry beacon
+[08:53:16]   conns 30s post-chat: 0
+[08:53:16] Phase 6: shutdown
+[08:53:16] Phase 7: scan strace log
+[08:53:16]   strace log: 0 bytes, 0 canary hits, 0 external connect() calls, 0 large writes
+[08:53:16] === WROTE /home/elaref/research/logs/lms_egress_leak_1782193946.json ===

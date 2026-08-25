@@ -1,0 +1,310 @@
+{
+  "run_id": "securealloc_run1",
+  "pid": 1347219,
+  "canaries": [
+    "T1_150c5901a72848b5a2c040109cfdc891",
+    "T2_296cdaf891a94ad28a7765fa3e9884fd",
+    "T3_c66e1638a0394d5b9bdb034cc3161910",
+    "T4_071a7cb8507844aa822e7c44f2e0ab3f"
+  ],
+  "history": {
+    "T1_150c5901a72848b5a2c040109cfdc891": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-idle",
+        "count": 0,
+        "top5": []
+      }
+    ],
+    "T2_296cdaf891a94ad28a7765fa3e9884fd": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7ddf4c000000-7ddf4c021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T3_c66e1638a0394d5b9bdb034cc3161910": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de2e4000000-7de2e4021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T4_071a7cb8507844aa822e7c44f2e0ab3f": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7de0c4000000-7de0c4021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "T1_full_hits": []
+}

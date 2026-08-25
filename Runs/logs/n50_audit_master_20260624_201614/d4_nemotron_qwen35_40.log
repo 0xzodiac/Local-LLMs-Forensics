@@ -1,0 +1,18 @@
+[21:00:48] D4: cross-model heap residue (in-process swap via /admin/swap_model)
+[21:00:48] Phase 1: start server with model A (nemotron): NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf
+[21:00:51] server pid 2003082
+[21:00:54] Phase 2: send canary-A to model A
+[21:00:58]   canary-A hits right after model-A request: 12
+[21:00:58] Phase 3: hot-swap in-process to model B (qwen): Qwen3.5-9B-Q4_K_M.gguf
+[21:01:00]   swap response: {"ok":true} (took 2.4s)
+[21:01:00]   pid after swap: 2003082 (same process: True)
+[21:01:03] Phase 4: scan for canary-A IMMEDIATELY after swap, before any new request
+[21:01:05]   canary-A hits post-swap, pre-request: 12
+[21:01:05] Phase 5: send canary-B to model B
+[21:01:11]   canary-A hits after model-B request: 12
+[21:01:11]   canary-B hits after model-B request: 10
+[21:01:11] Phase 6: shutdown
+[21:01:11] === WROTE /home/elaref/research/logs/d4_cross_model_20260624_201614_d4_nemotron_qwen35_40.json ===
+[21:01:11] === SUMMARY ===
+[21:01:11]   CANARY_A_b40c6996ad8: post-A-request=12, post-swap-pre-request=12, post-B-request=12
+[21:01:11]   CANARY_B_687e36f73eb: post-B-request=10

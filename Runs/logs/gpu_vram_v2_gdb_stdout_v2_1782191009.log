@@ -1,0 +1,25 @@
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+https://debuginfod.ubuntu.com 
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7fffb8bff000 (LWP 2031720)]
+[New Thread 0x7fffb8bff000 (LWP 2031721)]
+[Thread 0x7fffb8bff000 (LWP 2031720) exited]
+[New Thread 0x7fffb3fff000 (LWP 2031722)]
+[New Thread 0x7fffb2bff000 (LWP 2031723)]
+[Detaching after fork from child process 2031724]
+0.00.223.844 I log_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.223.846 I device_info:
+[New Thread 0x7fffb11dd000 (LWP 2031752)]
+[New Thread 0x7fffb09dc000 (LWP 2031753)]
+CUDA ELF Image contains unknown ABI version: 8
+This might happen while debugging JITed codeusing latest driver with older tools.
+Further debugging might not be reliable.Are you sure you want to continue? (y or [n]) [answered N; input not from terminal]
+CUDA ELF Image contains unknown ABI version

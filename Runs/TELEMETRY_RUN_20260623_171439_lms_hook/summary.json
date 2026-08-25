@@ -1,0 +1,33 @@
+{
+  "canary": "TELEMETRY_CANARY_759ae70d6ccf",
+  "verdict": "EGRESS DETECTED (no canary observed in outbound payload)",
+  "pcap_packets_captured": 757,
+  "pcap_external_destinations": [
+    "104.26.6.153",
+    "104.26.7.153"
+  ],
+  "dns_queries_pcap": 6,
+  "dns_queries_live": 0,
+  "ld_preload_getaddrinfo_hosts": {
+    "versions-prod.lmstudio.ai": 1,
+    "lmstudio.ai": 1,
+    "extensions.lmstudio.ai": 1
+  },
+  "ld_preload_external_connects": 8,
+  "proxy_requests_total": 0,
+  "proxy_external_requests": 0,
+  "proxy_external_hosts": [],
+  "proxy_bypass_suspected": false,
+  "canary_in_pcap": false,
+  "canary_in_dns_pcap": false,
+  "canary_in_proxy_body": false,
+  "canary_in_hooks_log": false,
+  "any_canary_egress": false,
+  "canary_hit_files": {
+    "pcap": [],
+    "dns_pcap": [],
+    "proxy_log": [],
+    "hooks": [],
+    "proxy_bodies": []
+  }
+}

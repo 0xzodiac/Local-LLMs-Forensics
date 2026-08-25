@@ -1,0 +1,30 @@
+
+======================================================================
+ITEM 2: DEEP_LEAK persistence for phi4 (300s timeout)
+======================================================================
+  phi4 server ready (PID 891787)
+  canary1: 205339f9109c4b48b312518a78626ccb
+  visible: 'We are asked: "Summarize this note in one short sentence. Traceability canary (d'
+  no reasoning
+  scan1: 6 canary copies found, 1,381,462,016 bytes scanned
+    regions: ['5cf3651c9000-5cf3676c4000 rw-p [heap] x6']
+  scan2 (persistence): 2 copies of canary1 remain
+
+======================================================================
+ITEM 3: Context-overflow test per-model
+======================================================================
+
+  --- qwen35 ---
+  server ready (PID 902717)
+  overflow result: HTTP Error 400: Bad Request
+
+  --- nemotron ---
+  server ready (PID 903239)
+  overflow result: HTTP Error 400: Bad Request
+
+  --- phi4 ---
+  server ready (PID 903816)
+  overflow result: HTTP Error 400: Bad Request
+
+Saved /home/elaref/research/logs/track_f_results.json
+DONE_TRACK_F

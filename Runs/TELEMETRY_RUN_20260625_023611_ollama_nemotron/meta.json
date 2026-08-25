@@ -1,0 +1,20 @@
+{
+  "run_id": "20260625_023611_ollama_nemotron",
+  "tool": "ollama",
+  "model": "nemotron-local",
+  "canary": "TELEMETRY_CANARY_dede639f263e",
+  "port": 11434,
+  "netns": "lmns",
+  "capture_iface": "lmns-br",
+  "duration_sec": 180,
+  "hook": false,
+  "architecture": "netns-isolated",
+  "hook_note": "no LD_PRELOAD layer: ollama is a Go binary, syscalls bypass libc",
+  "contamination_note": "capture on lmns-br is pure ns egress; host co-resident traffic cannot appear",
+  "started_iso": "2026-06-25T02:36:11.711702",
+  "layers": {
+    "L1_packet_capture_lmns_br": true,
+    "L2_ld_preload_hook": false
+  },
+  "finished_iso": "2026-06-25T02:39:21.686514"
+}

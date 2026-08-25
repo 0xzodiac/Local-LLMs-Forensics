@@ -1,0 +1,36 @@
+{
+  "description": "Byte-exact provenance for the four GGUF model weight files used in 'The Illusion of Local'. Each digest pins the file actually loaded during measurement to the public lmstudio-community release on Hugging Face. Reproduce by resolving sha256 to the byte-identical file.",
+  "zenodo_doi": "10.5281/zenodo.20998459",
+  "github": "https://github.com/youseefhamdi/Local-LLM-Forensics",
+  "quantisation": "Q4_K_M",
+  "models": [
+    {
+      "model": "NVIDIA-Nemotron-3-Nano-4B",
+      "hf_repo": "lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF",
+      "file": "NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+      "bytes": 2837072896,
+      "sha256": "083af225449463dd7c38bebc888f9dcad187b834d8b15e08c297dda37c968b50"
+    },
+    {
+      "model": "Qwen3.5-9B",
+      "hf_repo": "lmstudio-community/Qwen3.5-9B-GGUF",
+      "file": "Qwen3.5-9B-Q4_K_M.gguf",
+      "bytes": 5627044256,
+      "sha256": "cd76ec205963b3b33350093e6904d9de16c4e666fd104e1f632d25c7f15f2a13"
+    },
+    {
+      "model": "gemma-4-E4B-it",
+      "hf_repo": "lmstudio-community/gemma-4-E4B-it-GGUF",
+      "file": "gemma-4-E4B-it-Q4_K_M.gguf",
+      "bytes": 5335289664,
+      "sha256": "3f72a20a06f626c78e6c475ae07a64c88b2663149c0f6197b56bf7cf1f37585c"
+    },
+    {
+      "model": "Phi-4-reasoning-plus",
+      "hf_repo": "lmstudio-community/Phi-4-reasoning-plus-GGUF",
+      "file": "Phi-4-reasoning-plus-Q4_K_M.gguf",
+      "bytes": 9053116128,
+      "sha256": "6f10ded0197863aa0641e2451688ac8025c95ff7c948e23f1089d173e6834768"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "pcap_bytes": 893401,
+  "ext_dest_ips": {
+    "224.0.0.251": 16,
+    "192.168.1.1": 6,
+    "10.99.0.2": 449,
+    "104.26.6.153": 11,
+    "104.26.7.153": 13,
+    "172.67.69.92": 224
+  },
+  "dns_queries": [
+    "extensions.lmstudio.ai",
+    "lmstudio.ai",
+    "versions-prod.lmstudio.ai"
+  ]
+}

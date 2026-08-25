@@ -1,0 +1,43 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.005.101 I srv  llama_server: n_parallel is set to auto, using n_parallel = 4 and kv_unified = true
+0.00.005.541 I srv          init: using 11 threads for HTTP server
+0.00.005.761 I srv         start: binding port with default address family
+0.00.006.948 I srv  llama_server: loading model
+0.00.006.953 I srv    load_model: loading model '/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf'
+0.00.006.987 I common_init_result: fitting params to device memory ...
+0.00.006.987 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.00.312.738 I common_params_fit_impl: projected to use 4189 MiB of host memory vs. 15740 MiB of total host memory
+0.18.421.488 W llama_context: n_ctx_seq (4096) < n_ctx_train (32768) -- the full capacity of the model will not be utilized
+0.18.845.061 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.23.913.872 I srv    load_model: initializing slots, n_slots = 4
+0.26.293.773 W common_speculative_init: no implementations specified for speculative decoding
+0.26.293.789 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 4096
+0.26.294.004 I slot   load_model: id  1 | task -1 | new slot, n_ctx = 4096
+0.26.294.007 I slot   load_model: id  2 | task -1 | new slot, n_ctx = 4096
+0.26.294.008 I slot   load_model: id  3 | task -1 | new slot, n_ctx = 4096
+0.26.296.217 I srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+0.26.296.223 I srv    load_model: use `--cache-ram 0` to disable the prompt cache
+0.26.296.225 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.26.296.227 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+0.26.297.333 I srv          init: idle slots will be saved to prompt cache and cleared upon starting a new task
+0.26.320.075 I init: chat template, example_format: '<|im_start|>system<|im_sep|>You are Phi, a language model trained by Microsoft to help users. Your role as an assistant involves thoroughly exploring questions through a systematic thinking process before providing the final precise and accurate solutions. This requires engaging in a comprehensive cycle of analysis, summarizing, exploration, reassessment, reflection, backtracing, and iteration to develop well-considered thinking process. Please structure your response into two main sections: Thought and Solution using the specified format: <think> {Thought section} </think> {Solution section}. In the Thought section, detail your reasoning process in steps. Each step should include detailed considerations such as analysing questions, summarizing relevant findings, brainstorming new ideas, verifying the accuracy of the current steps, refining any errors, and revisiting previous steps. In the Solution section, based on various attempts, explorations, and reflections from the Thought section, systematically present the final solution that you deem correct. The Solution section should be logical, accurate, and concise and detail necessary steps needed to reach the conclusion. Now, try to solve the following question through the above guidelines:<|im_end|> You are a helpful assistant<|end|><|user|>Hello<|end|><|assistant|>Hi there<|end|><|user|>How are you?<|end|><|assistant|>'
+0.26.321.944 I srv          init: init: chat template, thinking = 0
+0.26.322.297 I srv  llama_server: model loaded
+0.26.322.419 I srv  llama_server: server is listening on http://127.0.0.1:8081
+0.26.322.457 I srv  update_slots: all slots are idle
+0.28.215.611 I srv  params_from_: Chat format: peg-native
+0.28.218.037 I slot get_availabl: id  3 | task -1 | selected slot by LRU, t_last = -1
+0.28.218.042 I srv  get_availabl: updating prompt cache
+0.28.218.065 I srv          load:  - looking for better prompt, base f_keep = -1.000, sim = 0.000
+0.28.218.086 I srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+0.28.218.088 I srv  get_availabl: prompt cache update took 0.04 ms
+0.28.218.880 I slot launch_slot_: id  3 | task 0 | processing task, is_child = 0
+0.28.218.936 E srv    send_error: task id = 0, error: request (5242 tokens) exceeds the available context size (4096 tokens), try increasing it
+0.28.218.966 I slot      release: id  3 | task 0 | stop processing: n_tokens = 0, truncated = 0
+0.28.218.975 W srv  update_slots: no tokens to decode
+0.28.218.980 W srv          stop: cancel task, id_task = 0
+0.28.218.985 I srv  update_slots: all slots are idle
+0.28.219.019 I srv  update_slots: all slots are idle
+0.28.221.457 I srv    operator(): operator(): cleaning up before exit...

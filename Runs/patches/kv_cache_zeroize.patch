@@ -1,0 +1,89 @@
+diff --git a/src/llama-kv-cache.cpp b/src/llama-kv-cache.cpp
+index 2802103..7ec2652 100644
+--- a/src/llama-kv-cache.cpp
++++ b/src/llama-kv-cache.cpp
+@@ -420,6 +420,9 @@ bool llama_kv_cache::seq_rm(llama_seq_id seq_id, llama_pos p0, llama_pos p1) {
+                 if (new_head == cells.size()) {
+                     new_head = i;
+                 }
++
++                // security: cell has no remaining sequence owners -- safe to zero its K/V data
++                zero_cell_data(seq_to_stream[seq_id], i);
+             }
+         }
+ 
+@@ -457,6 +460,57 @@ bool llama_kv_cache::seq_rm(llama_seq_id seq_id, llama_pos p0, llama_pos p1) {
+     return true;
+ }
+ 
++// security: physically zero the K/V backend-buffer bytes belonging to cell `i` of stream `s`.
++// Mirrors the exact view layout used by get_k()/get_v() above so the offsets always match
++// what the attention compute graph reads. Only called once a cell has no remaining sequence
++// owners (see seq_rm() above) -- never zeroes a cell another active sequence still shares.
++void llama_kv_cache::zero_cell_data(uint32_t s, uint32_t i) {
++    static const std::vector<uint8_t> zero_buf(4096, 0);
++
++    const uint64_t kv_size = get_size();
++
++    for (const auto & layer : layers) {
++        const uint32_t il = layer.il;
++
++        const uint64_t n_embd_k_gqa = layer.k->ne[0];
++        const uint64_t row_k        = ggml_row_size(layer.k->type, n_embd_k_gqa);
++        const uint64_t off_k        = row_k * kv_size * s + row_k * i;
++
++        GGML_ASSERT(row_k <= zero_buf.size());
++        ggml_backend_tensor_set(layer.k, zero_buf.data(), off_k, row_k);
++
++        if (!v_trans) {
++            const uint64_t n_embd_v_gqa = layer.v->ne[0];
++            const uint64_t row_v        = ggml_row_size(layer.v->type, n_embd_v_gqa);
++            const uint64_t off_v        = row_v * kv_size * s + row_v * i;
++
++            GGML_ASSERT(row_v <= zero_buf.size());
++            ggml_backend_tensor_set(layer.v, zero_buf.data(), off_v, row_v);
++        } else {
++            // V is stored transposed (flash-attn disabled): for cell i, the n_head_kv *
++            // n_embd_head_v values are scattered, one element every `kv_size` positions
++            // (the cell/position axis is contiguous in this layout, not the embedding axis).
++            const uint32_t n_head_kv      = hparams.n_head_kv(il);
++            const uint32_t n_embd_head_v  = hparams.n_embd_head_v(il);
++            const uint64_t n_embd_v_gqa   = layer.v->ne[0]; // tensor's true allocated width (== n_embd_v_gqa_max() under v_trans, per get_v())
++            const uint64_t type_size      = ggml_type_size(layer.v->type);
++            const uint64_t nb1            = ggml_row_size(layer.v->type, kv_size * n_embd_head_v); // per-head stride
++            const uint64_t nb2            = ggml_row_size(layer.v->type, kv_size);                  // per-head-dim stride
++            const uint64_t nb3            = ggml_row_size(layer.v->type, kv_size * n_embd_v_gqa);   // per-stream stride
++
++            GGML_ASSERT(type_size <= zero_buf.size());
++
++            const uint64_t base = nb3 * s + i * type_size;
++            for (uint32_t h = 0; h < n_head_kv; ++h) {
++                const uint64_t off_h = base + h * nb1;
++                // one scalar per head-dim, strided by nb2; stride_data=0 re-reads the same
++                // zero bytes for every copy
++                ggml_backend_tensor_set_2d(layer.v, zero_buf.data(), off_h, type_size, n_embd_head_v, nb2, 0);
++            }
++        }
++    }
++}
++
+ void llama_kv_cache::seq_cp(llama_seq_id seq_id_src, llama_seq_id seq_id_dst, llama_pos p0, llama_pos p1) {
+     // TODO: refactor [TAG_KV_CACHE_SHARE_CELLS]
+     if (other) {
+diff --git a/src/llama-kv-cache.h b/src/llama-kv-cache.h
+index 3d68f98..7f126c4 100644
+--- a/src/llama-kv-cache.h
++++ b/src/llama-kv-cache.h
+@@ -289,6 +289,12 @@ private:
+     size_t size_k_bytes() const;
+     size_t size_v_bytes() const;
+ 
++    // security: zero the K/V backend-buffer bytes for cell `i` of stream `s` once it has no
++    // remaining sequence owners (called from seq_rm() on full cell release). Without this, a
++    // released slot's prompt/response plaintext persists in the KV-cache buffer (RAM or VRAM)
++    // until physically overwritten by a future request -- see KV_CACHE_PATCH_REPORT.md.
++    void zero_cell_data(uint32_t s, uint32_t i);
++
+     ggml_tensor * build_rope_shift(
+             const llama_cparams & cparams,
+                    ggml_context * ctx,

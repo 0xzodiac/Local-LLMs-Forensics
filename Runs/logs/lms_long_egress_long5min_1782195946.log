@@ -1,0 +1,7 @@
+[09:25:47] Long-duration lms egress monitor, canary=LONG_TELEMETRY_TEST_6ac4be98, duration=5min
+[09:25:52]   model loaded rc=0
+[09:25:52]   active LM Studio PIDs: [136327, 136339, 2199890]
+[09:25:58]   canary chat done
+[09:25:58]   canary written to disk log (/home/elaref/.lmstudio/server-logs/2026-06/2026-06-23.1.log)
+[09:25:58] Phase 2: poll every 30s for 5 minutes
+[09:30:59] === WROTE /home/elaref/research/logs/lms_long_egress_long5min_1782195946.json ===  total conns over 5min: 0

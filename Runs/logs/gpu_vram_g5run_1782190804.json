@@ -1,0 +1,35 @@
+{
+  "run_id": "g5run_1782190804",
+  "pid": 2024989,
+  "canary": "VRAM_CANARY_BAREMETAL_7777_14563f30",
+  "vram_baseline": [
+    81,
+    8192
+  ],
+  "vram_after_load": [
+    2850,
+    8192
+  ],
+  "vram_after_chat": [
+    2852,
+    8192
+  ],
+  "vram_after_release": [
+    2854,
+    8192
+  ],
+  "vram_after_shutdown": [
+    81,
+    8192
+  ],
+  "cuda_gdb_ok": false,
+  "dump_path": "/home/elaref/research/logs/gpu_vram_dump_g5run_1782190804.bin",
+  "dump_size": 0,
+  "dump_canary_hits": -1,
+  "dump_hit_contexts": [],
+  "nvidia_read": {
+    "size_bytes": 0,
+    "ok": false,
+    "canary_count": 0
+  }
+}

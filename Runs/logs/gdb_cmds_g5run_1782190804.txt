@@ -1,0 +1,11 @@
+set pagination off
+set print elements 0
+attach 2024989
+info cuda contexts
+info cuda kernels
+set logging file /home/elaref/research/logs/gpu_vram_dump_g5run_1782190804.bin.gdb.log
+set logging on
+info cuda memory
+set logging off
+detach
+quit

@@ -1,0 +1,179 @@
+[0m
+> build · big-pickle
+[0m
+[0m→ [0mRead .
+[0m✱ [0mGlob "**/*FORENSICS*"[90m 4 matches[0m
+[0m→ [0mRead OLLAMA_FORENSICS_REPORT.md
+[0m→ [0mRead LMS_FORENSICS_REPORT.md
+[0m→ [0mRead scripts
+[0m→ [0mRead MASTER_FORENSICS_DOCUMENTATION.md[90m [limit=100][0m
+[0m
+[0m$ [0mcat /home/elaref/research/.gitignore
+# Minimal repo: track only plan + report markdown. Ignore everything else.
+/*
+!.gitignore
+!*.md
+[0m
+[0m# [0mTodos
+[•] Install Jan (janhq/jan) via AppImage or flatpak
+[ ] Pull model (qwen3.5-9b, nemotron-3-nano-4b, or phi-4-reasoning-plus)
+[ ] Run 10 benign + 10 adversarial requests with UUIDv4 canary
+[ ] Forensic disk search for canary persistence
+[ ] Write JAN_FORENSICS_REPORT.md
+[0m
+[0m$ [0mwhich jan 2>/dev/null; flatpak list 2>/dev/null | grep -i jan; ls ~/jan* 2>/dev/null; ls /opt/jan* 2>/dev/null; ls /usr/local/bin/jan* 2>/dev/null; dpkg -l | grep -i jan 2>/dev/null; which AppImage 2>/dev/null; which xdg-open 2>/dev/null
+ii  libjansi-java                                  2.4.1-2                                          all          Java library for generating and interpreting ANSI escape sequences
+ii  libjansson4:amd64                              2.14-2build2                                     amd64        C library for encoding, decoding and manipulating JSON data
+/usr/bin/xdg-open
+[0m
+[0m$ [0mflatpak --version 2>/dev/null; echo "---"; which wget 2>/dev/null; which curl 2>/dev/null; which fuser 2>/dev/null; uname -m
+Flatpak 1.14.6
+---
+/usr/bin/wget
+/usr/bin/curl
+/usr/bin/fuser
+x86_64
+[0m
+[0m$ [0mls ~/.ollama/ 2>/dev/null; ls ~/.lm-studio/ 2>/dev/null; ollama list 2>/dev/null || true
+config.json
+history
+NAME                       ID              SIZE      MODIFIED     
+nomic-embed-text:latest    0a109f422b47    274 MB    2 weeks ago     
+nemotron-3-ultra:cloud     6d55374b63bb    -         2 weeks ago     
+minimax-m3:cloud           d03a959f45c0    -         2 weeks ago     
+deepseek-v4-flash:cloud    ea027821675c    -         6 weeks ago     
+gpt-oss:120b-cloud         569662207105    -         2 months ago    
+nemotron-3-super:cloud     be3943c5a818    -         2 months ago    
+qwen3.5:397b-cloud         a7bf6f7891c3    -         2 months ago    
+minimax-m2.7:cloud         06daa293c105    -         2 months ago    
+gemma4:31b-cloud           c382fbfbc73b    -         2 months ago    
+glm-5.1:cloud              59472abf9d0a    -         2 months ago
+[0m
+Let me check what's already available and find the best way to install Jan.
+[0m$ [0mls ~/models/ 2>/dev/null; ls ~/Models/ 2>/dev/null; ls /models/ 2>/dev/null; find ~ -name "*.gguf" -maxdepth 4 2>/dev/null | head -20
+(no output)
+[0m
+[0m% [0mWebFetch https://api.github.com/repos/janhq/jan/releases/latest
+[0m
+[0m$ [0mflatpak search jan 2>/dev/null | head -20
+Jan	Private offline AI assistant	ai.jan.Jan	0.8.2	stable	flathub
+The Force Engine	A modern cross‑platform port of “STAR WARS™: Dark Forces” with mod support	io.github.theforceengine.tfe	1.22.000	stable	flathub
+Janus	Simple text editor	dev.pantheum.janus	0.9.7	stable	flathub
+Splitcat	Simple application for splitting and merging files.	lol.janjic.Splitcat	0.1.16	stable	flathub
+Mimic	Easily manage default applications	io.github.arijanj.Mimic	1.1.3	stable	flathub
+Minecraft	Create your own world in one of the most popular video games	com.mojang.Minecraft	1.0.1221	stable	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	1.0.0	25.08	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	1.0.0	24.08	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	1.0.0	23.08	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	1.0.0	22.08	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	0.9.0	21.08	flathub
+GxPlugins	GxPlugins LV2	org.freedesktop.LinuxAudio.Plugins.GxPlugins	0.9.0	20.08	flathub
+StationHub	Launcher for the open-source game Unitystation	org.unitystation.StationHub	938	stable	flathub
+Mighty Mike	High-Powered Action Rescue in a Toy Store Gone Mad!	io.jor.mightymike	3.0.2	stable	flathub
+[0m
+[0m$ [0mflatpak install --noninteractive flathub ai.jan.Jan 2>&1 | tail -20
+Installing app/ai.jan.Jan/x86_64/stable
+[0m
+[0m$ [0mflatpak list | grep -i jan
+Jan	ai.jan.Jan	0.8.2	stable	system
+[0m
+[0m$ [0mls ~/.local/share/ai.jan.Jan/ 2>/dev/null || ls ~/.var/app/ai.jan.Jan/ 2>/dev/null || echo "No jan data dir found yet"
+No jan data dir found yet
+[0m
+[0m$ [0mflatpak info ai.jan.Jan 2>&1
+Jan - Private offline AI assistant
+
+          ID: ai.jan.Jan
+         Ref: app/ai.jan.Jan/x86_64/stable
+        Arch: x86_64
+      Branch: stable
+     Version: 0.8.2
+     License: Apache-2.0
+      Origin: flathub
+  Collection: org.flathub.Stable
+Installation: system
+   Installed: 220.6 MB
+     Runtime: org.gnome.Platform/x86_64/50
+         Sdk: org.gnome.Sdk/x86_64/50
+
+      Commit: 4f11db08238d7a50fd7cf4c6c9ade7fe9ab7a9edd4ebc831614b5a55d0b9d265
+      Parent: a4fe5c7411c57dee03bb93a8d657ec8d8a0d3b6a074426e2db2d309e22d259cd
+     Subject: Merge pull request #15 from flathub/update-v0.8.2 (a218f00c386f)
+        Date: 2026-06-02 04:39:43 +0000
+[0m
+[0m$ [0mflatpak run --command=bash ai.jan.Jan -c 'ls /app/ 2>/dev/null; echo "---"; ls /app/bin/ 2>/dev/null; echo "---"; ls /app/extra/ 2>/dev/null' 2>&1 | head -40
+bin
+lib
+manifest.json
+share
+---
+bun
+Jan
+uv
+vkcube
+vkcubepp
+vkcube-wayland
+vulkaninfo
+---
+[0m
+[0m$ [0mflatpak run --command=bash ai.jan.Jan -c 'ls /app/share/ 2>/dev/null; echo "---"; ls /app/lib/ 2>/dev/null | head -20; echo "---"; cat /app/manifest.json 2>/dev/null | head -30'
+app-info
+applications
+icons
+licenses
+metainfo
+vulkan
+---
+debug
+Jan
+---
+{
+  "id" : "ai.jan.Jan",
+  "runtime" : "org.gnome.Platform",
+  "runtime-version" : "50",
+  "runtime-commit" : "392d6b72dd6c24cbb3302d03cc621863475a8ad007bf30c648bf0b1eafb40eb2",
+  "sdk" : "org.gnome.Sdk",
+  "sdk-commit" : "c53e6000ec9834bbb0433d9be931aad9343bf2b3abbfe4cd34af0b91c8225f36",
+  "command" : "Jan",
+  "modules" : [
+    {
+      "name" : "volk",
+      "buildsystem" : "cmake-ninja",
+      "builddir" : true,
+      "config-opts" : [
+        "-DVOLK_INSTALL=ON"
+      ],
+      "sources" : [
+        {
+          "url" : "https://github.com/zeux/volk/archive/refs/tags/vulkan-sdk-1.3.280.0.zip",
+          "sha256" : "178875134d36e8b90f7e3ec31171355df3b71f47eba49cca2f98158e6552b011",
+          "type" : "archive"
+        }
+      ],
+      "cleanup" : [
+        "/bin"
+      ]
+    },
+    {
+      "name" : "vulkan-headers",
+      "buildsystem" : "cmake-ninja",
+[0m
+[0m% [0mWebFetch https://jan.ai/docs/
+[0m% [0mWebFetch https://jan.ai/docs/desktop/api-server
+[0m% [0mWebFetch https://jan.ai/docs/
+[0m% [0mWebFetch https://jan.ai/docs/desktop/cli
+[0m% [0mWebFetch https://jan.ai/docs/desktop/data-folder
+[0m
+[0m$ [0mflatpak run --command=jan ai.jan.Jan --version 2>&1 || which jan 2>&1 || ls -la /usr/local/bin/jan 2>/dev/null || ls -la ~/.local/bin/jan 2>/dev/null
+bwrap: execvp jan: No such file or directory
+[0m
+[0m$ [0mls -la ~/.local/share/Jan/ 2>/dev/null || ls -la ~/.var/app/ai.jan.Jan/data/ 2>/dev/null || echo "No Jan data found"
+total 8
+drwxr-xr-x 2 elaref elaref 4096 Jun 22 16:27 .
+drwxr-xr-x 7 elaref elaref 4096 Jun 22 16:27 ..
+[0m
+[0m$ [0mwhich xvfb-run 2>/dev/null; which Xvfb 2>/dev/null; which xdotool 2>/dev/null; apt list --installed 2>/dev/null | grep -i xvfb
+/usr/bin/xvfb-run
+/usr/bin/Xvfb
+xvfb/noble-security,now 2:21.1.12-1ubuntu1.5 amd64 [installed,upgradable to: 2:21.1.12-1ubuntu1.6]
+[0m

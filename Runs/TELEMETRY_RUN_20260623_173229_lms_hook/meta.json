@@ -1,0 +1,19 @@
+{
+  "run_id": "20260623_173229_lms_hook",
+  "tool": "lms",
+  "canary": "TELEMETRY_CANARY_e26340f46d66",
+  "model": "qwen/qwen3.5-9b",
+  "port": 1234,
+  "netns": "lmns",
+  "capture_iface": "lmns-br",
+  "duration_sec": 240,
+  "hook": true,
+  "architecture": "netns-isolated",
+  "contamination_note": "capture on lmns-br is pure ns egress; host co-resident traffic (zcode/chrome) cannot appear",
+  "started_iso": "2026-06-23T17:32:29.258832",
+  "layers": {
+    "L1_packet_capture_lmns_br": true,
+    "L2_ld_preload_hook": true
+  },
+  "finished_iso": "2026-06-23T17:37:10.235136"
+}

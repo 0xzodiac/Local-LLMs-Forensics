@@ -1,0 +1,870 @@
+{
+  "run_id": "smoke_1782187442",
+  "pid": 1925994,
+  "port": 8097,
+  "snapshots": [
+    {
+      "ts": 1782187442.6141207,
+      "phase": "ambient",
+      "ss": [],
+      "maps": {},
+      "canary": null
+    },
+    {
+      "ts": 1782187477.0972948,
+      "phase": "post-startup",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15163224,
+        "writable_count": 48,
+        "writable_total_kb": 6406940,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187478.1443048,
+      "phase": "post-startup",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15163224,
+        "writable_count": 48,
+        "writable_total_kb": 6406940,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187479.1660166,
+      "phase": "post-startup",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15163224,
+        "writable_count": 48,
+        "writable_total_kb": 6406940,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187514.2743123,
+      "phase": "tenant_1_post_release",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      },
+      "canary": {
+        "id": "f9ab26e5aa8d4338b110cbb7e2871219",
+        "hits": 11,
+        "scanned_mb": 239
+      }
+    },
+    {
+      "ts": 1782187524.248492,
+      "phase": "tenant_2_post_release",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      },
+      "canary": {
+        "id": "e745d5621f294263bce7df2c6043f625",
+        "hits": 11,
+        "scanned_mb": 239
+      }
+    },
+    {
+      "ts": 1782187534.2179358,
+      "phase": "tenant_3_post_release",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      },
+      "canary": {
+        "id": "f74f020650274f7293d15744b1a6dba5",
+        "hits": 11,
+        "scanned_mb": 239
+      }
+    },
+    {
+      "ts": 1782187536.2346148,
+      "phase": "idle",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187538.2959418,
+      "phase": "idle",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187540.3506534,
+      "phase": "idle",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187542.4011457,
+      "phase": "idle",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    },
+    {
+      "ts": 1782187544.4559062,
+      "phase": "idle",
+      "ss": [],
+      "maps": {
+        "rss_kb": 15167736,
+        "writable_count": 49,
+        "writable_total_kb": 6411452,
+        "anon_kb": 36416,
+        "mmap_kb": 8736668,
+        "writable_top10": [
+          {
+            "range": "7c5023a9a000-7c519c021000",
+            "size_kb": 6166044,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1a45000-7c53e3fb9000",
+            "size_kb": 38352,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "5fb733b5a000-5fb735ec8000",
+            "size_kb": 36280,
+            "perms": "rw-p",
+            "path": "[heap]"
+          },
+          {
+            "range": "7c53de23f000-7c53dea3f000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dea40000-7c53df240000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53df241000-7c53dfa41000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53dfa42000-7c53e0242000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0243000-7c53e0a43000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e0a44000-7c53e1244000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          },
+          {
+            "range": "7c53e1245000-7c53e1a45000",
+            "size_kb": 8192,
+            "perms": "rw-p",
+            "path": "[anon]"
+          }
+        ]
+      }
+    }
+  ],
+  "canary_results": [
+    {
+      "canary": "f9ab26e5aa8d4338b110cbb7e2871219",
+      "post_release_hits": 11,
+      "post_release_regions": [
+        "5fb733b5a000-5fb735ec8000 rw-p [heap] x1",
+        "7c53e4000000-7c53e4021000 rw-p [anon] x10"
+      ]
+    },
+    {
+      "canary": "e745d5621f294263bce7df2c6043f625",
+      "post_release_hits": 11,
+      "post_release_regions": [
+        "5fb733b5a000-5fb735ec8000 rw-p [heap] x1",
+        "7c51c4000000-7c51c4021000 rw-p [anon] x10"
+      ]
+    },
+    {
+      "canary": "f74f020650274f7293d15744b1a6dba5",
+      "post_release_hits": 11,
+      "post_release_regions": [
+        "5fb733b5a000-5fb735ec8000 rw-p [heap] x1",
+        "7c51bc000000-7c51bc021000 rw-p [anon] x10"
+      ]
+    }
+  ],
+  "bpf_big_reads": []
+}

@@ -1,0 +1,9 @@
+[capture] iface=eno1 duration=90s rundir=/home/elaref/research/TELEMETRY_BASELINE
+[capture] extracting DNS (port 53) from full capture
+[capture] DNS queries extracted -> /home/elaref/research/TELEMETRY_BASELINE/dns_raw_from_pcap.txt (20 lines)
+[capture] done. pcap files:
+total 124K
+-rw-rw-r-- 1 elaref  elaref   192 Jun 23 13:44 dns_capture.err
+-rw-r--r-- 1 tcpdump tcpdump 2.8K Jun 23 13:44 dns.pcap
+-rw-rw-r-- 1 elaref  elaref   194 Jun 23 13:44 egress_capture.err
+-rw-r--r-- 1 tcpdump tcpdump 109K Jun 23 13:44 egress_full.pcap

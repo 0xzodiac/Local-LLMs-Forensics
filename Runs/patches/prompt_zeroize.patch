@@ -1,0 +1,74 @@
+diff --git a/tools/server/server-context.cpp b/tools/server/server-context.cpp
+index 0000000..1111111 1006--- a/tools/server/server-context.cpp
++++ b/tools/server/server-context.cpp
+@@ -296,6 +296,35 @@ struct server_slot {
+     std::vector<int32_t> n_accepted_per_pos; // Accepted tokens per draft position
+
+     void reset() {
++        // security (prompt-zeroize): physically overwrite the slot-owned
++        // plaintext-bearing buffers BEFORE reassigning them. A plain
++        // `std::string::operator=("")` (the original code below) only sets the
++        // length to 0 — the old bytes (a released tenant's prompt/response
++        // plaintext) remain in the string's SSO/heap allocation and are
++        // recoverable by a same-UID process reading /proc/<pid>/mem. Because
++        // slots are persistent objects reused across requests (sized once at
++        // n_parallel, see ctx_server ctor), every released slot retains the
++        // previous tenant's cleartext until a future request happens to write
++        // enough new bytes. See MULTILAYER_V2_REPORT.md / PROMPT_ZEROIZE_PATCH_REPORT.md.
++        //
++        // explicit_bzero is used (not memset) so the compiler cannot elide the
++        // write under as-if / DCE. std::string::data() is contiguous since C++17.
++        auto secure_zero = [](std::string & s) {
++            if (!s.empty()) {
++                explicit_bzero(s.data(), s.size());
++                s.clear();
++            }
++        };
++        secure_zero(generated_text);
++        secure_zero(stopping_word);
++        secure_zero(debug_generated_text);
++        // the chat-template-rendered prompt lives in task->params.sampling; zero
++        // it before task.reset() frees (but does not zero) the unique_ptr.
++        if (task) {
++            secure_zero(task->params.sampling.generation_prompt);
++            secure_zero(task->params.sampling.reasoning_budget_message);
++            for (auto & ap : task->params.antiprompt) { secure_zero(ap); }
++            secure_zero(task->cli_prompt);
++        }
++
+         SLT_DBG(*this, "%s", "\n");
+
+         n_prompt_tokens_cache = 0;
+@@ -2103,6 +2132,21 @@ struct ctx_server {
+     void send_final_response(server_slot & slot) {
+         auto res = std::make_unique<server_task_result_cmpl_final>();
+
++        // security (prompt-zeroize, site B): the result object outlives the
++        // slot — it is pushed to queue_results and read by the HTTP handler
++        // thread after slot.release() has returned. res->prompt (line ~2126)
++        // is a RE-DETOKENIZED copy of the full prompt plaintext (the largest
++        // single plaintext copy, ~135 KB for a typical chat request); res->content
++        // holds the generated response; res->generation_params is a full copy of
++        // task->params including sampling.generation_prompt. A memset in
++        // release()/reset() alone cannot reach these (they are constructed
++        // after release). Zero them here so no tenant plaintext leaves the
++        // server process in the result object. (For non-streaming responses
++        // this is the authoritative copy sent to the client; for streaming it
++        // is the internal debug copy.)
++        auto secure_zero = [](std::string & s) {
++            if (!s.empty()) { explicit_bzero(s.data(), s.size()); s.clear(); }
++        };
+         res->id      = slot.task->id;
+         res->id_slot = slot.id;
+
+@@ -2158,6 +2202,10 @@ struct ctx_server {
+         }
+
+         res->generation_params = slot.task->params; // copy the parameters
++        secure_zero(res->prompt);
++        secure_zero(res->content);
++        secure_zero(res->generation_params.sampling.generation_prompt);
++        secure_zero(res->generation_params.sampling.reasoning_budget_message);
+
+         queue_results.send(std::move(res));
+     }

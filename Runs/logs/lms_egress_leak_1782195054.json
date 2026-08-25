@@ -1,0 +1,24 @@
+{
+  "run_id": "leak_1782195054",
+  "canary": "PROVIDER_LEAK_TEST_56d9f6d57487",
+  "pids_lms": [
+    136327,
+    136339,
+    2169616
+  ],
+  "strace_pid": 136327,
+  "baseline_external_conns": 0,
+  "idle_after_load_conns": [],
+  "post_chat_conns": [],
+  "post_idle_conns": [],
+  "strace": {
+    "strace_log_bytes": 0,
+    "strace_log_lines": 0,
+    "canary_line_hits": 0,
+    "sample_canary_lines": [],
+    "external_connect_calls": 0,
+    "sample_connect_lines": [],
+    "large_write_calls": 0,
+    "sample_write_lines": []
+  }
+}

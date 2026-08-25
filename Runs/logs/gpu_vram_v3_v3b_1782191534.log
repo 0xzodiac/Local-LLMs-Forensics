@@ -1,0 +1,22 @@
+[08:12:14] Gap 5 v3 VRAM probe, canary=VRAM_CANARY_BAREMETAL_7777_8cfd7a27
+[08:12:14] baseline VRAM: (81, 8192)
+[08:12:14] Phase 1: spawn llama-server as Python subprocess (child -> ptrace_scope=1 attach OK)
+[08:12:14]   server pid 2047375
+[08:12:17] server healthy; VRAM after load: (2850, 8192)
+[08:12:17] Phase 2: send canary request
+[08:12:17]   canary chat done
+[08:12:18] VRAM after canary: (2852, 8192)
+[08:12:18] Phase 3: send benign 2nd request (slot release)
+[08:12:18] VRAM after slot release: (2854, 8192)
+[08:12:18] Phase 4: cuda-gdb --pid (auto-answer prompts via stdin)
+[08:12:18]   cuda-gdb --pid rc=1
+[08:12:18]   stdout last 40 lines:
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+[08:12:18]   stderr last 10:
+ptrace: Operation not permitted.
+[08:12:18] Phase 5: shutdown
+[08:12:18] VRAM after shutdown: (81, 8192)
+[08:12:18]   GDB log size: 167 bytes; canary hits: 0
+[08:12:18] === WROTE /home/elaref/research/logs/gpu_vram_v3_v3b_1782191534.json ===  total canary hits: 0

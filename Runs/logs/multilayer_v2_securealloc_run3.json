@@ -1,0 +1,441 @@
+{
+  "run_id": "securealloc_run3",
+  "pid": 1350164,
+  "canaries": [
+    "T1_b8b4bd414a00454f92bef1f030e8f0d7",
+    "T2_30206f27f23a4949ab3c4a6d0bf6bf10",
+    "T3_c5a39205fcfd4fa68c8ef6339d4db6c3",
+    "T4_359e142b5e994cee8f3d97eb48f757a2"
+  ],
+  "history": {
+    "T1_b8b4bd414a00454f92bef1f030e8f0d7": [
+      {
+        "phase": "post-T1",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T2",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f997c000000-7f997c021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T2_30206f27f23a4949ab3c4a6d0bf6bf10": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9980000000-7f9980021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T3_c5a39205fcfd4fa68c8ef6339d4db6c3": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-idle",
+        "count": 0,
+        "top5": []
+      }
+    ],
+    "T4_359e142b5e994cee8f3d97eb48f757a2": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 9,
+        "top5": [
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7f9d10000000-7f9d10021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "T1_full_hits": [
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 13179,
+      "abs_offset": 140297187111803,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 15006,
+      "abs_offset": 140297187113630,
+      "context": "..................C.......z..r.{..ote. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test................%................;.|....p"
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 15374,
+      "abs_offset": 140297187113998,
+      "context": "..........................e this note. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test................%........~..............."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 30718,
+      "abs_offset": 140297187129342,
+      "context": "..@.......................e this note. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test................e.......G.......hx.|....."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 32846,
+      "abs_offset": 140297187131470,
+      "context": ".. ................(......z..r.{..ote. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test...|............E.......(a......z..r.{..d"
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 35107,
+      "abs_offset": 140297187133731,
+      "context": "d|><|end|>.|user|>Sum.........R.|.... ..|.... (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test.<|end|><|assistant|>..QX.............|.."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 44419,
+      "abs_offset": 140297187143043,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test.<|end|><|assistant......................"
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 49646,
+      "abs_offset": 140297187148270,
+      "context": "..........................e this note. Can.ry (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test....QX.............................|....."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 59582,
+      "abs_offset": 140297187158206,
+      "context": "..................~.......z..r.{..ote. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test...|.....................V......z..r.{..."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 83822,
+      "abs_offset": 140297187182446,
+      "context": "..........................z..r.{..ote. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test...|............................z..r.{..."
+    },
+    {
+      "range": "7f997c000000-7f997c021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 85379,
+      "abs_offset": 140297187184003,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_b8b4bd414a00454f92bef1f030e8f0d7. Note: monitoring test.<|end|><|assistant........4............."
+    }
+  ]
+}

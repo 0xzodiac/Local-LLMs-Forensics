@@ -1,0 +1,30 @@
+{
+  "run_id": "v3_1782191464",
+  "pid": 2044400,
+  "canary": "VRAM_CANARY_BAREMETAL_7777_7e853f1a",
+  "vram_baseline": [
+    81,
+    8192
+  ],
+  "vram_after_load": [
+    2850,
+    8192
+  ],
+  "vram_after_canary": [
+    2852,
+    8192
+  ],
+  "vram_after_release": [
+    2854,
+    8192
+  ],
+  "vram_after_shutdown": [
+    81,
+    8192
+  ],
+  "cuda_gdb_attached": false,
+  "gdb_log": "/home/elaref/research/logs/gpu_vram_v3_gdb_v3_1782191464.log",
+  "dump_files": [],
+  "all_hits": 0,
+  "hit_details": []
+}

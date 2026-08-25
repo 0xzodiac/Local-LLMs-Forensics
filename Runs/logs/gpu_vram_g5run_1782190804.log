@@ -1,0 +1,31 @@
+[08:00:04] Gap 5 VRAM probe, canary=VRAM_CANARY_BAREMETAL_7777_14563f30
+[08:00:04] Phase 1: VRAM baseline (no server)
+[08:00:04]   baseline VRAM: (81, 8192)
+[08:00:04] Phase 2: start server (CUDA, full offload)
+[08:00:10]   server pid 2024989
+[08:00:13]   VRAM after model load: (2850, 8192)
+[08:00:13] Phase 3: send canary request
+[08:00:13]   canary request done
+[08:00:13]   VRAM after chat: (2852, 8192)
+[08:00:13] Phase 4: send benign 2nd request (triggers slot release)
+[08:00:14]   VRAM after slot release: (2854, 8192)
+[08:00:14] Phase 5: cuda-gdb attach + dump attempt
+[08:00:14]   cuda-gdb attach pid 2024989
+[08:00:14]   cuda-gdb exit=1
+[08:00:14]   stdout last 40 lines:
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+https://debuginfod.ubuntu.com 
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[08:00:14]   stderr last 10:
+/home/elaref/research/logs/gdb_cmds_g5run_1782190804.txt:3: Error in sourced command file:
+ptrace: Operation not permitted.
+[08:00:14] Phase 6: /dev/nvidia0 small read probe
+[08:00:14]   /dev/nvidia0 read failed: [Errno 22] Invalid argument
+[08:00:14] Phase 7: shutdown
+[08:00:14]   VRAM after shutdown: (81, 8192)
+[08:00:14] Phase 8: scan dump for canary
+[08:00:14] === WROTE /home/elaref/research/logs/gpu_vram_g5run_1782190804.json ===
+[08:00:14] === canary hits in dump: -1 ===

@@ -1,0 +1,12 @@
+[dns] capturing port 53 on eno1 for 90s
+[dns] 9 unique-ish query packets captured
+[dns] queries:
+1782211424.713777000|192.168.1.12|signaler-pa.clients6.google.com|65
+1782211424.713932000|192.168.1.12|signaler-pa.clients6.google.com|1
+1782211447.210887000|192.168.1.12|studio.zcode-ai.com|28
+1782211448.011273000|192.168.1.12|studio.zcode-ai.com|28
+1782211448.816685000|192.168.1.12|api.z.ai|1
+1782211448.816881000|192.168.1.12|api.z.ai|28
+1782211448.887273000|192.168.1.12|zcode.z.ai|1
+1782211448.887442000|192.168.1.12|zcode.z.ai|28
+1782211448.953325000|192.168.1.12|alb-20yq6l9a68bmyj3l02.ap-southeast-1.alb.aliyuncsslbintl.com|28

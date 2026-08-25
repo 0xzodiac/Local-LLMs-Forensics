@@ -1,0 +1,4 @@
+No CUDA contexts.
+No CUDA kernels.
+/home/elaref/research/logs/gpu_vram_v3_gdb_cmds_v3_1782191464.txt:9: Error in sourced command file:
+Unrecognized option: 'memory'.

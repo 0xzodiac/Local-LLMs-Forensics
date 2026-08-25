@@ -1,0 +1,2 @@
+{"ts": 1782247321.479365, "name": "model_load_and_benign_generate", "ok": false, "err": "CommandError('generate response missing \\'response\\': {\"error\":\"model requires more system memory (8.9 GiB) than is available (3.3 GiB)\"}')", "dur_s": 2.12}
+{"ts": 1782247323.5958385, "name": "canary_generate", "ok": false, "err": "CommandError('generate response missing \\'response\\': {\"error\":\"model requires more system memory (8.9 GiB) than is available (3.2 GiB)\"}')", "dur_s": 0.75}

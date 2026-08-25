@@ -1,0 +1,63 @@
+[0m
+> build · big-pickle
+[0m
+[0m→ [0mRead .
+[0m✱ [0mGlob "**/*LATEST_INTEL*"[90m 1 match[0m
+[0m✱ [0mGlob "scripts/gguf-*.py"[90m 0 matches[0m
+[0m→ [0mRead scripts
+[0m✱ [0mGlob "**/*.py"[90m in scripts · 43 matches[0m
+[0m→ [0mRead LATEST_INTEL_2026-06-22.md
+[0m
+[0m# [0mTodos
+[•] Fetch CVE-2026-5760 primary advisory from NVD and GitHub Security Advisories
+[ ] Read existing gguf-tensor-attacks.py and gguf-chained-attacks.py for mmap-patch primitives
+[ ] Identify SGLang vulnerable code path and GGUF field(s) involved
+[ ] Install SGLang in isolated venv (not system-wide, not touching .venv)
+[ ] Adapt attack scripts to construct documented trigger condition against original model
+[ ] Attempt reproduction or document that fix is in place
+[ ] Write SGLANG_RCE_REPRODUCTION_REPORT.md with clear findings
+[0m
+[0m→ [0mRead scripts/gguf-tensor-attacks.py
+[0m→ [0mRead scripts/gguf-chained-attacks.py
+[0m% [0mWebFetch https://nvd.nist.gov/vuln/detail/CVE-2026-5760
+[0m◈ [0mParallel Web Search "CVE-2026-5760 SGLang GGUF remote code execution github advisory"
+[0m◈ [0mParallel Web Search "site:github.com/advisories sglang GGUF CVE-2026-5760"
+[0m
+[0m# [0mTodos
+[✓] Fetch CVE-2026-5760 primary advisory from NVD and GitHub Security Advisories
+[✓] Read existing gguf-tensor-attacks.py and gguf-chained-attacks.py for mmap-patch primitives
+[•] Identify SGLang vulnerable code path and GGUF field(s) involved
+[ ] Install SGLang in isolated venv (not system-wide, not touching .venv)
+[ ] Adapt attack scripts to construct documented trigger condition against original model
+[ ] Attempt reproduction or document that fix is in place
+[ ] Write SGLANG_RCE_REPRODUCTION_REPORT.md with clear findings
+[0m
+[0m% [0mWebFetch https://github.com/Stuub/SGLang-0.5.9-RCE
+[0m◈ [0mParallel Web Search "SGLang serving_rerank.py jinja2.Environment tokenizer.chat_template vulnerable code path"
+[0m% [0mWebFetch https://github.com/sgl-project/sglang/pull/23660
+[0m
+[0m$ [0mpython3 --version
+Python 3.12.3
+[0m
+[0m→ [0mRead .venv
+[0m✱ [0mGlob "**/*.gguf"[90m in . · 0 matches[0m
+[0m
+[0m$ [0mpip3 --version 2>/dev/null; which pip3
+pip 24.0 from /usr/lib/python3/dist-packages/pip (python 3.12)
+/usr/bin/pip3
+[0m
+[0m→ [0mRead ollama_models
+[0m
+[0m$ [0mfind /home/elaref/research/ollama_models -name "*.gguf" 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mfind /home/elaref/research -name "*.gguf" -o -name "*.GGUF" 2>/dev/null | head -20
+(no output)
+[0m
+[0m$ [0mpython3 -m venv /tmp/sglang_test_venv && /tmp/sglang_test_venv/bin/pip install --upgrade pip setuptools wheel 2>&1 | tail -5
+Attempting uninstall: pip
+    Found existing installation: pip 24.0
+    Uninstalling pip-24.0:
+      Successfully uninstalled pip-24.0
+Successfully installed packaging-26.2 pip-26.1.2 setuptools-82.0.1 wheel-0.47.0
+[0m

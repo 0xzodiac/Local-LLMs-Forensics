@@ -1,0 +1,18 @@
+[21:34:19] D4: cross-model heap residue (in-process swap via /admin/swap_model)
+[21:34:19] Phase 1: start server with model A (nemotron): gemma-4-E4B-it-Q4_K_M.gguf
+[21:34:28] server pid 2045091
+[21:34:31] Phase 2: send canary-A to model A
+[21:34:35]   canary-A hits right after model-A request: 13
+[21:34:35] Phase 3: hot-swap in-process to model B (qwen): Phi-4-reasoning-plus-Q4_K_M.gguf
+[21:34:42]   swap response: {"ok":true} (took 7.3s)
+[21:34:42]   pid after swap: 2045091 (same process: True)
+[21:34:45] Phase 4: scan for canary-A IMMEDIATELY after swap, before any new request
+[21:34:46]   canary-A hits post-swap, pre-request: 13
+[21:34:46] Phase 5: send canary-B to model B
+[21:34:56]   canary-A hits after model-B request: 13
+[21:34:56]   canary-B hits after model-B request: 13
+[21:34:56] Phase 6: shutdown
+[21:34:57] === WROTE /home/elaref/research/logs/d4_cross_model_20260624_201614_d4_gemma4_phi4_4.json ===
+[21:34:57] === SUMMARY ===
+[21:34:57]   CANARY_A_3aef4f51e9a: post-A-request=13, post-swap-pre-request=13, post-B-request=13
+[21:34:57]   CANARY_B_f54e6443397: post-B-request=13

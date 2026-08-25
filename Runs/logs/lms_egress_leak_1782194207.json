@@ -1,0 +1,14 @@
+{
+  "run_id": "leak_1782194207",
+  "canary": "PROVIDER_LEAK_TEST_3eefbbe864bf",
+  "pids_lms": [],
+  "strace_pid": null,
+  "baseline_external_conns": 0,
+  "idle_after_load_conns": [],
+  "post_chat_conns": [],
+  "post_idle_conns": [],
+  "strace": {
+    "matches": 0,
+    "summary": "no strace log"
+  }
+}

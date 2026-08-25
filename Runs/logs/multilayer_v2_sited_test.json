@@ -1,0 +1,310 @@
+{
+  "run_id": "sited_test",
+  "pid": 258862,
+  "canaries": [
+    "T1_d098f7d60547405d8d6af759b5ae441b",
+    "T2_b6e99505b397462bb706b288057b2a37",
+    "T3_b80b5f7d3406425eb9fa5a08f1535547",
+    "T4_548be81469cb4dc4931b46b9ee532c05"
+  ],
+  "history": {
+    "T1_d098f7d60547405d8d6af759b5ae441b": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-idle",
+        "count": 0,
+        "top5": []
+      }
+    ],
+    "T2_b6e99505b397462bb706b288057b2a37": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b5938000000-7b5938021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T3_b80b5f7d3406425eb9fa5a08f1535547": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d8000000-7b57d8021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T4_548be81469cb4dc4931b46b9ee532c05": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 12,
+        "top5": [
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7b57d0000000-7b57d0021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "T1_full_hits": []
+}

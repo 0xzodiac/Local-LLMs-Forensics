@@ -1,0 +1,18 @@
+[12:01:01] v2 multilayer: independent per-tenant canary tracking
+[12:01:01] Phase 1: start server
+[12:01:18] server pid 1348723
+[12:01:21] Phase 2: tenant 1
+[12:01:46] Phase 3: tenant 2
+[12:01:54] Phase 4: tenant 3
+[12:02:00] Phase 5: tenant 4
+[12:02:08] Phase 6: 10s idle, rescan all
+[12:02:18] Phase 7: full context dump for T1 (oldest) post-idle
+[12:02:19]   T1 final count: 11
+[12:02:19] Phase 8: shutdown
+[12:02:19] === WROTE /home/elaref/research/logs/multilayer_v2_securealloc_run2.json ===
+[12:02:19] === SUMMARY (canary -> count over time) ===
+[12:02:19]   T1_983d2b36e28: post-T1=11, post-T2=11, post-T3=11, post-T4=11, post-idle=11
+[12:02:19]   T2_ea1e9c49364: post-T1=0, post-T2=11, post-T3=11, post-T4=11, post-idle=11
+[12:02:19]   T3_19c956f4230: post-T1=0, post-T2=0, post-T3=0, post-T4=0, post-idle=0
+[12:02:19]   T4_e0e8d1c6b10: post-T1=0, post-T2=0, post-T3=0, post-T4=11, post-idle=11
+[12:02:19] T1 (oldest) final hits: 11

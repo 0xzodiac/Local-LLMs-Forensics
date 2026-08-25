@@ -1,0 +1,400 @@
+[0m
+> build · big-pickle
+[0m
+[0m→ [0mRead .
+[0m✱ [0mGlob "**/RESEARCH_PROGRESS_MASTER.md"[90m 1 match[0m
+[0m✱ [0mGlob "**/PHASE2_CROSS_MODEL_REPORT.md"[90m 1 match[0m
+[0m→ [0mRead RESEARCH_PROGRESS_MASTER.md
+[0m→ [0mRead PHASE2_CROSS_MODEL_REPORT.md
+[0m→ [0mRead ollama_models
+[0m→ [0mRead lms-leak-test
+[0m→ [0mRead DEEP_LEAK_REPORT.md
+[0m→ [0mRead lms-leak-test/scripts
+[0m→ [0mRead scripts
+[0m✱ [0mGlob "**/deep_leak_probe*"[90m 0 matches[0m
+[0m→ [0mRead scripts/deep_leak_probe.py
+[0m→ [0mRead scripts/phase2_driver.py
+[0m
+[0m$ [0mls -la /home/elaref/research/ollama_models/
+total 24
+drwxrwxrwx  2 elaref elaref 4096 Jun 21 03:13 .
+drwxrwxrwx 13 elaref elaref 4096 Jun 22 16:23 ..
+-rwxrwxrwx  1 elaref elaref  105 Jun 18 07:24 Modelfile_Gemma-4-E4B-it
+-rwxrwxrwx  1 elaref elaref  127 Jun 18 07:24 Modelfile_Nemotron-3-Nano-4B
+-rwxrwxrwx  1 elaref elaref  117 Jun 18 07:24 Modelfile_Phi-4-reasoning-plus
+-rwxrwxrwx  1 elaref elaref   97 Jun 18 07:24 Modelfile_Qwen3.5-9B
+[0m
+[0m$ [0mwhich ollama 2>/dev/null; which llama-server 2>/dev/null; which llama-cli 2>/dev/null; dpkg -l | grep -i llama 2>/dev/null; ls /usr/local/bin/llama* 2>/dev/null; ls /home/elaref/.local/bin/llama* 2>/dev/null
+/usr/local/bin/ollama
+[0m
+[0m$ [0mollama --version 2>/dev/null && ollama list 2>/dev/null
+ollama version is 0.20.5
+NAME                       ID              SIZE      MODIFIED     
+nomic-embed-text:latest    0a109f422b47    274 MB    2 weeks ago     
+nemotron-3-ultra:cloud     6d55374b63bb    -         2 weeks ago     
+minimax-m3:cloud           d03a959f45c0    -         2 weeks ago     
+deepseek-v4-flash:cloud    ea027821675c    -         6 weeks ago     
+gpt-oss:120b-cloud         569662207105    -         2 months ago    
+nemotron-3-super:cloud     be3943c5a818    -         2 months ago    
+qwen3.5:397b-cloud         a7bf6f7891c3    -         2 months ago    
+minimax-m2.7:cloud         06daa293c105    -         2 months ago    
+gemma4:31b-cloud           c382fbfbc73b    -         2 months ago    
+glm-5.1:cloud              59472abf9d0a    -         2 months ago
+[0m
+[0m$ [0mls /home/elaref/research/llama-monitor 2>/dev/null; ls /home/elaref/llama.cpp* 2>/dev/null; find /home/elaref -maxdepth 4 -name "llama-server" -o -name "llama-cli" 2>/dev/null | head -20
+(no output)
+[0m
+[0m→ [0mRead ollama_models/Modelfile_Phi-4-reasoning-plus
+[0m→ [0mRead ollama_models/Modelfile_Qwen3.5-9B
+[0m→ [0mRead ollama_models/Modelfile_Nemotron-3-Nano-4B
+[0m
+[0m$ [0mfind /home/elaref -name "*.gguf" -type f 2>/dev/null | head -20; echo "---"; ls ~/.ollama/models/ 2>/dev/null | head -20; echo "---"; find / -maxdepth 4 -name "*.gguf" -type f 2>/dev/null | head -20
+/home/elaref/.lmstudio/llmster/0.0.15-2/.bundle/bin/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/mmproj-Qwen3.5-9B-BF16.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf
+/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf
+/home/elaref/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf
+/home/elaref/.var/app/ai.lmstudio.lm-studio/.lmstudio/.internal/bundled-models/nomic-ai/nomic-embed-text-v1.5-GGUF/nomic-embed-text-v1.5.Q4_K_M.gguf
+---
+---
+[0m
+[0m$ [0mfind /home/elaref -maxdepth 5 -name "llama-server" -o -name "llama-cli" -o -name "llama.cpp" -type d 2>/dev/null | head -20; echo "---"; ls /home/elaref/.lmstudio/ 2>/dev/null | head -20; echo "---"; which lm-studio 2>/dev/null; flatpak list 2>/dev/null | grep -i lm
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-nvidia-cuda12-avx2-2.17.0/llama-server
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-nvidia-cuda12-avx2-2.22.0/llama-server
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-nvidia-cuda12-avx2-2.20.1/llama-server
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-nvidia-cuda12-avx2-2.21.0/llama-server
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0/llama-server
+/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-vulkan-avx2-2.17.0/llama-server
+---
+bin
+config-presets
+conversations
+credentials
+dev-logs
+extensions
+hub
+llmster
+mcp.json
+models
+projects
+server-logs
+settings.json
+user-files
+working-directories
+---
+LM Studio	ai.lmstudio.lm-studio	0.4.13-1	stable	system
+[0m
+[0m$ [0mpip list 2>/dev/null | head -30; echo "---"; python3 --version
+Package                                  Version         Editable project location
+---------------------------------------- --------------- ------------------------------------
+a2a-sdk                                  0.3.26
+absl-py                                  2.4.0
+ag-ui-protocol                           0.1.15
+agentscope                               1.0.18
+agentscope-runtime                       1.1.4
+aiofile                                  3.9.0
+aiofiles                                 24.1.0
+aiohappyeyeballs                         2.6.1
+aiohttp                                  3.13.4
+aiohttp-retry                            2.9.1
+aiohttp_socks                            0.11.0
+aioitertools                             0.13.0
+aiosignal                                1.4.0
+alabaster                                0.7.12
+aliyun-python-sdk-core                   2.16.0
+aliyun-python-sdk-kms                    2.16.5
+amqp                                     5.3.1
+annotated-doc                            0.0.4
+annotated-types                          0.7.0
+anthropic                                0.94.0
+anyio                                    4.12.1
+APScheduler                              3.11.2
+asgiref                                  3.11.1
+ast-grep-cli                             0.42.3
+asyncpg                                  0.31.0
+attrs                                    23.2.0
+Authlib                                  1.6.9
+azure-core                               1.40.0
+---
+Python 3.12.3
+[0m
+[0m$ [0mnvidia-smi 2>/dev/null || echo "no nvidia-smi"; echo "---"; free -h; echo "---"; nproc
+Mon Jun 22 16:26:03 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.03             Driver Version: 580.159.03     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  Quadro RTX 4000                Off |   00000000:01:00.0  On |                  N/A |
+| N/A   61C    P8             11W /  110W |      97MiB /   8192MiB |     26%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            4045      G   /usr/lib/xorg/Xorg                       95MiB |
++-----------------------------------------------------------------------------------------+
+---
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       7.9Gi       1.0Gi       603Mi       7.5Gi       7.5Gi
+Swap:          4.3Gi       317Mi       4.0Gi
+---
+12
+[0m
+[0m$ [0mls /home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0/
+backend-manifest.json
+display-data.json
+engine-protocol-server-artifacts.json
+libggml-base.so
+libggml-cpu.so
+libggml_llamacpp.so
+libllama-common.so
+libllama-common.so.0
+libllama-common.so.0.0.1
+libllama-server-impl.so
+libllama.so
+libllm_engine.so
+liblmstudio_bindings.node
+liblmstudiocore.so
+libmtmd.so
+llama-server
+llm_engine.node
+[0m
+[0m→ [0mRead scripts/phase2-adversarial-harness.py
+[0m
+[0m$ [0mLD_LIBRARY_PATH="/home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0" /home/elaref/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-avx2-2.17.0/llama-server --help 2>&1 | head -40
+----- common params -----
+
+-h,    --help, --usage                  print usage and exit
+--version                               show version and build info
+--license                               show source code license and dependencies
+-cl,   --cache-list                     show list of models in cache
+--completion-bash                       print source-able bash completion script for llama.cpp
+-t,    --threads N                      number of CPU threads to use during generation (default: -1)
+                                        (env: LLAMA_ARG_THREADS)
+-tb,   --threads-batch N                number of threads to use during batch and prompt processing (default:
+                                        same as --threads)
+-C,    --cpu-mask M                     CPU affinity mask: arbitrarily long hex. Complements cpu-range
+                                        (default: "")
+-Cr,   --cpu-range lo-hi                range of CPUs for affinity. Complements --cpu-mask
+--cpu-strict <0|1>                      use strict CPU placement (default: 0)
+--prio N                                set process/thread priority : low(-1), normal(0), medium(1), high(2),
+                                        realtime(3) (default: 0)
+--poll <0...100>                        use polling level to wait for work (0 - no polling, default: 50)
+-Cb,   --cpu-mask-batch M               CPU affinity mask: arbitrarily long hex. Complements cpu-range-batch
+                                        (default: same as --cpu-mask)
+-Crb,  --cpu-range-batch lo-hi          ranges of CPUs for affinity. Complements --cpu-mask-batch
+--cpu-strict-batch <0|1>                use strict CPU placement (default: same as --cpu-strict)
+--prio-batch N                          set process/thread priority : 0-normal, 1-medium, 2-high, 3-realtime
+                                        (default: 0)
+--poll-batch <0|1>                      use polling to wait for work (default: same as --poll)
+-c,    --ctx-size N                     size of the prompt context (default: 0, 0 = loaded from model)
+                                        (env: LLAMA_ARG_CTX_SIZE)
+-n,    --predict, --n-predict N         number of tokens to predict (default: -1, -1 = infinity)
+                                        (env: LLAMA_ARG_N_PREDICT)
+-b,    --batch-size N                   logical maximum batch size (default: 2048)
+                                        (env: LLAMA_ARG_BATCH)
+-ub,   --ubatch-size N                  physical maximum batch size (default: 512)
+                                        (env: LLAMA_ARG_UBATCH)
+--keep N                                number of tokens to keep from the initial prompt (default: 0, -1 =
+                                        all)
+--swa-full                              use full-size SWA cache (default: false)
+                                        [(more
+                                        info)](https://github.com/ggml-org/llama.cpp/pull/13194#issuecomment-2868343055)
+                                        (env: LLAMA_ARG_SWA_FULL)
+-fa,   --flash-attn [on|off|auto]       set Flash Attention use ('on', 'off', or 'auto', default: 'auto')
+[0m
+[0m$ [0mpython3 -c "
+# Quick check: read model metadata from GGUF
+import struct, os, sys
+
+def read_gguf_meta(path):
+    with open(path, 'rb') as f:
+        magic = f.read(4)
+        if magic != b'GGUF':
+            return {'error': 'not a GGUF file'}
+        version = struct.unpack('<I', f.read(4))[0]
+        n_tensors = struct.unpack('<Q', f.read(8))[0]
+        n_kv = struct.unpack('<Q', f.read(8))[0]
+        meta = {}
+        for i in range(n_kv):
+            klen = struct.unpack('<I', f.read(4))[0]
+            key = f.read(klen).decode('utf-8')
+            ktype = struct.unpack('<I', f.read(4))[0]
+            if ktype == 0:  # uint8
+                val = struct.unpack('B', f.read(1))[0]
+            elif ktype == 1:  # int8
+                val = struct.unpack('b', f.read(1))[0]
+            elif ktype == 2:  # uint16
+                val = struct.unpack('<H', f.read(2))[0]
+            elif ktype == 3:  # int16
+                val = struct.unpack('<h', f.read(2))[0]
+            elif ktype == 4:  # uint32
+                val = struct.unpack('<I', f.read(4))[0]
+            elif ktype == 5:  # int32
+                val = struct.unpack('<i', f.read(4))[0]
+            elif ktype == 6:  # float32
+                val = struct.unpack('<f', f.read(4))[0]
+            elif ktype == 7:  # bool
+                val = bool(struct.unpack('B', f.read(1))[0])
+            elif ktype == 8:  # string
+                slen = struct.unpack('<Q', f.read(8))[0]
+                val = f.read(slen).decode('utf-8')
+            elif ktype == 9:  # array
+                arr_type = struct.unpack('<I', f.read(4))[0]
+                arr_len = struct.unpack('<Q', f.read(8))[0]
+                val = f'<array of {arr_len} items>'
+                f.seek(0, os.SEEK_CUR)
+            elif ktype == 10:  # uint64
+                val = struct.unpack('<Q', f.read(8))[0]
+            elif ktype == 11:  # int64
+                val = struct.unpack('<q', f.read(8))[0]
+            elif ktype == 12:  # float64
+                val = struct.unpack('<d', f.read(8))[0]
+            else:
+                val = f'<unknown type {ktype}>'
+            meta[key] = val
+            if 'context' in key.lower() or 'ctx' in key.lower() or 'max' in key.lower() or 'n_embd' in key.lower():
+                print(f'{key} = {val}')
+        return meta
+
+models = {
+    'phi4': '/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf',
+    'qwen35': '/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf',
+    'nemotron': '/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf',
+}
+for name, path in models.items():
+    print(f'\\n=== {name} ===')
+    meta = read_gguf_meta(path)
+" 2>&1
+Traceback (most recent call last):
+  File "<string>", line 62, in <module>
+  File "<string>", line 16, in read_gguf_meta
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 769: invalid start byte
+
+=== phi4 ===
+[0m
+[0m$ [0mpython3 -c "from gguf import GGUFReader; print('gguf available')" 2>&1 || python3 -c "import llama_cpp; print('llama_cpp available')" 2>&1 || echo "no gguf lib available"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'gguf'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'llama_cpp'
+no gguf lib available
+[0m
+[0m$ [0mpython3 << 'PYEOF'
+# Read gguf metadata more robustly
+import struct, os, sys
+
+def read_gguf_keys(path):
+    results = {}
+    with open(path, 'rb') as f:
+        magic = f.read(4)
+        if magic not in (b'GGUF', b'gguf'):
+            return {'error': 'not a GGUF file'}
+        version = struct.unpack('<I', f.read(4))[0]
+        n_tensors = struct.unpack('<Q', f.read(8))[0]
+        n_kv = struct.unpack('<Q', f.read(8))[0]
+        
+        for i in range(n_kv):
+            klen = struct.unpack('<I', f.read(4))[0]
+            raw_key = f.read(klen)
+            try:
+                key = raw_key.decode('utf-8')
+            except:
+                key = repr(raw_key)
+            ktype = struct.unpack('<I', f.read(4))[0]
+            
+            if ktype == 0:  # uint8
+                val = struct.unpack('B', f.read(1))[0]
+            elif ktype == 1:  # int8
+                val = struct.unpack('b', f.read(1))[0]
+            elif ktype == 2:  # uint16
+                val = struct.unpack('<H', f.read(2))[0]
+            elif ktype == 3:  # int16
+                val = struct.unpack('<h', f.read(2))[0]
+            elif ktype == 4:  # uint32
+                val = struct.unpack('<I', f.read(4))[0]
+            elif ktype == 5:  # int32
+                val = struct.unpack('<i', f.read(4))[0]
+            elif ktype == 6:  # float32
+                val = struct.unpack('<f', f.read(4))[0]
+            elif ktype == 7:  # bool
+                val = bool(struct.unpack('B', f.read(1))[0])
+            elif ktype == 8:  # string
+                slen = struct.unpack('<Q', f.read(8))[0]
+                raw_val = f.read(slen)
+                try:
+                    val = raw_val.decode('utf-8')
+                except:
+                    val = repr(raw_val)
+            elif ktype == 9:  # array
+                arr_type = struct.unpack('<I', f.read(4))[0]
+                arr_len = struct.unpack('<Q', f.read(8))[0]
+                val = f'<array of {arr_len} items>'
+                for _ in range(arr_len):
+                    if arr_type == 8:  # string array
+                        slen = struct.unpack('<Q', f.read(8))[0]
+                        f.read(slen)
+            elif ktype == 10:  # uint64
+                val = struct.unpack('<Q', f.read(8))[0]
+            elif ktype == 11:  # int64
+                val = struct.unpack('<q', f.read(8))[0]
+            elif ktype == 12:  # float64
+                val = struct.unpack('<d', f.read(8))[0]
+            else:
+                val = f'<unknown type {ktype}>'
+            
+            results[key] = val
+    
+    return results
+
+models = {
+    'phi4': '/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf',
+    'qwen35': '/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf',
+    'nemotron': '/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf',
+}
+
+interesting_keys = [
+    'llama.context_length', 'llama.max_context_length', 'llama.max_seq_len',
+    'llama.context_size', 'llama.rope.scaling.attn_factor', 'llama.rope.dimension_count',
+    'llama.attention.head_count', 'llama.block_count', 'llama.embedding_length',
+    'tokenizer.ggml.model', 'general.name', 'general.architecture', 'llama.pooling_type'
+]
+
+for name, path in models.items():
+    print(f'\n=== {name} ({path}) ===')
+    meta = read_gguf_keys(path)
+    for k in interesting_keys:
+        if k in meta:
+            print(f'  {k} = {meta[k]}')
+    # Show all keys
+    for k in sorted(meta.keys()):
+        if k not in interesting_keys:
+            print(f'  {k} = {meta[k]}')
+PYEOF
+=== phi4 (/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf) ===
+     = <unknown type 2781085696>
+      general. = <unknown type 1701869940>
+      general.architec = <unknown type 1701999988>
+          = <unknown type 862546032>
+          = <unknown type 1701080941>
+  b'\x00\x00\x00\x00\x00general.name\x08\x00\x00\x00\x14\x00\x00\x00\x00\x00\x00\x00Phi 4 Reasoning Plus\x12\x00\x00\x00\x00\x00\x00\x00general.size_label\x08\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x0015B\x0f\x00\x00\x00\x00\x00\x00\x00general.license\x08\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00mit\x14\x00\x00\x00\x00\x00\x00\x00general.license.link\x08\x00\x00\x00J\x00\x00\x00\x00\x00\x00\x00https://huggingface.co/microsoft/Phi-4-reasoning-plus/resolve/main/LICENSE\x18\x00\x00\x00\x00\x00\x00\x00general.base_model.count\x04\x00\x00\x00\x01\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00general.base_model.0.name\x08\x00\x00\x00\x05\x00\x00\x00\x00\x00\x00\x00Phi 4\x1c\x00\x00\x00\x00\x00\x00\x00general.base_model.0.version\x08\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x004!\x00\x00\x00\x00\x00\x00\x00general.base_model.0.organization\x08\x00\x00\x00\t\x00\x00\x00\x00\x00\x00\x00Microsoft\x1d\x00\x00\x00\x00\x00\x00\x00general.base_model.0.repo_url\x08\x00\x00\x00&\x00\x00\x00\x00\x00\x00\x00https://huggingface.co/microsoft/phi-4\x0c\x00\x00\x00\x00\x00\x00\x00general.tags\t\x00\x00\x00\x08\x00\x00\x00\x08\x00\x00\x00\x00\x00\x00\x00\x03\x00\x00\x00\x00\x00\x00\x00phi\x03\x00\x00\x00\x00\x00\x00\x00nlp\x04\x00\x00\x00\x00\x00\x00\x00math\x04\x00\x00\x00\x00\x00\x00\x00code\x04\x00\x00\x00\x00\x00\x00\x00chat\x0e\x00\x00\x00\x00\x00\x00\x00conversational\t\x00\x00\x00\x00\x00\x00\x00reasoning\x0f\x00\x00\x00\x00\x00\x00\x00text-generation\x11\x00\x00\x00\x00\x00\x00\x00general.languages\t\x00\x00\x00\x08\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00en\x13\x00\x00\x00\x00\x00\x00\x00phi3.context_length\x04\x00\x00\x00\x00\x80\x00\x00)\x00\x00\x00\x00\x00\x00\x00phi3.rope.scaling.original_context_length\x04\x00\x00\x00\x00\x80\x00\x00\x15\x00\x00\x00\x00\x00\x00\x00phi3.embedding_length\x04\x00\x00\x00\x00\x14\x00\x00\x18\x00\x00\x00\x00\x00\x00\x00phi3.feed_forward_length\x04\x00\x00\x00\x00F\x00\x00\x10\x00\x00\x00\x00\x00\x00\x00phi3.block_count\x04\x00\x00\x00(\x00\x00\x00\x19\x00\x00\x00\x00\x00\x00\x00phi3.attention.head_count\x04\x00\x00\x00(\x00\x00\x00\x1c\x00\x00\x00\x00\x00\x00\x00phi3.attention.head_count_kv\x04\x00\x00\x00\n\x00\x00\x00%\x00\x00\x00\x00\x00\x00\x00phi3.attention.layer_norm_rms_epsilon\x06\x00\x00\x00\xac\xc5\'7\x19\x00\x00\x00\x00\x00\x00\x00phi3.rope.dimension_count\x04\x00\x00\x00\x80\x00\x00\x00\x13\x00\x00\x00\x00\x00\x00\x00phi3.rope.freq_base\x06\x00\x00\x00\x00$\xf4H\x1d\x00\x00\x00\x00\x00\x00\x00phi3.attention.sliding_window\x04\x00\x00\x00\x00\x00\x00\x00\x14\x00\x00\x00\x00\x00\x00\x00tokenizer.ggml.model\x08\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00gpt2\x12\x00\x00\x00\x00\x00\x00\x00tokenizer.ggml.pre\x08\x00\x00\x00\x04\x00\x00\x00\x00\x00\x00\x00dbrx\x15\x00\x00\x00\x00\x00\x00\x00tokenizer.ggml.tokens\t\x00\x00\x00\x08\x00\x00\x00\x00\x88\x01\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00!\x01\x00\x00\x00\x00\x00\x00\x00"\x01\x00\x00\x00\x00\x00\x00\x00#\x01\x00\x00\x00\x00\x00\x00\x00$\x01\x00\x00\x00\x00\x00\x00\x00%\x01\x00\x00\x00\x00\x00\x00\x00&\x01\x00\x00\x00\x00\x00\x00\x00\'\x01\x00\x00\x00\x00\x00\x00\x00(\x01\x00\x00\x00\x00\x00\x00\x00)\x01\x00\x00\x00\x00\x00\x00\x00*\x01\x00\x00\x00\x00\x00\x00\x00+\x01\x00\x00\x00\x00\x00\x00\x00,\x01\x00\x00\x00\x00\x00\x00\x00-\x01\x00\x00\x00\x00\x00\x00\x00.\x01\x00\x00\x00\x00\x00\x00\x00/\x01\x00\x00\x00\x00\x00\x00\x000\x01\x00\x00\x00\x00\x00\x00\x001\x01\x00\x00\x00\x00\x00\x00\x002\x01\x00\x00\x00\x00\x00\x00\x003\x01\x00\x00\x00\x00\x00\x00\x004\x01\x00\x00\x00\x00\x00\x00\x005\x01\x00\x00\x00\x00\x00\x00\x006\x01\x00\x00\x00\x00\x00\x00\x007\x01\x00\x00\x00\x00\x00\x00\x008\x01\x00\x00\x00\x00\x00\x00\x009\x01\x00\x00\x00\x00\x00\x00\x00:\x01\x00\x00\x00\x00\x00\x00\x00;\x01\x00\x00\x00\x00\x00\x00\x00<\x01\x00\x00\x00\x00\x00\x00\x00=\x01\x00\x00\x00\x00\x00\x00\x00>\x01\x00\x00\x00\x00\x00\x00\x00?\x01\x00\x00\x00\x00\x00\x00\x00@\x01\x00\x00\x00\x00\x00\x00\x00A\x01\x00\x00\x00\x00\x00\x00\x00B\x01\x00\x00\x00\x00\x00\x00\x00C\x01\x00\x00\x00\x00\x00\x00\x00D\x01\x00\x00\x00\x00\x00\x00\x00E\x01\x00\x00\x00\x00\x00\x00\x00F\x01\x00\x00\x00\x00\x00\x00\x00G\x01\x00\x00\x00\x00\x00\x00\x00H\x01\x00\x00\x00\x00\x00\x00\x00I\x01\x00\x00\x00\x00\x00\x00\x00J\x01\x00\x00\x00\x00\x00\x00\x00K\x01\x00\x00\x00\x00\x00\x00\x00L\x01\x00\x00\x00\x00\x00\x00\x00M\x01\x00\x00\x00\x00\x00\x00\x00N\x01\x00\x00\x00\x00\x00\x00\x00O\x01\x00\x00\x00\x00\x00\x00\x00P\x01\x00\x00\x00\x00\x00\x00\x00Q\x01\x00\x00\x00\x00\x00\x00\x00R\x01\x00\x00\x00\x00\x00\x00\x00S\x01\x00\x00\x00\x00\x00\x00\x00T\x01\x00\x00\x00\x00\x00\x00\x00U\x01\x00\x00\x00\x00\x00\x00\x00V\x01\x00\x00\x00\x00\x00\x00\x00W\x01\x00\x00\x00\x00\x00\x00\x00X\x01\x00\x00\x00\x00\x00\x00\x00Y\x01\x00\x00\x00\x00\x00\x00\x00Z\x01\x00\x00\x00\x00\x00\x00\x00[\x01\x00\x00\x00\x00\x00\x00\x00\\\x01\x00\x00\x00\x00\x00\x00\x00]\x01\x00\x00\x00\x00\x00\x00\x00^\x01\x00\x00\x00\x00\x00\x00\x00_\x01\x00\x00\x00\x00\x00\x00\x00`\x01\x00\x00\x00\x00\x00\x00\x00a\x01\x00\x00\x00\x00\x00\x00\x00b\x01\x00\x00\x00\x00\x00\x00\x00c\x01\x00\x00\x00\x00\x00\x00\x00d\x01\x00\x00\x00\x00\x00\x00\x00e\x01\x00\x00\x00\x00\x00\x00\x00f\x01\x00\x00\x00\x00\x00\x00\x00g\x01\x00\x00\x00\x00\x00\x00\x00h\x01\x00\x00\x00\x00\x00\x00\x00i\x01\x00\x00\x00\x00\x00\x00\x00j\x01\x00\x00\x00\x00\x00\x00\x00k\x01\x00\x00\x00\x00\x00\x00\x00l\x01\x00\x00\x00\x00\x00\x00\x00m\x01\x00\x00\x00\x00\x00\x00\x00n\x01\x00\x00\x00\x00\x00\x00\x00o\x01\x00\x00\x00\x00\x00\x00\x00p\x01\x00\x00\x00\x00\x00\x00\x00q\x01\x00\x00\x00\x00\x00\x00\x00r\x01\x00\x00\x00\x00\x00\x00\x00s\x01\x00\x00\x00\x00\x00\x00\x00t\x01\x00\x00\x00\x00\x00\x00\x00u\x01\x00\x00\x00\x00\x00\x00\x00v\x01\x00\x00\x00\x00\x00\x00\x00w\x01\x00\x00\x00\x00\x00\x00\x00x\x01\x00\x00\x00\x00\x00\x00\x00y\x01\x00\x00\x00\x00\x00\x00\x00z\x01\x00\x00\x00\x00\x00\x00\x00{\x01\x00\x00\x00\x00\x00\x00\x00|\x01\x00\x00\x00\x00\x00\x00\x00}\x01\x00\x00\x00\x00\x00\x00\x00~\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa1\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa2\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa3\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa4\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa5\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa6\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa7\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa8\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xa9\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xaa\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xab\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xac\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xae\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xaf\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb0\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb1\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb2\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb3\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb4\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb5\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb6\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb7\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb8\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xb9\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xba\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xbb\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xbc\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xbd\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xbe\x02\x00\x00\x00\x00\x00\x00\x00\xc2\xbf\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x80\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x81\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x82\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x83\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x84\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x85\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x86\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x87\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x88\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x89\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8a\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8b\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8c\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8d\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8e\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x8f\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x90\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x91\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x92\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x93\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x94\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x95\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x96\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x97\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x98\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x99\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9a\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9b\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9c\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9d\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9e\x02\x00\x00\x00\x00\x00\x00\x00\xc3\x9f\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa0\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa1\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa2\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa3\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa4\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa5\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa6\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa7\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa8\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xa9\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xaa\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xab\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xac\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xad\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xae\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xaf\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb0\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb1\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb2\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb3\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb4\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb5\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb6\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb7\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb8\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xb9\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xba\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xbb\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xbc\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xbd\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xbe\x02\x00\x00\x00\x00\x00\x00\x00\xc3\xbf\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x80\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x81\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x82\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x83\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x84\x02\x00\x00\x00\x00\x00\x00\x00\xc4\x85\x02\x00\x00\x00\x00\x00' = <unknown type 2260992000>
+
+<shell_metadata>
+shell tool terminated command after exceeding timeout 30000 ms. If this command is expected to take longer and is not waiting for interactive input, retry with a larger timeout value in milliseconds.
+</shell_metadata>
+[0m
+[0m# [0mTodos
+[ ] Test: DEEP_LEAK persistence for phi4 with 300s timeout
+[ ] Test: context-overflow with proper --ctx-size per-model
+[ ] Write MUST_RETEST_RESULTS.md with findings
+[0m
+Let me first check the default context sizes by briefly loading each model, and also get its RAM footprint:

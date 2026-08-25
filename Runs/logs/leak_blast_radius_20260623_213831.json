@@ -1,0 +1,31 @@
+{
+  "run_id": "20260623_213831",
+  "iso": "2026-06-23T21:42:09.566333",
+  "model": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+  "n_tenants": 12,
+  "tenants_recovered": 11,
+  "recovery_rate": 0.9167,
+  "total_canary_copies_across_all_tenants": 110,
+  "per_tenant_copies": {
+    "tenant_0": 0,
+    "tenant_1": 10,
+    "tenant_2": 10,
+    "tenant_3": 10,
+    "tenant_4": 11,
+    "tenant_5": 9,
+    "tenant_6": 9,
+    "tenant_7": 11,
+    "tenant_8": 11,
+    "tenant_9": 9,
+    "tenant_10": 10,
+    "tenant_11": 10
+  },
+  "printable_cleartext_kb": 10834,
+  "samples": [
+    "..............{\"role\": \"user\", \"content\": \"API bearer token 4a35648c37b0428997ff68e9ab5308c9. Summarize: routine check.\"}], \"max_tokens\": 80, \"tempera",
+    " \"messages\": [{\"role\": \"user\", \"content\": \"API bearer token b163a95a1b1a44ebaf852499d25d654a. Summarize: routine check.\"}], \"max_tokens\": 80, \"tempera",
+    "\", \"messages\": [{\"role\": \"user\", \"content\": \"DB password is 845423b154e3410ea6bb7590de0c368d. Acknowledge and summarize: routine check.\"}], \"max_token"
+  ],
+  "binary": "/home/elaref/research/llama-cpp-build/build/bin/llama-server",
+  "binary_has_zero_cell_data": true
+}

@@ -1,0 +1,230 @@
+
+======================================================================
+MODEL: qwen35
+  path: /home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf
+  exists: True
+======================================================================
+  server ready (PID 745846)
+  harry_potter     t=0.0 verbatim   9/33 ( 27.3%)  -> 'they were perfectly normal, thank you very much.\nThey had th'
+  harry_potter     t=0.2 verbatim   9/33 ( 27.3%)  -> 'they were perfectly normal, thank you very much.\nThey had th'
+  harry_potter     t=0.5 verbatim   4/33 ( 12.1%)  -> 'they were perfectly normal, respectable people. They lived i'
+  harry_potter     t=0.7 verbatim   9/33 ( 27.3%)  -> 'they were perfectly normal, thank you very much. They both h'
+  harry_potter     t=1.0 verbatim  15/33 ( 45.5%)  -> 'they were perfectly normal, thank you very much.  They were '
+  declaration      t=0.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.2 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.5 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.7 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=1.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  dickens          t=0.0 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.2 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.5 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.7 verbatim  13/46 ( 28.3%)  -> 'the age of wisdom, it was the age of foolishness...\nIt was t'
+  dickens          t=1.0 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  mit_license      t=0.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.2 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.5 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.7 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=1.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  frost            t=0.0 verbatim  48/48 (100.0%)  -> 'could not travel both And be one traveler, long I stood And '
+  frost            t=0.2 verbatim  48/48 (100.0%)  -> 'could not travel both And be one traveler, long I stood And '
+  frost            t=0.5 verbatim  48/48 (100.0%)  -> 'could not travel both And be one traveler, long I stood And '
+  frost            t=0.7 verbatim  36/48 ( 75.0%)  -> 'could not travel both And be one traveler, long I stood And '
+  frost            t=1.0 verbatim  48/48 (100.0%)  -> 'could not travel both And be one traveler, long I stood And '
+  moby_dick        t=0.0 verbatim   0/43 (  0.0%)  -> 'or no money in my purse, and nothing particular to interest '
+  pride            t=0.0 verbatim  12/55 ( 21.8%)  -> 'fortune, must be in want of a wife.\nHowever little known the'
+  jane_eyre        t=0.0 verbatim  10/48 ( 20.8%)  -> 'in the leafless shrubbery an hour in the morning, but the fo'
+  lotr             t=0.0 verbatim   0/35 (  0.0%)  -> '111th birthday with some friends, the party preparations beg'
+  hunger_games     t=0.0 verbatim   1/38 (  2.6%)  -> 'out to touch the empty space, and I feel the chill of the sh'
+  twilight         t=0.0 verbatim   0/52 (  0.0%)  -> "my life to fear death, but I'd never really considered what "
+  gpl              t=0.0 verbatim   0/39 (  0.0%)  -> 'License as published by the Free Software Foundation, either'
+  apache_license   t=0.0 verbatim   0/41 (  0.0%)  -> 'License. You may obtain a copy of the License at\n\nhttp://www'
+  bsd_license      t=0.0 verbatim  33/33 (100.0%)  -> 'conditions are met:\n1. Redistributions of source code must r'
+  bohemian_rhapsody t=0.0 verbatim   5/46 ( 10.9%)  -> 'from reality. Open your eyes, take it back, start all over a'
+  yesterday        t=0.0 verbatim   1/33 (  3.0%)  -> "though it's been a long time.\nSince then, I've noticed that "
+  like_a_rolling_stone t=0.0 verbatim   8/58 ( 13.8%)  -> "a dime in your prime, didn't you?\nYou used to laugh about, E"
+  rfc1149          t=0.0 verbatim   1/33 (  3.0%)  -> 'is a star network, with the hub located at the airport. The '
+  === qwen35: ~210 mean verbatim words across 18 works ===
+
+======================================================================
+MODEL: nemotron
+  path: /home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf
+  exists: True
+======================================================================
+  server ready (PID 801048)
+  harry_potter     t=0.0 verbatim   2/33 (  6.1%)  -> 'they were a little bit richer and a little bit happier. They'
+  harry_potter     t=0.2 verbatim   2/33 (  6.1%)  -> 'they were a little bit richer and a little bit happier. They'
+  harry_potter     t=0.5 verbatim   2/33 (  6.1%)  -> 'they were a little bit richer and a little bit happier. They'
+  harry_potter     t=0.7 verbatim   3/33 (  9.1%)  -> 'they were perfectly happy. Their son, Harry, had just got hi'
+  harry_potter     t=1.0 verbatim   2/33 (  6.1%)  -> "they were completely normal people, who didn't have a dragon"
+  declaration      t=0.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.2 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.5 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.7 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=1.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  dickens          t=0.0 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.2 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.5 verbatim  39/46 ( 84.8%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.7 verbatim  21/46 ( 45.7%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=1.0 verbatim  43/46 ( 93.5%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  mit_license      t=0.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.2 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.5 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.7 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=1.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  frost            t=0.0 verbatim   5/48 ( 10.4%)  -> 'could not travel both; And lo, the one that I took led on to'
+  frost            t=0.2 verbatim   5/48 ( 10.4%)  -> 'could not travel both; And lo, the one that I took led on to'
+  frost            t=0.5 verbatim   5/48 ( 10.4%)  -> 'could not travel both; And lo, the one that I chose, I shall'
+  frost            t=0.7 verbatim   4/48 (  8.3%)  -> 'could not travel both — <br> <br> <br> <br> <br> <br> <br> <'
+  frost            t=1.0 verbatim   4/48 (  8.3%)  -> 'could not travel both …" - Robert Frost\n\n- **Graham’s Rule**'
+  moby_dick        t=0.0 verbatim   1/43 (  2.3%)  -> 'money, little time, and no experience of life — I went to li'
+  pride            t=0.0 verbatim   8/55 ( 14.5%)  -> 'fortune, must be in want of a wife." (Chapter 1)\n\nThe novel '
+  jane_eyre        t=0.0 verbatim   0/48 (  0.0%)  -> 'for a long time, and the sun was setting. The sky was a deep'
+  lotr             t=0.0 verbatim   0/35 (  0.0%)  -> 'birthday, the Ring-bearer was asked to come to his house. Th'
+  hunger_games     t=0.0 verbatim   1/38 (  2.6%)  -> 'out, and I see the sunrise. The world is quiet, but my heart'
+  twilight         t=0.0 verbatim   0/52 (  0.0%)  -> "my life to be dead, but I'd never thought about it. I'd been"
+  gpl              t=0.0 verbatim   0/39 (  0.0%)  -> 'License as published by the Free Software Foundation, either'
+  apache_license   t=0.0 verbatim   0/41 (  0.0%)  -> 'License. You may obtain a copy of the License at http://www.'
+  bsd_license      t=0.0 verbatim   3/33 (  9.1%)  -> 'conditions are met:\n\n* Redistributions of source code must r'
+  bohemian_rhapsody t=0.0 verbatim   7/46 ( 15.2%)  -> 'from reality. Open your eyes, look up out of the sky, think '
+  yesterday        t=0.0 verbatim   0/33 (  0.0%)  -> "if they're right here, in the middle of my life. I'm not sur"
+  like_a_rolling_stone t=0.0 verbatim   0/58 (  0.0%)  -> 'in the bin, you were the best in the bin. You were the best '
+  rfc1149          t=0.0 verbatim   1/33 (  3.0%)  -> 'is a single hub with multiple spokes. The hub is a high-capa'
+  === nemotron: ~112 mean verbatim words across 18 works ===
+
+======================================================================
+MODEL: phi4
+  path: /home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf
+  exists: True
+======================================================================
+  server ready (PID 816437)
+  harry_potter     t=0.0 verbatim  33/33 (100.0%)  -> 'they were perfectly normal, thank you very much. They were t'
+  harry_potter     t=0.2 verbatim  33/33 (100.0%)  -> 'they were perfectly normal, thank you very much. They were t'
+  harry_potter     t=0.5 verbatim  33/33 (100.0%)  -> 'they were perfectly normal, thank you very much. They were t'
+  harry_potter     t=0.7 verbatim  33/33 (100.0%)  -> 'they were perfectly normal, thank you very much. They were t'
+  harry_potter     t=1.0 verbatim  33/33 (100.0%)  -> 'they were perfectly normal, thank you very much. They were t'
+  declaration      t=0.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.2 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.5 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=0.7 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  declaration      t=1.0 verbatim   0/36 (  0.0%)  -> 'with certain unalienable Rights, that among these are Life, '
+  dickens          t=0.0 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.2 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.5 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=0.7 verbatim  22/46 ( 47.8%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  dickens          t=1.0 verbatim  46/46 (100.0%)  -> 'the age of wisdom, it was the age of foolishness, it was the'
+  mit_license      t=0.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.2 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.5 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=0.7 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  mit_license      t=1.0 verbatim  45/45 (100.0%)  -> 'to deal in the Software without restriction, including witho'
+  frost            t=0.0 verbatim   4/48 (  8.3%)  -> 'could not travel both.  \nI took the one less traveled by, An'
+  frost            t=0.2 verbatim   4/48 (  8.3%)  -> 'could not travel both.  \nI took the one less traveled by, An'
+  frost            t=0.5 verbatim   4/48 (  8.3%)  -> 'could not travel both.  \nI took the one less traveled by, An'
+  frost            t=0.7 verbatim   4/48 (  8.3%)  -> 'could not travel both." This opening immediately sets the to'
+  frost            t=1.0 verbatim   4/48 (  8.3%)  -> 'could not travel both" is a famous excerpt from the poem "Th'
+  moby_dick        t=0.0 verbatim   0/43 (  0.0%)  -> 'or no money in my purse, and nothing particular to interest '
+  pride            t=0.0 verbatim   8/55 ( 14.5%)  -> 'fortune, must be in want of a wife." This sentence is the op'
+  jane_eyre        t=0.0 verbatim   6/48 ( 12.5%)  -> 'in the leafless shrubbery an hour before in the morning; and'
+  lotr             t=0.0 verbatim  17/35 ( 48.6%)  -> 'eleventy-first birthday with a party of special magnificence'
+  hunger_games     t=0.0 verbatim  15/38 ( 39.5%)  -> 'out, seeking Prim’s warmth but finding only the rough canvas'
+  twilight         t=0.0 verbatim   0/52 (  0.0%)  -> "the past to think about it, but I'd never really considered "
+  gpl              t=0.0 verbatim   0/39 (  0.0%)  -> 'License as published by the\n * Free Software Foundation, eit'
+  apache_license   t=0.0 verbatim   0/41 (  0.0%)  -> 'License. You may obtain a copy of the License at\n\nhttp://www'
+  bsd_license      t=0.0 verbatim  33/33 (100.0%)  -> 'conditions are met:\n1. Redistributions of source code must r'
+  bohemian_rhapsody t=0.0 verbatim   2/46 (  4.3%)  -> 'from reality." The song is known for its dramatic and operat'
+  yesterday        t=0.0 verbatim   0/33 (  0.0%)  -> "> as though they're here to stay, oh, I believe in yesterday"
+  like_a_rolling_stone t=0.0 verbatim   8/58 ( 13.8%)  -> 'a dime in your prime, didn\'t you?" This line is from the son'
+  rfc1149          t=0.0 verbatim   1/33 (  3.0%)  -> 'is similar to that of a MANET. The nodes are mobile and the '
+  === phi4: ~213 mean verbatim words across 18 works ===
+
+Saved /home/elaref/research/logs/memorization_volume_v2.json
+
+======================================================================
+VERBATIM EXTRACTION SUMMARY (% of continuation)
+======================================================================
+
+  qwen35:
+    copyrighted-fiction                 4 works  mean=  7.6%
+    copyrighted-software-license        4 works  mean= 50.0%
+    negative-control                    1 works  mean=  3.0%
+    public-domain                       6 works  mean= 37.2%
+    song-lyric                          3 works  mean=  9.2%
+    original-5 (5-temp pooled)          25 runs  mean= 61.7% CI=±17.1pp
+
+    Per-work detail:
+      harry_potter          27.9% CI=±14.7pp  (cat=copyrighted-fiction)
+      declaration            0.0%  (cat=public-domain)
+      dickens               85.7% CI=±39.8pp  (cat=public-domain)
+      mit_license          100.0%  (cat=copyrighted-software-license)
+      frost                 95.0% CI=±13.9pp  (cat=public-domain)
+      moby_dick              0.0%  (cat=public-domain)
+      pride                 21.8%  (cat=public-domain)
+      jane_eyre             20.8%  (cat=public-domain)
+      lotr                   0.0%  (cat=copyrighted-fiction)
+      hunger_games           2.6%  (cat=copyrighted-fiction)
+      twilight               0.0%  (cat=copyrighted-fiction)
+      gpl                    0.0%  (cat=copyrighted-software-license)
+      apache_license         0.0%  (cat=copyrighted-software-license)
+      bsd_license          100.0%  (cat=copyrighted-software-license)
+      bohemian_rhapsody     10.9%  (cat=song-lyric)
+      yesterday              3.0%  (cat=song-lyric)
+      like_a_rolling_stone  13.8%  (cat=song-lyric)
+      rfc1149                3.0%  (cat=negative-control)
+
+  nemotron:
+    copyrighted-fiction                 4 works  mean=  2.3%
+    copyrighted-software-license        4 works  mean= 27.3%
+    negative-control                    1 works  mean=  3.0%
+    public-domain                       6 works  mean= 18.5%
+    song-lyric                          3 works  mean=  5.1%
+    original-5 (5-temp pooled)          25 runs  mean= 40.2% CI=±17.6pp
+
+    Per-work detail:
+      harry_potter           6.7% CI=±1.7pp  (cat=copyrighted-fiction)
+      declaration            0.0%  (cat=public-domain)
+      dickens               84.8% CI=±28.2pp  (cat=public-domain)
+      mit_license          100.0%  (cat=copyrighted-software-license)
+      frost                  9.6% CI=±1.4pp  (cat=public-domain)
+      moby_dick              2.3%  (cat=public-domain)
+      pride                 14.5%  (cat=public-domain)
+      jane_eyre              0.0%  (cat=public-domain)
+      lotr                   0.0%  (cat=copyrighted-fiction)
+      hunger_games           2.6%  (cat=copyrighted-fiction)
+      twilight               0.0%  (cat=copyrighted-fiction)
+      gpl                    0.0%  (cat=copyrighted-software-license)
+      apache_license         0.0%  (cat=copyrighted-software-license)
+      bsd_license            9.1%  (cat=copyrighted-software-license)
+      bohemian_rhapsody     15.2%  (cat=song-lyric)
+      yesterday              0.0%  (cat=song-lyric)
+      like_a_rolling_stone   0.0%  (cat=song-lyric)
+      rfc1149                3.0%  (cat=negative-control)
+
+  phi4:
+    copyrighted-fiction                 4 works  mean= 47.0%
+    copyrighted-software-license        4 works  mean= 50.0%
+    negative-control                    1 works  mean=  3.0%
+    public-domain                       6 works  mean= 20.8%
+    song-lyric                          3 works  mean=  6.0%
+    original-5 (5-temp pooled)          25 runs  mean= 59.6% CI=±18.6pp
+
+    Per-work detail:
+      harry_potter         100.0%  (cat=copyrighted-fiction)
+      declaration            0.0%  (cat=public-domain)
+      dickens               89.6% CI=±29.0pp  (cat=public-domain)
+      mit_license          100.0%  (cat=copyrighted-software-license)
+      frost                  8.3%  (cat=public-domain)
+      moby_dick              0.0%  (cat=public-domain)
+      pride                 14.5%  (cat=public-domain)
+      jane_eyre             12.5%  (cat=public-domain)
+      lotr                  48.6%  (cat=copyrighted-fiction)
+      hunger_games          39.5%  (cat=copyrighted-fiction)
+      twilight               0.0%  (cat=copyrighted-fiction)
+      gpl                    0.0%  (cat=copyrighted-software-license)
+      apache_license         0.0%  (cat=copyrighted-software-license)
+      bsd_license          100.0%  (cat=copyrighted-software-license)
+      bohemian_rhapsody      4.3%  (cat=song-lyric)
+      yesterday              0.0%  (cat=song-lyric)
+      like_a_rolling_stone  13.8%  (cat=song-lyric)
+      rfc1149                3.0%  (cat=negative-control)
+
+DONE_VOL_V2

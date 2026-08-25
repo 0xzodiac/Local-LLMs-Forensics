@@ -1,0 +1,24 @@
+{
+  "item2_deep_leak": {
+    "status": "COMPLETED",
+    "model": "phi4",
+    "first_request_copies": 6,
+    "persistence_copies": 2,
+    "scanned_bytes": 1381462016,
+    "persistence_confirmed": true
+  },
+  "item3_context_overflow": {
+    "qwen35": {
+      "status": "ERROR",
+      "error": "HTTP Error 400: Bad Request"
+    },
+    "nemotron": {
+      "status": "ERROR",
+      "error": "HTTP Error 400: Bad Request"
+    },
+    "phi4": {
+      "status": "ERROR",
+      "error": "HTTP Error 400: Bad Request"
+    }
+  }
+}

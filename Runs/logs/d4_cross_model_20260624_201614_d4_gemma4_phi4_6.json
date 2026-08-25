@@ -1,0 +1,226 @@
+{
+  "run_id": "20260624_201614_d4_gemma4_phi4_6",
+  "pid_before": 2046921,
+  "pid_after": 2046921,
+  "same_process": true,
+  "model_a": "/home/elaref/.lmstudio/models/lmstudio-community/gemma-4-E4B-it-GGUF/gemma-4-E4B-it-Q4_K_M.gguf",
+  "model_b": "/home/elaref/.lmstudio/models/lmstudio-community/Phi-4-reasoning-plus-GGUF/Phi-4-reasoning-plus-Q4_K_M.gguf",
+  "canary_a": "CANARY_A_1f0e336892ad4df49c2eacb5467c173a",
+  "canary_b": "CANARY_B_6aa244404e004bfa884f57b7f7161416",
+  "history": {
+    "CANARY_A_1f0e336892ad4df49c2eacb5467c173a": [
+      {
+        "phase": "post-A-request",
+        "count": 13,
+        "top5": [
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-swap-pre-request",
+        "count": 13,
+        "top5": [
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-B-request",
+        "count": 13,
+        "top5": [
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719d28000000-719d28021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "CANARY_B_6aa244404e004bfa884f57b7f7161416": [
+      {
+        "phase": "post-B-request",
+        "count": 12,
+        "top5": [
+          {
+            "range": "719ea4000000-719ea4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719ea4000000-719ea4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719ea4000000-719ea4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719ea4000000-719ea4021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "719ea4000000-719ea4021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "canary_a_post_swap_full_hits": [
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 11371,
+      "abs_offset": 124919794904171,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 13918,
+      "abs_offset": 124919794906718,
+      "context": "..........................e this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.....................(.q..P..(.q..model.."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 14494,
+      "abs_offset": 124919794907294,
+      "context": "..................#..1.q..e this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.....................1.q....K..Z..cache_n"
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 34945,
+      "abs_offset": 124919794927745,
+      "context": "M.1.q....K..Z...this...note....Canary...(do...not...include):...CANARY_A_1f0e336892ad4df49c2eacb5467c173a....Note:.....%........PG.nZ....K..Z..................i...<....."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 44318,
+      "abs_offset": 124919794937118,
+      "context": "..@...............j/.1.q....K..Z..ote. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test..........%..........1.q................."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 44942,
+      "abs_offset": 124919794937742,
+      "context": "..0..................1.q....K..Z..ote. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.....................(.q.....(.q.. ......"
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 46732,
+      "abs_offset": 124919794939532,
+      "context": "....{2.1.q....K..Z.....note....Canary...(do...not...include):...CANARY_A_1f0e336892ad4df49c2eacb5467c173a....Note:...monitoring...test..iZ..`...iZ......................."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 52170,
+      "abs_offset": 124919794944970,
+      "context": "urn|>.<|turn>user.Summarize this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.<turn|>.<|turn>model.........a........Q."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 52670,
+      "abs_offset": 124919794945470,
+      "context": "..`................,.1.q....K..Z..ote. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test..........Q.......p..(.q.....(.q........."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 54618,
+      "abs_offset": 124919794947418,
+      "context": "urn|>.<|turn>user.Summarize this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.<turn|>.<|turn>model.........e.........."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 58394,
+      "abs_offset": 124919794951194,
+      "context": "urn|>.<|turn>user.Summarize this note. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.<turn|>.<|turn>model...................."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 66206,
+      "abs_offset": 124919794959006,
+      "context": ".. .........................K..Z..ote. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test.....................(.q.....(.q..h..(.q."
+    },
+    {
+      "range": "719d28000000-719d28021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 74542,
+      "abs_offset": 124919794967342,
+      "context": "..0...............b..1.q....K..Z..ote. Canary (do not include): CANARY_A_1f0e336892ad4df49c2eacb5467c173a. Note: monitoring test..........5.......B..1.q.............(.q."
+    }
+  ]
+}

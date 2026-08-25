@@ -1,0 +1,18 @@
+
+set pagination off
+set print elements 0
+set logging file /home/elaref/research/logs/gpu_vram_v2_gdb_v2_1782191009.log
+set logging on
+file /home/elaref/research/llama-cpp-build/build-cuda/bin/llama-server
+set args --model /home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf --host 127.0.0.1 --port 8094 --ctx-size 2048 --n-gpu-layers 999 --threads 8 --jinja --parallel 1 --cache-ram 0
+run
+info cuda contexts
+info cuda kernels
+info cuda memory
+shell sleep 60
+shell curl -s http://127.0.0.1:8094/health > /dev/null && echo "healthy" || echo "not-yet"
+shell sleep 5
+shell sleep 30
+info cuda memory
+detach
+quit

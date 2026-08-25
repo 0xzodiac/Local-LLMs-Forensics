@@ -1,0 +1,17 @@
+[03:37:36]   importing qwen35-local from Qwen3.5-9B-Q4_K_M.gguf (offline) ...
+[03:38:19] RUN 20260625_033819_ollama_qwen35  model=qwen35-local  canary=TELEMETRY_CANARY_50834c8c216e
+Traceback (most recent call last):
+  File "/home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/telemetry_harness_ollama.py", line 292, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/telemetry_harness_ollama.py", line 286, in main
+    rundirs.append(run_one_model(name, MODELS[name], idle_sec, keep_ns=keep_ns))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/telemetry_harness_ollama.py", line 157, in run_one_model
+    ensure_netns_up()
+  File "/home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/telemetry_harness_ollama.py", line 85, in ensure_netns_up
+    sudo(["bash", str(NETNS_SH), "up"], timeout=20, check=True)
+  File "/home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/telemetry_harness_ollama.py", line 67, in sudo
+    raise CommandError(f"rc={r.returncode}: {' '.join(args[:6])}...: {r.stderr.strip()[:200]}")
+CommandError: rc=2: bash /home/elaref/research/.agents/skills/local-llm-telemetry-audit/scripts/netns_isolate.sh up...: iptables v1.8.10 (nf_tables): Empty interface is likely to be undesired
+Try `iptables -h' or 'iptables --help' for more information.

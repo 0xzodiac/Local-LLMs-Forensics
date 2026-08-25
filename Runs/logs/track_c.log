@@ -1,0 +1,50 @@
+[0m
+> build · big-pickle
+[0m
+[0m→ [0mRead AGENTIC_WRAPPER_LEAK_REPORT.md
+[0m✱ [0mGlob "scripts/agentic_log_scanner*"[90m in . · 0 matches[0m
+[0m
+[0m$ [0mls -la ~/.claude/projects/ 2>/dev/null && echo "---" && ls ~/.claude/ 2>/dev/null | head -30
+total 20
+drwx------  5 elaref elaref 4096 Jun 22 15:25 .
+drwxrwxr-x 29 elaref elaref 4096 Jun 22 16:23 ..
+drwxrwxr-x  4 elaref elaref 4096 Jun 22 15:28 -home-elaref-bugwolf
+drwx------  8 elaref elaref 4096 Jun 16 00:09 -home-elaref-grad-project
+drwx------  4 elaref elaref 4096 Jun 22 15:10 -home-elaref-research
+---
+agents
+AGENTS.md
+backups
+bash-commands.log
+cache
+CLAUDE.md
+CLAUDE.md.backup.2026-06-14T12-42-56
+commands
+cost-tracker.log
+daemon
+daemon.lock
+daemon.log
+daemon.status.json
+ecc
+file-history
+history.jsonl
+hooks
+hud
+jobs
+marketplace.json
+mcp-configs
+metrics
+paste-cache
+plans
+plugin.json
+plugins
+PLUGIN_SCHEMA_NOTES.md
+projects
+README.md
+RTK.md
+[0m
+[0m✱ [0mGlob "scripts/**"[90m in . · 0 matches[0m
+[0m→ [0mRead .
+[93m[1m! [0mpermission requested: external_directory (/home/elaref/.claude/projects/-home-elaref-research/*); auto-rejecting
+[0m✗ [0mRead /home/elaref/.claude/projects/-home-elaref-research failed
+[91m[1mError: [0mThe user rejected permission to use this specific tool call.

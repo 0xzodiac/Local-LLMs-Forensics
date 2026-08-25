@@ -1,0 +1,441 @@
+{
+  "run_id": "securealloc_run2",
+  "pid": 1348723,
+  "canaries": [
+    "T1_983d2b36e288419ab4d431c302f83793",
+    "T2_ea1e9c49364b439a85e7a24d83c406d9",
+    "T3_19c956f4230d446db99f0460918390da",
+    "T4_e0e8d1c6b10d4b889d846563457cb2e5"
+  ],
+  "history": {
+    "T1_983d2b36e288419ab4d431c302f83793": [
+      {
+        "phase": "post-T1",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T2",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a65bc000000-7a65bc021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T2_ea1e9c49364b439a85e7a24d83c406d9": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T3",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a645c000000-7a645c021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ],
+    "T3_19c956f4230d446db99f0460918390da": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-idle",
+        "count": 0,
+        "top5": []
+      }
+    ],
+    "T4_e0e8d1c6b10d4b889d846563457cb2e5": [
+      {
+        "phase": "post-T1",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T2",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T3",
+        "count": 0,
+        "top5": []
+      },
+      {
+        "phase": "post-T4",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          }
+        ]
+      },
+      {
+        "phase": "post-idle",
+        "count": 11,
+        "top5": [
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          },
+          {
+            "range": "7a6458000000-7a6458021000",
+            "path": "[anon]"
+          }
+        ]
+      }
+    ]
+  },
+  "T1_full_hits": [
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 13179,
+      "abs_offset": 134577364415355,
+      "context": "ser\", \"content\": \"Summarize this note. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test.\"}], \"max_tokens\": 8, \"temperature\": 0.0"
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 15006,
+      "abs_offset": 134577364417182,
+      "context": "..................C.Z.bz..p.K.t'..ote. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test................%.........[.bz...;..ez..p"
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 15374,
+      "abs_offset": 134577364417550,
+      "context": "....................[.bz..e this note. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test................%.........[.bz..........."
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 30718,
+      "abs_offset": 134577364432894,
+      "context": "..@.................[.....e this note. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test................e.......G.[.bz..hx..ez..."
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 32846,
+      "abs_offset": 134577364435022,
+      "context": "..0................([.bz..p.K.t'..ote. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test....ez..........E.......(aZ.bz..p.K.t'..d"
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 35107,
+      "abs_offset": 134577364437283,
+      "context": "d|><|end|>.|user|>Sum.........R..ez.. ...ez.. (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test.<|end|><|assistant|>..z`..............ez"
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 44419,
+      "abs_offset": 134577364446595,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test.<|end|><|assistant..................[.bz"
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 49646,
+      "abs_offset": 134577364451822,
+      "context": "....................[.....e this note. Can.ry (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test....z`..............................ez..."
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 59582,
+      "abs_offset": 134577364461758,
+      "context": "..................~.[.bz..p.K.t'..ote. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test....ez...................V[.bz..p.K.t'..."
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 83822,
+      "abs_offset": 134577364485998,
+      "context": "....................[.....p.K.t'..ote. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test....ez....................[.bz..p.K.t'..."
+    },
+    {
+      "range": "7a65bc000000-7a65bc021000",
+      "path": "[anon]",
+      "size": 135168,
+      "offset_in_region": 85379,
+      "abs_offset": 134577364487555,
+      "context": "d|><|end|><|user|>Summarize this note. Canary (do not include): T1_983d2b36e288419ab4d431c302f83793. Note: monitoring test.<|end|><|assistant........$.......t.[.bz"
+    }
+  ]
+}

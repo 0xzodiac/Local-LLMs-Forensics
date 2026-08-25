@@ -1,0 +1,15 @@
+{
+  "run_id": "20260624_201614_d7_gemma4_26",
+  "synthetic_pii": "SSN 000-00-028b (SYNTHETIC_TEST_PII_028bbac496, not a real person)",
+  "log_sensitive_data_enabled": true,
+  "llmster_pid": 814260,
+  "memory_channel": {
+    "hit_count": 0,
+    "sample": []
+  },
+  "disk_channel": {
+    "hit_count": 0,
+    "files": []
+  },
+  "chain_confirmed": false
+}

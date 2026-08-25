@@ -1,0 +1,15 @@
+{
+  "run_id": "20260624_201614_d7_nemotron_24",
+  "synthetic_pii": "SSN 000-00-de5e (SYNTHETIC_TEST_PII_de5ec203e1, not a real person)",
+  "log_sensitive_data_enabled": true,
+  "llmster_pid": 814260,
+  "memory_channel": {
+    "hit_count": 0,
+    "sample": []
+  },
+  "disk_channel": {
+    "hit_count": 0,
+    "files": []
+  },
+  "chain_confirmed": false
+}

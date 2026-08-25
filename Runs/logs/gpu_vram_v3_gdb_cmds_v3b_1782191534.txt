@@ -1,0 +1,12 @@
+set pagination off
+set print elements 0
+set confirm off
+set logging file /home/elaref/research/logs/gpu_vram_v3_gdb_v3b_1782191534.log
+set logging redirect on
+set logging on
+info cuda contexts
+info cuda kernels
+info cuda memory
+set logging off
+detach
+quit

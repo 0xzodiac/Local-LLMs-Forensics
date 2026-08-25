@@ -1,0 +1,11 @@
+{"ts":1782224351.084,"pid":2918563,"tid":124288394369280,"call":"connect","fd":21,"ip":"127.0.0.1","port":41343,"loopback":true,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.084,"pid":2918563,"tid":124288394369280,"call":"connect","fd":22,"ip":"127.0.0.1","port":52993,"loopback":true,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.084,"pid":2918563,"tid":124288394369280,"call":"connect","fd":23,"ip":"127.0.0.1","port":16141,"loopback":true,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.084,"pid":2918563,"tid":124288394369280,"call":"connect","fd":24,"ip":"127.0.0.1","port":39414,"loopback":true,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.084,"pid":2918563,"tid":124288394369280,"call":"connect","fd":25,"ip":"127.0.0.1","port":22931,"loopback":true,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.920,"pid":2918563,"tid":124287325279936,"call":"getaddrinfo","host":"versions-prod.lmstudio.ai","service":"","rc":0}
+{"ts":1782224351.920,"pid":2918563,"tid":124288394369280,"call":"connect","fd":30,"ip":"104.26.7.153","port":443,"loopback":false,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224351.924,"pid":2918563,"tid":124287308494528,"call":"getaddrinfo","host":"lmstudio.ai","service":"","rc":0}
+{"ts":1782224351.924,"pid":2918563,"tid":124288394369280,"call":"connect","fd":26,"ip":"104.26.7.153","port":443,"loopback":false,"rc":-1,"errno":115,"err":"Operation now in progress"}
+{"ts":1782224352.033,"pid":2918563,"tid":124287325279936,"call":"getaddrinfo","host":"extensions.lmstudio.ai","service":"","rc":0}
+{"ts":1782224352.036,"pid":2918563,"tid":124288394369280,"call":"connect","fd":24,"ip":"104.26.7.153","port":443,"loopback":false,"rc":-1,"errno":115,"err":"Operation now in progress"}

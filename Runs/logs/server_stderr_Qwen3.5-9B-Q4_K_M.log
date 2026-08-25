@@ -1,0 +1,54 @@
+warning: no usable GPU found, --gpu-layers option will be ignored
+warning: one possible reason is that llama.cpp was compiled without GPU support
+warning: consult docs/build.md for compilation instructions
+0.00.003.130 I srv  llama_server: n_parallel is set to auto, using n_parallel = 4 and kv_unified = true
+0.00.003.760 I srv          init: using 11 threads for HTTP server
+0.00.004.234 I srv         start: binding port with default address family
+0.00.005.477 I srv  llama_server: loading model
+0.00.005.875 I srv    load_model: loading model '/home/elaref/.lmstudio/models/lmstudio-community/Qwen3.5-9B-GGUF/Qwen3.5-9B-Q4_K_M.gguf'
+0.00.005.959 I common_init_result: fitting params to device memory ...
+0.00.005.976 I common_init_result: (for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on)
+0.01.242.037 I common_params_fit_impl: projected to use 3357 MiB of host memory vs. 15740 MiB of total host memory
+0.11.559.766 W llama_context: n_ctx_seq (4096) < n_ctx_train (262144) -- the full capacity of the model will not be utilized
+0.11.711.306 I common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+0.14.746.069 I srv    load_model: initializing slots, n_slots = 4
+0.15.843.896 W srv    load_model: speculative decoding will use checkpoints
+0.15.844.445 W common_speculative_init: no implementations specified for speculative decoding
+0.15.844.449 I slot   load_model: id  0 | task -1 | new slot, n_ctx = 4096
+0.15.844.575 I slot   load_model: id  1 | task -1 | new slot, n_ctx = 4096
+0.15.844.577 I slot   load_model: id  2 | task -1 | new slot, n_ctx = 4096
+0.15.844.577 I slot   load_model: id  3 | task -1 | new slot, n_ctx = 4096
+0.15.844.655 I srv    load_model: prompt cache is enabled, size limit: 8192 MiB
+0.15.844.657 I srv    load_model: use `--cache-ram 0` to disable the prompt cache
+0.15.844.657 I srv    load_model: for more info see https://github.com/ggml-org/llama.cpp/pull/16391
+0.15.844.658 I srv    load_model: context checkpoints enabled, max = 32, min spacing = 256
+0.15.845.422 I srv          init: idle slots will be saved to prompt cache and cleared upon starting a new task
+0.15.889.073 I init: chat template, example_format: '<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+<think>
+'
+0.15.907.977 I srv          init: init: chat template, thinking = 1
+0.15.908.066 I srv  llama_server: model loaded
+0.15.908.072 I srv  llama_server: server is listening on http://127.0.0.1:8081
+0.15.908.084 I srv  update_slots: all slots are idle
+0.16.044.820 I srv  params_from_: Chat format: peg-native
+0.16.045.444 I slot get_availabl: id  3 | task -1 | selected slot by LRU, t_last = -1
+0.16.045.446 I srv  get_availabl: updating prompt cache
+0.16.045.451 I srv          load:  - looking for better prompt, base f_keep = -1.000, sim = 0.000
+0.16.045.460 I srv        update:  - cache state: 0 prompts, 0.000 MiB (limits: 8192.000 MiB, 4096 tokens, 8589934592 est)
+0.16.045.462 I srv  get_availabl: prompt cache update took 0.01 ms
+0.16.045.576 I slot launch_slot_: id  3 | task 0 | processing task, is_child = 0
+0.16.045.595 E srv    send_error: task id = 0, error: request (5014 tokens) exceeds the available context size (4096 tokens), try increasing it
+0.16.045.604 I slot      release: id  3 | task 0 | stop processing: n_tokens = 0, truncated = 0
+0.16.045.608 W srv  update_slots: no tokens to decode
+0.16.045.609 I srv  update_slots: all slots are idle
+0.16.045.646 W srv          stop: cancel task, id_task = 0
+0.16.045.696 I srv  update_slots: all slots are idle
+0.16.047.184 I srv    operator(): operator(): cleaning up before exit...

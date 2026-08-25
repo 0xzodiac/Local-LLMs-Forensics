@@ -1,0 +1,18 @@
+[07:04:02] Phase 1: ambient (no server)
+[07:04:02] Phase 2: start server
+[07:04:35] server pid 1925994
+[07:04:35] Phase 3: start bpftrace
+[07:04:37] Phase 4: post-startup baseline
+[07:04:40] Phase 5: canary cross-tenant test
+[07:04:40]   tenant 1: canary=f9ab26e5aa8d4338b110cbb7e2871219
+[07:05:14]   post-release scan: canary occurrences=11
+[07:05:16]   tenant 2: canary=e745d5621f294263bce7df2c6043f625
+[07:05:24]   post-release scan: canary occurrences=11
+[07:05:26]   tenant 3: canary=f74f020650274f7293d15744b1a6dba5
+[07:05:34]   post-release scan: canary occurrences=11
+[07:05:36] Phase 6: 10s idle
+[07:05:46] Phase 7: shutdown
+[07:05:47]   bpftrace captured 0 big-read events
+[07:05:47] === WROTE /home/elaref/research/logs/multilayer_monitor_smoke_1782187442.json ===
+[07:05:47] === canary: [('f9ab26e5', 11), ('e745d562', 11), ('f74f0206', 11)] ===
+[07:05:47] === bpf big-reads: 0 ===

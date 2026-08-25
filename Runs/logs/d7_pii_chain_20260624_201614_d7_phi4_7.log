@@ -1,0 +1,7 @@
+[23:30:00] D7: end-to-end PII attack-chain demo (synthetic PII, not real)
+[23:30:00] synthetic_pii = 'SSN 000-00-f73e (SYNTHETIC_TEST_PII_f73e5b68a0, not a real person)'
+[23:30:00] logSensitiveData config flag = True
+[23:30:00] ensuring lms server is up + model loaded ...
+[23:31:08] model load rc=1
+[23:31:10] llmster pid = 814260
+[23:31:10] Step 1: send chat request containing the synthetic PII string
