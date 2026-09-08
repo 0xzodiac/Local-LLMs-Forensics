@@ -1,138 +1,179 @@
-# 🛡️ LLM Forensics Research Data
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Data: CC-BY](https://img.shields.io/badge/Data-CC--BY-green.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![DOI: Zenodo](https://img.shields.io/badge/DOI-10.5281/zenodo.[PENDING]-red.svg)](#) <!-- Replace [PENDING] with your actual numeric DOI -->
-[![Status: TIFS Major Revision](https://img.shields.io/badge/Status-Under_Review-orange.svg)](#)
+# 🛡️ The Illusion of Local AI Security — LLM Forensics Research Data
 
-Public dataset, scripts, and reports supporting the LLM forensics paper submission (TIFS).
+[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
+[![Data: CC-BY 4.0](https://img.shields.io/badge/Data-CC--BY_4.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.20998459-purple.svg)](https://doi.org/10.5281/zenodo.20998459)
+[![Status](https://img.shields.io/badge/Status-TIFS_Major_Revision-orange.svg)]()
 
-## Research Question
+Public dataset, scripts, and reports supporting the paper submission
+**"The Illusion of Local AI Security: Wrapper Forensics and Covert Reasoning
+Channels"** (IEEE TIFS, under major revision).
 
-Do local LLM inference runtimes (Ollama, llama.cpp, LM Studio) leak pre-training
-data, prior-session context, or model internals across the user/network boundary,
-even under tenant isolation (network namespaces, LD_PRELOAD hooks)?
+---
 
-## Headline Finding
+## 🔍 Research Question
 
-Canary tokens placed in prompts are recoverable from idle process memory and from
-netns-egress packet captures at non-trivial rates across all four audited models
-(Nemotron-3, Qwen-3.5, Gemma-4, Phi-4), even after request completion.
+Do local LLM inference runtimes (LM Studio, llama.cpp, Ollama) leak
+pre-training data, prior-session context, or model internals across the
+user/network boundary — even under tenant isolation (Linux network
+namespaces, LD_PRELOAD hooks)?
 
-Full numbers + per-model breakdowns: `experiments/telemetry_summary/INDEX.md`
-and `experiments/reports/RECONCILED_NUMBERS.md`.
+## 📌 Headline Findings
 
-## Repository Layout
+Across **480 adversarial prompt injections** targeting 4 state-of-the-art
+models, we recorded a **71.5% overall canary-token leakage rate**, produced
+by three coordinated failures:
+
+| # | Finding | Evidence |
+|---|---------|----------|
+| 1 | **Covert Reasoning Channel** — hidden `reasoning_content` fields bypass visible-layer output filters (up to 98.4% on Phi-4, 56.0% on Qwen3.5) | `Runs/experiments/reports/MASTER_FORENSICS_DOCUMENTATION.md` |
+| 2 | **Wrapper Betrayal** — LM Studio writes every API request (payloads, reasoning traces, secrets) to cleartext disk logs with 30-day retention by default | same + `TELEMETRY_FINDINGS_LMS.md` |
+| 3 | **Cross-Tenant Session Hijacking** — `llama-server`'s `/slots` save/restore has no authorization check (CWE-862/CWE-200): 12/12 tenants' cleartext recovered in a single memory read | `CROSS_TENANT_SLOT_RESTORE_VULNERABILITY.md`, `DEEP_LEAK_REPORT.md` |
+| 4 | **Memory Residue** — canary tokens persist in idle process memory and KV-cache after request completion; zeroed by the shipped patches | `KV_CACHE_PATCH_REPORT.md`, `PROMPT_ZEROIZE_PATCH_REPORT.md` |
+| 5 | **Network Cleanliness as Red Herring** — zero outbound exfiltration observed; the threat is data-at-rest, not data-in-transit | `TELEMETRY_FINDINGS_4MODELS.md`, `TELEMETRY_FINDINGS_OLLAMA.md` |
+
+Full reconciled statistics: [`Runs/experiments/reports/RECONCILED_NUMBERS.md`](Runs/experiments/reports/RECONCILED_NUMBERS.md)
+
+## 📦 Repository Layout
 
 ```
-experiments/
-  scripts/                          Reproducer scripts
-    run_all_n50_audits.sh           N=50 audit runner (4 models)
-    run_d2_measurements.sh          D2 measurement script
-    run_secure_allocator_test.sh    Secure allocator patch test
-    batch_4models.sh                4-model batch runner
-    phi4_defense_runner.py          Phi4 defense test driver
-    phi4_analysis.py                Phi4 leak analyzer
-    phi4_defense_test*.py           Phi4 defense variants
-  reports/                          60+ analysis reports
-    MASTER_FORENSICS_DOCUMENTATION.md   Canonical methodology
-    RESEARCH_PROGRESS_MASTER.md         Live progress log
-    FINAL_STATUS_REPORT.md              Status snapshot
-    FINAL_AUDIT_REPORT.md               Final audit summary
-    FINAL_COMPREHENSIVE_REPORT.md       Comprehensive findings
-    CITATION_AUDIT.md                   Reference audit
-    DISCLOSURE_PLAN.md                  Vendor disclosure plan
-    RECONCILED_NUMBERS.md               Reconciled stats across runs
-    STRENGTH_WEAKNESS_MAP.md            Per-attack strength scoring
-    PROGRESS_D1_D3.md                   D1/D3 progress
-    *_REPORT.md                         Per-experiment reports
-    PAPER_DRAFT*.md                     Paper drafts (also in paper/)
-  telemetry_summary/                Per-model run index
-    INDEX.md                         Master N50 index
-    SUMMARY_<model>.md               Per-model run table
-  build_index.py                    Regenerate summary tables from raw runs
-
-TELEMETRY_RUN_*/                    Raw capture dirs (N=212)
-  meta.json                         Capture metadata
-  pcap/                             Packet captures
-  pcap_quick.json                   Parsed summary
-  hooks/                            LD_PRELOAD traces (LMS only)
-  idle_snapshots.json               Process memory snapshots
-  triggers.jsonl                    Canary detection events
-  canary_report.md                  Human-readable findings
-
-logs/                               Run logs
-patches/                            Kernel/libc patches
-lms-leak-test/                      LMS subsystem test data
-scripts/                            Additional helper scripts
+from-scratch/                 Numbered reproduction scripts (00-09)
+  00_check_env.sh             Prerequisite audit
+  01_layout.sh                Workspace construction
+  02_install_prereqs.sh       System packages (apt)
+  03_download_models.sh       GGUF download + SHA-256 verify
+  04_import_models.sh         LM Studio + offline Ollama import
+  05_build_llamacpp_patched.sh  Patched llama-server build
+  06_build_netns_harness.sh   netns telemetry harness (rebuilt)
+  07_build_ld_hook.sh         LD_PRELOAD network hook
+  08_run_all.sh               N50 master orchestrator (~25-30h)
+  09_smoke_test.sh            10-minute sanity pass
+docs/
+  Reproduction_Manual.docx    Professional reproduction manual
+  Reproduction_Manual.pdf
+RUN_FROM_SCRATCH.md           Manual source (pandoc/markdown)
+Runs/
+  experiments/
+    scripts/                  Canonical reproducer scripts
+      run_all_n50_audits.sh   N=50 audit orchestrator (4 models)
+      run_d2_measurements.sh  Patched-vs-unpatched heap measurements
+      run_secure_allocator_test.sh  Secure-allocator closure proof
+      batch_4models.sh        4-model netns telemetry batch
+    reports/                  60+ analysis reports (see below)
+    telemetry_summary/        Per-model run index (INDEX.md + tables)
+    build_index.py            Regenerate summary tables from raw runs
+  scripts/                    Research harness drivers (n50_audit/, LMS,
+                              D4/D5/D7, GGUF fuzzers, VRAM probes, ...)
+  TELEMETRY_RUN_*/            Raw capture dirs (N=212): meta.json, pcap/,
+                              idle_snapshots.json, triggers.jsonl, ...
+  patches/                    prompt_zeroize.patch, kv_cache_zeroize.patch
+  provenance/                 model_digests.json (byte-exact SHA-256 pins)
+  logs/                       Run logs
+  lms-leak-test/              LMS subsystem test data
 ```
 
-## Audited Models
+## 🤖 Audited Models
 
-| Model | HuggingFace ID | N50 Runs | Capture Architecture |
-|-------|---------------|----------|----------------------|
-| Nemotron | nvidia/nemotron-3-nano-4b | 50 | netns-isolated |
-| Qwen 3.5 | qwen/qwen3.5-9b | 50 | netns-isolated |
-| Gemma 4 | gemma-4-e4b-it | 50 | netns-isolated |
-| Phi-4 | microsoft/phi-4-reasoning-plus | 50 | netns-isolated |
+All Q4_K_M GGUF, byte-pinned by SHA-256 in
+[`Runs/provenance/model_digests.json`](Runs/provenance/model_digests.json):
 
-Plus smaller LMS/Ollama baseline runs (4 runs total). See `experiments/telemetry_summary/INDEX.md`.
+| Model | HuggingFace Repo | Size | N50 Runs | Capture |
+|-------|------------------|------|----------|---------|
+| Nemotron-3 Nano 4B | `lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF` | 2.8 GB | 50 | netns-isolated |
+| Qwen3.5 9B | `lmstudio-community/Qwen3.5-9B-GGUF` | 5.6 GB | 50 | netns-isolated |
+| Gemma-4 E4B | `lmstudio-community/gemma-4-E4B-it-GGUF` | 5.3 GB | 50 | netns-isolated |
+| Phi-4 Reasoning+ | `lmstudio-community/Phi-4-reasoning-plus-GGUF` | 9.0 GB | 50 | netns-isolated |
 
-## Threat Model
+Plus LMS/Ollama baseline runs — see `Runs/experiments/telemetry_summary/INDEX.md`.
 
-- Adversary controls network namespace co-resident traffic (capture on `lmns-br`)
-- Adversary can read idle process memory (no root, just `/proc/<pid>/maps`)
-- Prompt canaries are realistic-looking but never seen in training (UUID-suffixed)
-- Multi-tenant isolation via Linux network namespaces + per-model LD_PRELOAD hooks
+## 🧪 Threat Model
 
-## Reproducing
+- Adversary controls network-namespace co-resident traffic (capture on `lmns-br`)
+- Adversary reads idle process memory (same UID, `/proc/<pid>/mem`)
+- Prompt canaries are realistic-looking but never in training data (UUID-suffixed)
+- Multi-tenant isolation via Linux netns + per-model LD_PRELOAD hooks
+- Wire capture (`tcpdump` on the sole veth egress) is the unspoofable ground truth
 
-Hardware: any Linux box with Ollama + llama.cpp + enough RAM for one 9B model.
+## 🚀 Quick Start (Reproduction from Scratch)
+
+Hardware: any Linux box with sudo, ≥16 GB RAM, ≥40 GB disk (models ~21 GB
++ Ollama blob copies ~21 GB).
 
 ```bash
-# Pull models
-ollama pull nemotron-3-nano-4b
-ollama pull qwen3.5-9b
-ollama pull gemma-4-e4b-it
-ollama pull phi-4-reasoning-plus
+git clone https://github.com/0xzodiac/Local-LLMs-Forensics.git
+cd Local-LLMs-Forensics
 
-# Run N50 audit (50 captures per model)
-bash experiments/scripts/run_all_n50_audits.sh
-
-# Regenerate summary tables
-python3 experiments/build_index.py
+bash from-scratch/00_check_env.sh        # 1. audit prerequisites
+bash from-scratch/02_install_prereqs.sh  # 2. install system packages
+bash from-scratch/01_layout.sh           # 3. build ~/research workspace
+bash from-scratch/03_download_models.sh  # 4. fetch + verify the 4 GGUFs (~21 GB)
+bash from-scratch/04_import_models.sh    # 5. LM Studio + offline Ollama import
+bash from-scratch/05_build_llamacpp_patched.sh  # 6. patched llama-server
+bash from-scratch/06_build_netns_harness.sh    # 7. netns telemetry harness
+bash from-scratch/07_build_ld_hook.sh    # 8. LD_PRELOAD network hook
+bash from-scratch/09_smoke_test.sh      # 9. 10-minute sanity pass
+bash from-scratch/08_run_all.sh         # 10. full N50 audit (~25-30h, use tmux)
 ```
 
-Full methodology: `experiments/reports/MASTER_FORENSICS_DOCUMENTATION.md`.
+The full professional manual (DOCX/PDF) is in [`docs/`](docs/), source at
+[`RUN_FROM_SCRATCH.md`](RUN_FROM_SCRATCH.md). Full methodology:
+`Runs/experiments/reports/MASTER_FORENSICS_DOCUMENTATION.md`.
 
-## Key Reports (start here)
+## 📊 Key Reports (start here)
 
 | Report | What it answers |
 |--------|-----------------|
-| `FINAL_STATUS_REPORT.md` | One-page status + headline numbers |
-| `MASTER_FORENSICS_DOCUMENTATION.md` | Canonical methodology + threat model |
-| `RECONCILED_NUMBERS.md` | Reconciled stats across runs |
-| `STRENGTH_WEAKNESS_MAP.md` | Per-attack strength scoring |
-| `CITATION_AUDIT.md` | Reference accuracy audit |
-| `DISCLOSURE_PLAN.md` | Vendor disclosure timeline |
+| [`FINAL_STATUS_REPORT.md`](Runs/experiments/reports/FINAL_STATUS_REPORT.md) | One-page status + headline numbers |
+| [`MASTER_FORENSICS_DOCUMENTATION.md`](Runs/experiments/reports/MASTER_FORENSICS_DOCUMENTATION.md) | Canonical methodology + threat model |
+| [`RECONCILED_NUMBERS.md`](Runs/experiments/reports/RECONCILED_NUMBERS.md) | Reconciled stats across all runs |
+| [`CROSS_TENANT_SLOT_RESTORE_VULNERABILITY.md`](Runs/experiments/reports/CROSS_TENANT_SLOT_RESTORE_VULNERABILITY.md) | The /slots hijack (CWE-862/CWE-200) |
+| [`STRENGTH_WEAKNESS_MAP.md`](Runs/experiments/reports/STRENGTH_WEAKNESS_MAP.md) | Per-attack strength scoring |
+| [`CITATION_AUDIT.md`](Runs/experiments/reports/CITATION_AUDIT.md) | Reference accuracy audit |
+| [`DISCLOSURE_PLAN.md`](Runs/experiments/reports/DISCLOSURE_PLAN.md) | Vendor disclosure timeline |
 
-## Per-Model Findings
+## 📈 Per-Model Findings
 
-| Model | Key Reports |
-|-------|-------------|
+| Model / Runtime | Key Reports |
+|-----------------|-------------|
 | Phi-4 | `PHI4_DEFENSE_RESOLVED_REPORT.md`, `GEMMA4_PHI4_RERUN_REPORT.md` |
-| Ollama 4-pack | `TELEMETRY_FINDINGS_4MODELS.md` |
-| Ollama per-model | `TELEMETRY_FINDINGS_OLLAMA.md` |
-| LMS | `TELEMETRY_FINDINGS_LMS.md` |
+| 4-model telemetry (LMS) | `TELEMETRY_FINDINGS_4MODELS.md` |
+| Ollama control case | `TELEMETRY_FINDINGS_OLLAMA.md` |
+| LM Studio per-run | `TELEMETRY_FINDINGS_LMS.md` |
+| GGUF parser attacks | `GGUF_NOVEL_ATTACKS_REPORT.md`, `GGUF_SURGICAL_REPORT.md`, `GGUF_CROSS_MODEL_REPORT.md` |
 
-## Citation
+## 🔧 Security Patches Shipped
 
-stay tunning
+| Patch | Effect |
+|-------|--------|
+| [`patches/prompt_zeroize.patch`](Runs/patches/prompt_zeroize.patch) | `explicit_bzero` on slot-owned plaintext at release (Sites A/B) |
+| [`patches/kv_cache_zeroize.patch`](Runs/patches/kv_cache_zeroize.patch) | Zeroes released K/V cells in both normal and transposed-V layouts |
+| `secure-allocator.cpp` (built by script 05) | `operator delete` override bzeros freed chunks ≥4 KB under `SECURE_ALLOC=1` |
+
+## 📖 Citation
+
+Dataset on Zenodo: [10.5281/zenodo.20998459](https://doi.org/10.5281/zenodo.20998459)
+
+```bibtex
+@dataset{zodiac2026_local_llm_forensics,
+  author  = {0xZodiac},
+  title   = {Local-LLMs-Forensics: Dataset, Scripts, and Reports for
+             "The Illusion of Local AI Security"},
+  year    = {2026},
+  doi     = {10.5281/zenodo.20998459},
+  url     = {https://github.com/0xzodiac/Local-LLMs-Forensics},
+  license = {MIT (code); CC-BY-4.0 (data)}
+}
+```
 
 ## ⚖️ License & Ethical Disclosure
 
-Code is released under the MIT License. Data artifacts are released under CC-BY 4.0.
+Code is released under the MIT License. Data artifacts are released under
+CC-BY 4.0.
 
-Responsible Disclosure: The cross-tenant /slots vulnerability (CWE-862/CWE-200) was reported to the upstream maintainers via coordinated disclosure prior to this public release. No weaponized, mass-exploitation tooling is provided.
+**Responsible Disclosure:** The cross-tenant `/slots` vulnerability
+(CWE-862/CWE-200) was reported to the upstream maintainers via coordinated
+disclosure prior to this public release. No weaponized or mass-exploitation
+tooling is provided; all experiments are local, canary-token-based, and
+network-isolated by design.
 
 Copyright (c) 2026 Youssef Hamdi Zafaan Ibrahim (0xZodiac)
-
