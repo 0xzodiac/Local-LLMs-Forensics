@@ -176,4 +176,4 @@ disclosure prior to this public release. No weaponized or mass-exploitation
 tooling is provided; all experiments are local, canary-token-based, and
 network-isolated by design.
 
-Copyright (c) 2026 Youssef Hamdi Zafaan Ibrahim (0xZodiac)
+Copyright (c) 2026 (0xZodiac)
