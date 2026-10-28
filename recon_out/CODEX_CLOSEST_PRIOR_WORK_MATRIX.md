@@ -1,0 +1,44 @@
+# LLAnalyzer closest-prior-work matrix
+
+Date of search: 2026-10-11. Sources were checked against official venue pages,
+publisher pages, or the authors' arXiv records. This is a focused novelty scan,
+not a systematic-review claim. The comparison is against the frozen current
+manuscript, not the older public preprint wording.
+
+## Five works most likely to be cited by a skeptical T-IFS reviewer
+
+| Prior work | What it actually demonstrates | What LLAnalyzer demonstrates | Overlap | Difference and novelty assessment |
+|---|---|---|---|---|
+| **Murtuza, “Forensic Implications of Localized AI: Artifact Analysis of Ollama, LM Studio, and llama.cpp,” arXiv:2603.23996 (2026)** ([arXiv](https://arxiv.org/abs/2603.23996)) | Controlled Windows/Linux acquisition of disk and memory artifacts, model caches, prompt histories, logs, and network activity from the same local-runner ecosystem. The abstract identifies plaintext histories and usage logs as recoverable artifacts. | UUID-attributed boundary tests; configuration-specific LM Studio logging; Ollama accounting; writable-process-memory residue; same-process slot and model-swap probes. | Very high for local wrappers, persistence, memory artifacts, and “local is not automatically private.” | LLAnalyzer's plausible increment is a single evidence schema across wrapper, runtime, model-admission, and serving-state surfaces, plus in-process lifecycle probes. It is not novel merely for finding local artifacts. **Incremental-to-moderate unless the workflow is shown reusable and boundary attribution is formalized.** |
+| **Xu et al., “Recovering and Rehosting Mobile Local LLM Conversations and Contexts via Memory Forensics,” IEEE S&P 2026, DOI 10.1109/SP63933.2026.00252** ([IEEE S&P program](https://sp2026.ieee-security.org/program.html), [DOI record](https://www.researchgate.net/publication/408319119_Recovering_and_Rehosting_Mobile_Local_LLM_Conversations_and_Contexts_via_Memory_Forensics)) | Memory-forensic recovery and rehosting of local-LLM conversations/contexts on mobile deployments. | Desktop/consumer serving-stack focus, UUID canaries, post-request lifetime, cross-request and in-process model-swap residue, wrapper and slot surfaces. | High for memory recovery and confidentiality-relevant prompt persistence. | LLAnalyzer changes platform and lifecycle scope, but “prompt bytes can be recovered from local LLM memory” is not a new claim. **Moderate empirical extension if causal language is narrowed.** |
+| **Wu et al., “I Know What You Asked: Prompt Leakage via KV-Cache Sharing in Multi-Tenant LLM Serving,” NDSS 2025** ([NDSS page](https://www.ndss-symposium.org/ndss-paper/i-know-what-you-asked-prompt-leakage-via-kv-cache-sharing-in-multi-tenant-llm-serving/), [paper PDF](https://www.ndss-symposium.org/wp-content/uploads/2025-1772-paper.pdf)) | PROMPTPEEK reconstructs prompts between mutually distrustful users through shared KV-cache behavior in multi-tenant serving. | July continuation: 126/200 KV-channel hits and 200/200 memory-channel hits after restoration; one-process slot save/restore equality; no distinct clients or credentials. | High for KV/state confidentiality and serving isolation. | Wu et al. instantiate the stronger principal-boundary attack. LLAnalyzer's defensible distinction is local `llama-server` state-lifecycle evidence, not a first cross-tenant attack. **LLAnalyzer is weaker on security impact and potentially useful only as an implementation-specific complement.** |
+| **Luo et al., “Shadow in the Cache: Unveiling and Mitigating Privacy Risks of KV-cache in LLM Inference,” NDSS 2026, DOI 10.14722/ndss.2026.240258** ([NDSS page](https://www.ndss-symposium.org/ndss-paper/shadow-in-the-cache-unveiling-and-mitigating-privacy-risks-of-kv-cache-in-llm-inference/), [paper PDF](https://www.ndss-symposium.org/wp-content/uploads/2026-f258-paper.pdf)) | Direct KV-cache inversion, collision, and semantic-injection attacks plus KV-Cloak mitigation. | Channel-specific continuation and memory observations; no direct KV-tensor reconstruction or defense evaluation. | High for KV confidentiality. | LLAnalyzer should position itself as lifecycle/forensic evidence, not a new KV reconstruction attack or KV defense. **Incremental for the KV component; potentially complementary for host-side state lifetime.** |
+| **Chung & Badhe, “Local Is Not a Sufficient Privacy Boundary: Governing OS-Integrated On-Device AI,” arXiv:2606.10173 (2026)** ([arXiv](https://arxiv.org/abs/2606.10173)) | OS-centered privacy framework, six-part risk taxonomy, controls, and audit rubric across Apple Intelligence, Android AICore/Gemini Nano, and Recall; explicitly argues that local execution answers only where computation occurs. | Empirical serving-stack measurements across four named boundaries, with exact canary or artifact evidence and explicit residual/recoverability limits. | High conceptual overlap with the paper's central premise and lifecycle framing. | LLAnalyzer is more empirical and runtime-specific; Chung & Badhe are broader governance/documentation analysis. **The four-boundary abstraction alone is not clearly novel; operational evidence integration is the possible increment.** |
+
+## Additional close comparators
+
+| Work | Relevance to novelty claim | Consequence for LLAnalyzer |
+|---|---|---|
+| Song et al., “The Early Bird Catches the Leak,” IEEE TIFS 20 (2025), 11431–11446, DOI 10.1109/TIFS.2025.3622954 ([IEEE](https://ieeexplore.ieee.org/document/11206380/)) | Demonstrates KV/semantic-cache timing channels and prompt-prefix reconstruction against online services. | Any LLAnalyzer timing claim is lower-evidence because vectors and the original analysis script are absent; the paper should not claim a new timing side channel. |
+| Gao et al., “I Know What You Said: Unveiling Hardware Cache Side-Channels in Local Large Language Model Inference,” USENIX Security 2025 ([USENIX](https://www.usenix.org/conference/usenixsecurity25/presentation/gao-zibo)) | Demonstrates unprivileged co-located hardware-cache eavesdropping against local LLM input/output tokens across practical deployments. | This raises the bar for the local-confidentiality premise: LLAnalyzer's authorized collector is not an unprivileged side-channel attacker. |
+| Chu et al., SafeKV, “Selective KV-Cache Sharing to Mitigate Timing Side-Channels in LLM Inference,” arXiv:2508.08438 (2025) ([arXiv](https://arxiv.org/abs/2508.08438)) | Selective cache isolation and mitigation for timing leakage. | LLAnalyzer's KV-overhead and sanitization data are descriptive and are not a competing validated mitigation. |
+| Pennas et al., PrefixWall, arXiv:2603.10726 (2026) ([arXiv](https://arxiv.org/abs/2603.10726)) | Selective isolation of suspicious prefixes against automatic-prefix-cache timing channels. | Reinforces that the timing/serving-state novelty space is already active and technically specific. |
+| Wu et al., “Cache Me, Catch You,” NDSS 2026, DOI 10.14722/ndss.2026.242812 ([NDSS](https://www.ndss-symposium.org/ndss-paper/cache-me-catch-you-cache-related-security-threats-in-llm-serving-frameworks/)) | Six cache attack vectors in mainstream serving frameworks, including cache collisions, poisoning, and moderation bypasses. | LLAnalyzer's contribution should not be described as a new general cache-security taxonomy. |
+| Gu et al., “Auditing Prompt Caching in Language Model APIs,” ICML 2025, PMLR 267:20477–20496 ([PMLR](https://proceedings.mlr.press/v267/gu25b.html)) | Statistical audit of global prompt-cache sharing across seven APIs and its privacy implications. | Shows that cache-sharing audit methodology already exists; LLAnalyzer's local-stack distinction must be explicit. |
+
+## Overall novelty judgment
+
+The closest literature already contains stronger demonstrations for the two
+most security-sensitive interpretations: unauthorized cross-tenant KV leakage
+and unprivileged local side-channel extraction. LLAnalyzer's defensible
+non-incremental candidate is narrower: a common evidence-bounded workflow that
+associates exact canaries with multiple local-serving lifecycle surfaces and
+records where evidence stops short of an attacker claim. That candidate is
+scientifically useful, but the current manuscript does not formally define a
+portable ontology, common machine-readable schema, or independent cross-runtime
+validation sufficient to make the methodology unambiguously novel.
+
+## Public-version consistency risk
+
+The public arXiv record for the paper (arXiv:2609.18526, [record](https://arxiv.org/abs/2609.18526)) still describes the older AFL++ total, an authenticated cross-tenant authorization flaw, and a WAN timing oracle. Those statements do not match the frozen canonical manuscript or retained evidence. This is a submission-level consistency risk that should be handled as version/provenance work, not silently ignored in a novelty claim.
+

@@ -1,0 +1,903 @@
+{
+  "inputs_are_read_only": true,
+  "inventory": {
+    "classification_counts": {
+      "analysis script or program source": 99,
+      "execution or capture log": 1743,
+      "hand-written summary or documentation": 175,
+      "manuscript or derived publication artifact": 49,
+      "new remediation source/build evidence": 197981,
+      "other artifact": 140,
+      "structured machine-generated candidate": 1409
+    },
+    "exclusions": [
+      "Remediation2 source/build internals are counted as new engineering evidence, not historical experiment records.",
+      "Large model archives and packet captures are inventoried by path but not copied or altered."
+    ],
+    "json_parse_counts": {
+      "json_parse_error": 292,
+      "json_parse_ok": 7585
+    },
+    "representative_hashed_artifacts": [
+      {
+        "bytes": 9558,
+        "path": "Runs/experiments/reports/CROSS_TENANT_SLOT_RESTORE_VULNERABILITY.md",
+        "sha256": "9c6093acaca86cf04e9b13dd4f6b852bf2ae07a0307381ac5a53af2b9bf2463c"
+      },
+      {
+        "bytes": 12950,
+        "path": "Runs/experiments/reports/GGUF_SURGICAL_REPORT.md",
+        "sha256": "bb1953d94d34e3dea16fda9d39aeadf460491f68e9843429724aafd69cd1a1de"
+      },
+      {
+        "bytes": 9263,
+        "path": "Runs/experiments/reports/KV_CACHE_PATCH_REPORT.md",
+        "sha256": "24e561f81f454f3f4f0feb4fcf3dea5e95694d760cc72bfb55e4f0d4b6a672e1"
+      },
+      {
+        "bytes": 6252,
+        "path": "Runs/experiments/reports/TELEMETRY_FINDINGS_4MODELS.md",
+        "sha256": "f0187a147eeab64a1d1be7ca72bcbc48eb0cd9577c3ae67d94ea1d21b48f302d"
+      },
+      {
+        "bytes": 73566,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_gemma4_20260704_n50.json",
+        "sha256": "2cd8b0fdcaf3b61dfb0ca89cee6c13e754b91209710cbaea9980495c0aaf3bee"
+      },
+      {
+        "bytes": 71088,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_nemotron_20260704_n50.json",
+        "sha256": "c6fb3dce6f5adc335c530c84fa3e4925c15703c21ea96fe79041d7c4115eabd2"
+      },
+      {
+        "bytes": 122217,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_phi4_20260704_phi4_n50.json",
+        "sha256": "e3135f69bcc9aa36a79b1a644a11164cdfd4a691476677ba3e13ae6afdf65633"
+      },
+      {
+        "bytes": 72447,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_qwen35_20260704_n50.json",
+        "sha256": "aee3669d6e45d3dff94904ef9b055475eee9b9ec41e36fbf60bccd933cc54ba9"
+      },
+      {
+        "bytes": 1270,
+        "path": "Runs/logs/leak_blast_radius_20260623_213831.json",
+        "sha256": "4d54ac8bd771420a93617a0e63f1ab1fa786cdfdeb5dca9815b86c7337dfb3f6"
+      },
+      {
+        "bytes": 1248,
+        "path": "Runs/logs/leak_blast_radius_20260624_120421.json",
+        "sha256": "ef6f5cecf832cabdb4d31620af371951ae727c75ed7644383662e00be7169c63"
+      },
+      {
+        "bytes": 11457,
+        "path": "Runs/logs/n50_audit/kv_overhead_ALL_audit1.json",
+        "sha256": "6fcc4c1cb790498123cf13202cfc97cfe81f130a1a8510f33000ff64abdfbccd"
+      },
+      {
+        "bytes": 28210,
+        "path": "Runs/logs/n50_audit/slot_exploit_ALL4_audit1.json",
+        "sha256": "1e1da4c6849c4299c31503bccebad056122bbd20f0dd02f63428822c0be24fcf"
+      },
+      {
+        "bytes": 1523,
+        "path": "Runs/provenance/model_digests.json",
+        "sha256": "38ef84ff03648453fa5316aca6f49555595c5e32b39611dbbee6a20434c499ea"
+      },
+      {
+        "bytes": 3024,
+        "path": "remediation1/REMEDIATION1_COMPLETION_REPORT.md",
+        "sha256": "492b5aee801b65668e6efbd5b64d973e6ad7f33216c15c1d2871fdb3217bbcb9"
+      },
+      {
+        "bytes": 1754,
+        "path": "remediation2/reports/REMEDIATION2_COMPLETION_REPORT.md",
+        "sha256": "10679690110c77e422b20f8acc43bd31cc9bad2de02a926a9754259d07462a4f"
+      }
+    ],
+    "root_file_counts": {
+      "LLAnalyzer-revised-10point": 277,
+      "Runs": 3277,
+      "remediation1": 14,
+      "remediation2": 198028
+    },
+    "search_scope": [
+      "Runs",
+      "remediation1",
+      "remediation2",
+      "LLAnalyzer-revised-10point"
+    ]
+  },
+  "latency": {
+    "boundary": "These are patched/unpatched latency vectors for the KV benchmark, not the missing cached-versus-uncached TTFT vectors used for the manuscript AUC claim. No equivalence test is claimed.",
+    "conditions": {
+      "gemma4_patched": {
+        "descriptive_difference_ci_95": {
+          "difference": 0.0173405027389526,
+          "high": 0.09361645856715893,
+          "low": -0.05893545308925373,
+          "method": "Welch normal approximation; independent-condition assumption; descriptive only"
+        },
+        "difference_vs_unpatched_s": 0.0173405027389526,
+        "mean_field_matches": true,
+        "mean_recomputed": 2.9079704427719117,
+        "mean_recorded": 2.9079704427719117,
+        "mode": "patched",
+        "model": "gemma4",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 2.90298593044281,
+        "p95_recomputed": 3.1573657989501953,
+        "range_recomputed": [
+          2.4960973262786865,
+          3.3536057472229004
+        ],
+        "relative_difference_percent": 0.5998866371236328,
+        "sd_recomputed": 0.19477863463743697,
+        "valid": true
+      },
+      "gemma4_unpatched": {
+        "mean_field_matches": true,
+        "mean_recomputed": 2.890629940032959,
+        "mean_recorded": 2.890629940032959,
+        "mode": "unpatched",
+        "model": "gemma4",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 2.898627281188965,
+        "p95_recomputed": 3.1907814621925352,
+        "range_recomputed": [
+          2.5033323764801025,
+          3.2966015338897705
+        ],
+        "sd_recomputed": 0.1943842054190103,
+        "valid": true
+      },
+      "nemotron_patched": {
+        "descriptive_difference_ci_95": {
+          "difference": -0.015651044845581108,
+          "high": 0.06142202216103232,
+          "low": -0.09272411185219454,
+          "method": "Welch normal approximation; independent-condition assumption; descriptive only"
+        },
+        "difference_vs_unpatched_s": -0.015651044845581108,
+        "mean_field_matches": true,
+        "mean_recomputed": 2.822480001449585,
+        "mean_recorded": 2.822480001449585,
+        "mode": "patched",
+        "model": "nemotron",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 2.8252711296081543,
+        "p95_recomputed": 3.0732533812522886,
+        "range_recomputed": [
+          2.453373670578003,
+          3.4503517150878906
+        ],
+        "relative_difference_percent": -0.551456031814022,
+        "sd_recomputed": 0.1952877212053447,
+        "valid": true
+      },
+      "nemotron_unpatched": {
+        "mean_field_matches": true,
+        "mean_recomputed": 2.838131046295166,
+        "mean_recorded": 2.838131046295166,
+        "mode": "unpatched",
+        "model": "nemotron",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 2.857919692993164,
+        "p95_recomputed": 3.1194156885147093,
+        "range_recomputed": [
+          2.4464120864868164,
+          3.4246935844421387
+        ],
+        "sd_recomputed": 0.1979333128306412,
+        "valid": true
+      },
+      "phi4_patched": {
+        "descriptive_difference_ci_95": {
+          "difference": 0.019530196189879945,
+          "high": 0.14313452843151292,
+          "low": -0.10407413605175304,
+          "method": "Welch normal approximation; independent-condition assumption; descriptive only"
+        },
+        "difference_vs_unpatched_s": 0.019530196189879945,
+        "mean_field_matches": true,
+        "mean_recomputed": 8.422246494293212,
+        "mean_recorded": 8.422246494293212,
+        "mode": "patched",
+        "model": "phi4",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 8.375744581222534,
+        "p95_recomputed": 8.922860443592072,
+        "range_recomputed": [
+          7.7722389698028564,
+          9.37072467803955
+        ],
+        "relative_difference_percent": 0.23242717589178058,
+        "sd_recomputed": 0.3272945031744998,
+        "valid": true
+      },
+      "phi4_unpatched": {
+        "mean_field_matches": true,
+        "mean_recomputed": 8.402716298103332,
+        "mean_recorded": 8.402716298103332,
+        "mode": "unpatched",
+        "model": "phi4",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 8.399294972419739,
+        "p95_recomputed": 8.889693689346313,
+        "range_recomputed": [
+          7.620796203613281,
+          9.187561988830566
+        ],
+        "sd_recomputed": 0.3028665526905616,
+        "valid": true
+      },
+      "qwen35_patched": {
+        "descriptive_difference_ci_95": {
+          "difference": 0.012596635818480806,
+          "high": 0.07575608814313224,
+          "low": -0.05056281650617063,
+          "method": "Welch normal approximation; independent-condition assumption; descriptive only"
+        },
+        "difference_vs_unpatched_s": 0.012596635818480806,
+        "mean_field_matches": true,
+        "mean_recomputed": 4.704970178604126,
+        "mean_recorded": 4.704970178604126,
+        "mode": "patched",
+        "model": "qwen35",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 4.7164599895477295,
+        "p95_recomputed": 4.940438163280487,
+        "range_recomputed": [
+          4.417720556259155,
+          5.0681397914886475
+        ],
+        "relative_difference_percent": 0.26844912715543884,
+        "sd_recomputed": 0.15404618037559908,
+        "valid": true
+      },
+      "qwen35_unpatched": {
+        "mean_field_matches": true,
+        "mean_recomputed": 4.692373542785645,
+        "mean_recorded": 4.692373542785645,
+        "mode": "unpatched",
+        "model": "qwen35",
+        "n_field": 50,
+        "n_recomputed": 50,
+        "p50_recomputed": 4.697157382965088,
+        "p95_recomputed": 4.968483245372772,
+        "range_recomputed": [
+          4.380450248718262,
+          5.062793016433716
+        ],
+        "sd_recomputed": 0.16789806731849913,
+        "valid": true
+      }
+    },
+    "path": "Runs/logs/n50_audit/kv_overhead_ALL_audit1.json",
+    "sha256": "6fcc4c1cb790498123cf13202cfc97cfe81f130a1a8510f33000ff64abdfbccd"
+  },
+  "memory": {
+    "checks": {
+      "baseline": {
+        "copy_sum_matches": true,
+        "missing_fields": [],
+        "positive_tenant_count_matches": true,
+        "rate_matches": true,
+        "samples_nonempty_and_unique": true,
+        "tenant_key_count_matches": true,
+        "tenant_values_nonnegative_integers": true,
+        "zero_cell_flag_true": true
+      },
+      "sanitised": {
+        "copy_sum_matches": true,
+        "missing_fields": [],
+        "positive_tenant_count_matches": true,
+        "rate_matches": true,
+        "samples_nonempty_and_unique": true,
+        "tenant_key_count_matches": true,
+        "tenant_values_nonnegative_integers": true,
+        "zero_cell_flag_true": true
+      }
+    },
+    "cross_condition": {
+      "same_binary_path": true,
+      "same_model": true,
+      "same_tenant_count": true,
+      "same_zero_cell_flag": true
+    },
+    "recomputed": {
+      "baseline_copies": 110,
+      "baseline_recorded_kb": 10834,
+      "baseline_recovery_rate": 0.9166666666666666,
+      "copy_reduction_percent": 29.09090909090909,
+      "recorded_kb_reduction_percent": 69.06036551596824,
+      "sanitised_copies": 78,
+      "sanitised_recorded_kb": 3352,
+      "sanitised_recovery_rate": 0.9166666666666666
+    },
+    "records": {
+      "baseline": {
+        "path": "Runs/logs/leak_blast_radius_20260623_213831.json",
+        "record": {
+          "binary": "/home/elaref/research/llama-cpp-build/build/bin/llama-server",
+          "binary_has_zero_cell_data": true,
+          "iso": "2026-06-23T21:42:09.566333",
+          "model": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+          "n_tenants": 12,
+          "per_tenant_copies": {
+            "tenant_0": 0,
+            "tenant_1": 10,
+            "tenant_10": 10,
+            "tenant_11": 10,
+            "tenant_2": 10,
+            "tenant_3": 10,
+            "tenant_4": 11,
+            "tenant_5": 9,
+            "tenant_6": 9,
+            "tenant_7": 11,
+            "tenant_8": 11,
+            "tenant_9": 9
+          },
+          "printable_cleartext_kb": 10834,
+          "recovery_rate": 0.9167,
+          "run_id": "20260623_213831",
+          "samples": [
+            "..............{\"role\": \"user\", \"content\": \"API bearer token 4a35648c37b0428997ff68e9ab5308c9. Summarize: routine check.\"}], \"max_tokens\": 80, \"tempera",
+            " \"messages\": [{\"role\": \"user\", \"content\": \"API bearer token b163a95a1b1a44ebaf852499d25d654a. Summarize: routine check.\"}], \"max_tokens\": 80, \"tempera",
+            "\", \"messages\": [{\"role\": \"user\", \"content\": \"DB password is 845423b154e3410ea6bb7590de0c368d. Acknowledge and summarize: routine check.\"}], \"max_token"
+          ],
+          "tenants_recovered": 11,
+          "total_canary_copies_across_all_tenants": 110
+        },
+        "sha256": "4d54ac8bd771420a93617a0e63f1ab1fa786cdfdeb5dca9815b86c7337dfb3f6"
+      },
+      "sanitised": {
+        "path": "Runs/logs/leak_blast_radius_20260624_120421.json",
+        "record": {
+          "binary": "/home/elaref/research/llama-cpp-build/build/bin/llama-server",
+          "binary_has_zero_cell_data": true,
+          "iso": "2026-06-24T12:11:44.986439",
+          "model": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+          "n_tenants": 12,
+          "per_tenant_copies": {
+            "tenant_0": 0,
+            "tenant_1": 7,
+            "tenant_10": 7,
+            "tenant_11": 8,
+            "tenant_2": 6,
+            "tenant_3": 8,
+            "tenant_4": 8,
+            "tenant_5": 6,
+            "tenant_6": 6,
+            "tenant_7": 8,
+            "tenant_8": 8,
+            "tenant_9": 6
+          },
+          "printable_cleartext_kb": 3352,
+          "recovery_rate": 0.9167,
+          "run_id": "20260624_120421",
+          "samples": [
+            " \"messages\": [{\"role\": \"user\", \"content\": \"API bearer token 6a15075d40744b9a8091bdc6de83cb91. Summarize: routine check.\"}], \"max_tokens\": 80, \"tempera",
+            "w..........length..................e.........|~....er token 6a15075d40744b9a8091bdc6de83cb91. Summarize: routine check..........w..%.......%.~..w..oke",
+            "ssages\": [{\"role\": \"user\", \"content\": \"Patient record token 69f9b50d04b74166951aab788d06eae7. Summarize the note: routine check.\"}], \"max_tokens\": 80,"
+          ],
+          "tenants_recovered": 11,
+          "total_canary_copies_across_all_tenants": 78
+        },
+        "sha256": "ef6f5cecf832cabdb4d31620af371951ae727c75ed7644383662e00be7169c63"
+      }
+    },
+    "validity_boundary": [
+      "Aggregate copy totals and recovery rates are independently recomputed from retained fields.",
+      "Recorded printable_cleartext_kb is accepted as a stored aggregate because regions, offsets, and raw acquisition output are absent.",
+      "The retained schema cannot identify the historical executable hash or causally attribute the difference to a particular patch."
+    ]
+  },
+  "rq1": {
+    "reason": "The retained workspace contains GGUF analysis scripts and hand-written reports but no identifiable machine-generated 80-case, 21-file, or 24-hour fuzz result table with per-input status and sanitizer logs.",
+    "status": "summary_only"
+  },
+  "slot_and_extract": {
+    "detailed_extraction": {
+      "gemma4": {
+        "duplicate_secret_values": 0,
+        "duplicate_trial_ids": [],
+        "fields": {
+          "either_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "kv_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "memory_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "transfer_confirmed": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          }
+        },
+        "model_field": "gemma4",
+        "n_field": 50,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_gemma4_20260704_n50.json",
+        "row_count": 50,
+        "sha256": "2cd8b0fdcaf3b61dfb0ca89cee6c13e754b91209710cbaea9980495c0aaf3bee",
+        "validity_notes": [
+          "Rows support protocol-level transfer and recorded channel hits for this retained run family.",
+          "The records do not independently establish that the two API keys represented distinct authorization principals beyond harness labels.",
+          "The continuation channel is model-mediated and is not the same claim as direct slot-state transfer."
+        ]
+      },
+      "nemotron": {
+        "duplicate_secret_values": 0,
+        "duplicate_trial_ids": [],
+        "fields": {
+          "either_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "kv_channel_hit": {
+            "count": 25,
+            "n": 50,
+            "rate": 0.5,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 0.6335548568317142,
+              "low": 0.3664451431682858,
+              "point": 0.5
+            }
+          },
+          "memory_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "transfer_confirmed": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          }
+        },
+        "model_field": "nemotron",
+        "n_field": 50,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_nemotron_20260704_n50.json",
+        "row_count": 50,
+        "sha256": "c6fb3dce6f5adc335c530c84fa3e4925c15703c21ea96fe79041d7c4115eabd2",
+        "validity_notes": [
+          "Rows support protocol-level transfer and recorded channel hits for this retained run family.",
+          "The records do not independently establish that the two API keys represented distinct authorization principals beyond harness labels.",
+          "The continuation channel is model-mediated and is not the same claim as direct slot-state transfer."
+        ]
+      },
+      "phi4": {
+        "duplicate_secret_values": 0,
+        "duplicate_trial_ids": [],
+        "fields": {
+          "either_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "kv_channel_hit": {
+            "count": 1,
+            "n": 50,
+            "rate": 0.02,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 0.10495443589637815,
+              "low": 0.003539259271646236,
+              "point": 0.02
+            }
+          },
+          "memory_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "transfer_confirmed": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          }
+        },
+        "model_field": "phi4",
+        "n_field": 50,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_phi4_20260704_phi4_n50.json",
+        "row_count": 50,
+        "sha256": "e3135f69bcc9aa36a79b1a644a11164cdfd4a691476677ba3e13ae6afdf65633",
+        "validity_notes": [
+          "Rows support protocol-level transfer and recorded channel hits for this retained run family.",
+          "The records do not independently establish that the two API keys represented distinct authorization principals beyond harness labels.",
+          "The continuation channel is model-mediated and is not the same claim as direct slot-state transfer."
+        ]
+      },
+      "qwen35": {
+        "duplicate_secret_values": 0,
+        "duplicate_trial_ids": [],
+        "fields": {
+          "either_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "kv_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "memory_channel_hit": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          },
+          "transfer_confirmed": {
+            "count": 50,
+            "n": 50,
+            "rate": 1.0,
+            "summary_matches": true,
+            "wilson_95": {
+              "high": 1.0,
+              "low": 0.9286524008666414,
+              "point": 1.0
+            }
+          }
+        },
+        "model_field": "qwen35",
+        "n_field": 50,
+        "path": "Runs/logs/cross_tenant_extract/cross_tenant_extract_qwen35_20260704_n50.json",
+        "row_count": 50,
+        "sha256": "aee3669d6e45d3dff94904ef9b055475eee9b9ec41e36fbf60bccd933cc54ba9",
+        "validity_notes": [
+          "Rows support protocol-level transfer and recorded channel hits for this retained run family.",
+          "The records do not independently establish that the two API keys represented distinct authorization principals beyond harness labels.",
+          "The continuation channel is model-mediated and is not the same claim as direct slot-state transfer."
+        ]
+      }
+    },
+    "direct_slot_file": {
+      "all_rows": 200,
+      "models": {
+        "gemma4": {
+          "confirmed_count_recomputed": 50,
+          "confirmed_rate_recomputed": 1.0,
+          "n_field": 50,
+          "ok_count_recomputed": 50,
+          "row_count": 50,
+          "summary_consistent": true
+        },
+        "nemotron": {
+          "confirmed_count_recomputed": 50,
+          "confirmed_rate_recomputed": 1.0,
+          "n_field": 50,
+          "ok_count_recomputed": 50,
+          "row_count": 50,
+          "summary_consistent": true
+        },
+        "phi4": {
+          "confirmed_count_recomputed": 50,
+          "confirmed_rate_recomputed": 1.0,
+          "n_field": 50,
+          "ok_count_recomputed": 50,
+          "row_count": 50,
+          "summary_consistent": true
+        },
+        "qwen35": {
+          "confirmed_count_recomputed": 50,
+          "confirmed_rate_recomputed": 1.0,
+          "n_field": 50,
+          "ok_count_recomputed": 50,
+          "row_count": 50,
+          "summary_consistent": true
+        }
+      },
+      "path": "Runs/logs/n50_audit/slot_exploit_ALL4_audit1.json",
+      "sha256": "1e1da4c6849c4299c31503bccebad056122bbd20f0dd02f63428822c0be24fcf"
+    },
+    "interpretation": "200/200 transfer and 126/200 KV continuation are independently recomputed from retained per-trial JSON; source-revision and binary attribution remain unavailable.",
+    "pooled_detailed_totals": {
+      "either_channel_hit": {
+        "count": 200,
+        "n": 200,
+        "rate": 1.0,
+        "wilson_95": {
+          "high": 1.0,
+          "low": 0.9811546736227335,
+          "point": 1.0
+        }
+      },
+      "kv_channel_hit": {
+        "count": 126,
+        "n": 200,
+        "rate": 0.63,
+        "wilson_95": {
+          "high": 0.6938739159014088,
+          "low": 0.5612262992405018,
+          "point": 0.63
+        }
+      },
+      "memory_channel_hit": {
+        "count": 200,
+        "n": 200,
+        "rate": 1.0,
+        "wilson_95": {
+          "high": 1.0,
+          "low": 0.9811546736227335,
+          "point": 1.0
+        }
+      },
+      "transfer_confirmed": {
+        "count": 200,
+        "n": 200,
+        "rate": 1.0,
+        "wilson_95": {
+          "high": 1.0,
+          "low": 0.9811546736227335,
+          "point": 1.0
+        }
+      }
+    }
+  },
+  "telemetry": {
+    "limitations": [
+      "LM Studio summaries show startup external connections but no canary in captured egress; encrypted payload contents were not decrypted.",
+      "Most 2026-06-25 Ollama directories retain packet, trigger, and idle evidence without summary.json, so not every run has the same derived verdict envelope.",
+      "The LM Studio plaintext server-log file itself is not retained in this project; persistence is supported by reports and probe references, not by a fresh scan of that original file."
+    ],
+    "lmstudio_summary_runs": [
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 2,
+        "model": "nvidia/nemotron-3-nano-4b",
+        "path": "Runs/TELEMETRY_RUN_20260623_152237_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.6.153",
+          "104.26.7.153"
+        ],
+        "summary_sha256": "84001325b8dacee26106ae60027a309c3b11596240fd283b1172bded88263cb7",
+        "tool": "lms"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 36,
+        "model": "nvidia/nemotron-3-nano-4b",
+        "path": "Runs/TELEMETRY_RUN_20260623_154740_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.6.153",
+          "104.26.7.153"
+        ],
+        "summary_sha256": "d533b3a4dc2fbff7c8b3bce8a7c16e312de562725956320ce253db02603eccd6",
+        "tool": "lms"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 16,
+        "model": "nvidia/nemotron-3-nano-4b",
+        "path": "Runs/TELEMETRY_RUN_20260623_171018_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.6.153",
+          "104.26.7.153"
+        ],
+        "summary_sha256": "eb31c0aaf4e08ca58cd3841b85326e9b9555e6cace0d96ae9d6a2cacd334be0b",
+        "tool": "lms"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 16,
+        "model": "gemma-4-e4b-it",
+        "path": "Runs/TELEMETRY_RUN_20260623_171439_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.6.153",
+          "104.26.7.153"
+        ],
+        "summary_sha256": "4391f5eb113b0b469ee1366d8020226abe9473b47f4d38b92836e4e402855ac4",
+        "tool": "lms"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 16,
+        "model": "microsoft/phi-4-reasoning-plus",
+        "path": "Runs/TELEMETRY_RUN_20260623_171907_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.7.153"
+        ],
+        "summary_sha256": "a1b0e612079e5358c7494cc6395b3326f8058dbb90b40ddef34509e7f4556772",
+        "tool": "lms"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 16,
+        "model": "qwen/qwen3.5-9b",
+        "path": "Runs/TELEMETRY_RUN_20260623_173229_lms_hook",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [
+          "104.26.7.153"
+        ],
+        "summary_sha256": "1124440ab427de004049c73c5dd7c4518dd0f9668190b951993e380231fe8029",
+        "tool": "lms"
+      }
+    ],
+    "ollama_runs_total": 206,
+    "ollama_runs_with_summary": [
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "nemotron-local",
+        "path": "Runs/TELEMETRY_RUN_20260623_232650_ollama_nemotron",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "e087589c05f70bcf75e0b35d5a7939f30ddadf07eb2cace08dc9efb9ec05db7a",
+        "tool": "ollama"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "qwen35-local",
+        "path": "Runs/TELEMETRY_RUN_20260623_233047_ollama_qwen35",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "bc491c39328ff996e3f3dd317ba7aea3175eafa387cc7d91c5c4eae27b907951",
+        "tool": "ollama"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "gemma4-local",
+        "path": "Runs/TELEMETRY_RUN_20260623_233637_ollama_gemma4",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "c4e4108f4efd717ae5595e0f5985e68605fa89ada7aa1481142908137c0e4096",
+        "tool": "ollama"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "phi4-local",
+        "path": "Runs/TELEMETRY_RUN_20260623_234159_ollama_phi4",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "0b9ec8a3ebc284779c4bda7a2d00a91c8d576c992ad34555711eeea0d0190825",
+        "tool": "ollama"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "gemma4-local",
+        "path": "Runs/TELEMETRY_RUN_20260624_054952_ollama_gemma4",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "8309128592bab4fef9b2642b26ac7ac8d7f55f3dd79f306d25419d599e357734",
+        "tool": "ollama"
+      },
+      {
+        "has_summary": true,
+        "idle_nonzero_connections": 0,
+        "idle_snapshot_count": 12,
+        "model": "phi4-local",
+        "path": "Runs/TELEMETRY_RUN_20260624_055411_ollama_phi4",
+        "summary_any_canary_egress": false,
+        "summary_external_destinations": [],
+        "summary_sha256": "77773ee6592086fa4dba4aa9d39bdf479345bf13d2977c5413ed98a9ea12a107",
+        "tool": "ollama"
+      }
+    ],
+    "ollama_runs_without_summary": 200
+  },
+  "timing_auc": {
+    "reason": "No retained per-request cached/uncached TTFT vectors or original AUC script were found in the targeted search.",
+    "rendered_artifacts_only": [
+      "LLAnalyzer-revised-10point/figures/timing_auc_decay.pdf",
+      "LLAnalyzer-revised-10point/figures/timing_auc_decay.png"
+    ],
+    "status": "not_recomputed"
+  },
+  "tool": "remediation2b_historical_evidence/scripts/independent_reanalysis.py"
+}

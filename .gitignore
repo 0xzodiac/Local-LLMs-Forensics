@@ -13,3 +13,31 @@ __pycache__/
 # Excluded subdirs
 llama-cpp-build/
 tifs/paper/
+
+# Large build trees (push reports only)
+remediation2/source/
+remediation2/builds/
+remediation2/benches/
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.synctex.gz
+*.out
+*.fls
+*.fdb_latexmk
+*.blg
+*.bbl
+
+# Session data
+.omo/
+.claude/
+.freebuff/
+*.zip
+
+# Submission binaries (too large for git, distribute via release)
+
+# Papers and compiled PDFs - distribute via releases, not git
+*.pdf
+LLAnalyzer_UsenixSec27/
+submission/

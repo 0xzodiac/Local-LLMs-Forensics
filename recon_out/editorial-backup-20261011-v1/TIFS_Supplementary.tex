@@ -1,0 +1,70 @@
+% Supplementary material for:
+% The Illusion of Local Privacy: Confidentiality Boundary Failures in
+% Consumer LLM Serving Systems
+\documentclass[journal,tifs]{IEEEtran}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{balance}
+\usepackage{rotating}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{wrapfig}
+\usepackage{xurl}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,fit,backgrounds,calc,shadows}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[most]{tcolorbox}
+\usepackage{pifont}
+\usepackage{lineno}
+\usepackage{doi}
+\emergencystretch=1em
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=green!50!black,
+  urlcolor=purple!70!black,
+  pdfstartview={FitH}
+}
+
+% Make the supplement's section, table, and figure identifiers stable and
+% visibly distinct from those in the main manuscript.
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{document}
+
+\title{Supplementary Material\\
+The Illusion of Local Privacy: Confidentiality Boundary Failures in
+Consumer LLM Serving Systems}
+\author{}
+\maketitle
+
+\section*{Relationship to the Main Manuscript}
+This document contains the extended experimental methodology and statistical
+analysis for the associated IEEE T-IFS manuscript. The main manuscript is
+independently understandable and retains the threat assumptions, core
+configuration, sample sizes, success criteria, primary quantitative results,
+and principal limitations. Sections S1--S2 provide the detailed environment,
+workload, instrumentation, reproducibility, and analysis specifications used
+to obtain those results.
+
+\input{TIFS_Supplementary_Methods.tex}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

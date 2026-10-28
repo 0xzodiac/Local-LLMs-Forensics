@@ -1,0 +1,1109 @@
+%==============================================================================
+% \appendix
+% \section*{Open Science}
+% \label{app:open_science}
+% %==============================================================================
+
+% We release LLAnalyzer together with the experimental harnesses,
+% configurations, analysis scripts, patches, and supporting artifacts used
+% to produce the results reported in this paper. Our goal is to make each
+% boundary-specific measurement independently reproducible rather than
+% provide only the final aggregate results. The artifact therefore contains
+% the experimental harnesses and configuration information required to
+% reproduce our model-loading, runtime-memory, wrapper-persistence, and
+% serving-interface experiments. For anonymous review, the artifact is
+% available at:
+% \url{https://github.com/0xzodiac/Local-LLMs-Forensics}.
+
+% Where licensing or redistribution restrictions prevent us from
+% redistributing third-party model artifacts, we instead provide the exact
+% model identifiers, versions, SHA-256 digests, and acquisition
+% instructions. These identifiers allow an independent evaluator to
+% reconstruct the model set used in our experiments and verify that the
+% resulting artifacts are byte-identical to those evaluated in this study.
+
+
+% %==============================================================================
+% \section*{Ethical Considerations}
+% \label{app:ethics}
+% %==============================================================================
+
+% We designed all experiments to avoid exposing data belonging to real
+% users. We conducted the experiments exclusively on systems and accounts
+% under our control and used synthetic UUID-tagged prompts as experimental
+% secrets. We did not collect human-subject data, access third-party
+% conversations, or test cross-tenant attacks against production systems.
+
+% For the isolation-boundary experiments, we instantiated both the victim
+% and attacker tenants ourselves. We performed state-recovery and timing
+% experiments only against researcher-controlled serving instances and
+% never attempted to recover prompts or conversation state from publicly
+% accessible LLM servers.
+
+% Our Internet measurements were limited to passive service metadata and
+% non-destructive availability checks. We did not exploit, modify, or
+% retrieve state from discovered hosts. Where our experiments uncovered
+% security-relevant implementation behaviour, we followed coordinated
+% vulnerability-disclosure practices and withheld artifact details where
+% premature release could create unnecessary risk.
+
+
+%==============================================================================
+\section{Experimental Methodology}
+\label{app:methodology}
+%==============================================================================
+
+We designed our experiments around a common question that applies to all
+four boundaries: after a prompt crosses a particular software boundary,
+can information attributable to that prompt still be recovered where the
+corresponding confidentiality objective says it should no longer be
+accessible?
+
+To answer this question consistently, we use the same experimental
+ground-truth strategy throughout the study. We embed fresh UUID canaries
+in controlled prompts, record their association with the originating
+request, execute the target operation, and then search the
+boundary-specific evidence source for exact recovery. What changes
+between experiments is therefore the boundary and evidence source, not
+the basic criterion used to establish disclosure.
+
+Trial counts are experiment-specific. Slot, injection, continuation, and
+KV-overhead workloads use retained n=50-per-model files; the two
+twelve-tenant runtime rows are single-run observations; D4 has 200 primary
+records plus one separately named debug file; and Ollama is accounted for
+from its retained telemetry tree. Hardware, model artifacts, inference
+parameters, and software revisions are not assumed identical across these
+families unless the methods below state that they are.
+
+
+%------------------------------------------------------------------------------
+\subsection{Hardware and Software Configuration}
+\label{app:hardware}
+%------------------------------------------------------------------------------
+
+\paragraph{Primary test environment.}
+We conduct the main experiments on a dedicated bare-metal Ubuntu
+workstation and use the same machine for the model-file, runtime-memory,
+wrapper-application, and serving-interface measurements. We avoid
+unrelated user workloads during measurement runs to reduce interference
+from background memory allocation, scheduling, and network activity.
+
+Table~\ref{tab:hardware_config} records the hardware and operating-system
+configuration used for the reported experiments.
+
+\begin{table}[!b]
+    \centering
+    \caption{\small Hardware and operating-system configuration used in
+    our experiments.}
+    \label{tab:hardware_config}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Component} & \textbf{Configuration} \\
+        \midrule
+        Operating system &
+        Ubuntu Linux, bare-metal 24.04.4 LTS \\
+        Linux kernel &
+        7.0.0-29-generic \\
+        CPU &
+        Intel Core i7-9850H CPU @ 2.60GHz \\
+        System memory &
+        16\,GB (15\,GiB reported) \\
+        GPU &
+        CUDA-capable GPU with 8\,GB VRAM \\
+        GPU driver &
+        NVIDIA 595.84 \\
+        CUDA toolkit &
+        12.0 (V12.0.140) \\
+        File system &
+        ext4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+We run the GPU-memory experiments directly on the bare-metal Ubuntu host
+rather than through a virtual machine or compatibility layer. This gives
+us direct access to the GPU tooling and avoids introducing an additional
+GPU-memory-management layer into the measurements. The historical
+\texttt{cuda-gdb} attach outcomes and the host-side \texttt{/proc} scan are
+reported separately below; direct tooling availability is not evidence that
+an unprivileged process can read device memory.
+
+\paragraph{Memory-acquisition permissions and provenance.}
+The headline CPU scans use the Python collectors in
+\texttt{multilayer\_v2.py}, \texttt{cross\_slot\_bleed.py}, and
+\texttt{kv\_cache\_zeroize\_probe.py}. Each launches the serving process with
+\texttt{subprocess.Popen}, reads writable mappings from
+\texttt{/proc/<pid>/maps}, and opens/reads
+\texttt{/proc/<pid>/mem}. The parent--child relationship is therefore part
+of the measurement procedure under the reported Yama mode~1 setting; same
+UID alone is not the claimed permission. The LM~Studio scanner records a
+PID discovered by process matching rather than retaining a complete
+relationship record, so its acquisition provenance is lower confidence and
+is not used to broaden the headline claim.
+
+The retained GDB investigation is a separate, authorized root-attached
+diagnostic and is not evidence for the co-resident adversary model. In the
+GPU campaign, \texttt{cuda-gdb --pid} attach attempts were denied, whereas
+the retained host-side parent--child \texttt{/proc} scan succeeded. We therefore
+claim host-memory residuals under $F$, not direct device-memory access. The
+historical records do not retain complete target dumpability, capability,
+user-namespace, or other-LSM metadata, so those fields remain limitations
+on retrospective permission reconstruction.
+
+\paragraph{Serving software.}
+We use \texttt{llama.cpp} and its \texttt{llama-server} component for the
+core runtime-memory and serving-interface experiments. For the
+wrapper-level measurements, we additionally evaluate LM~Studio and
+Ollama. We inspect selected components of the wider local-LLM ecosystem,
+including GGUF Python tooling and SGLang, where required by the
+boundary-specific experiments.
+
+\begin{table*}[!t]
+    \centering
+    \caption{Software components used in our evaluation and the retained provenance status.}
+    \label{tab:software_config}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{llp{7cm}}
+        \toprule
+        \textbf{Component} &
+        \textbf{Purpose} &
+        \textbf{Version} \\
+        \midrule
+        \texttt{llama.cpp} &
+        Runtime and serving-interface evaluation &
+        Source revision 721354fbdfb7743e2be\allowbreak2183d918a3cdb9276c70f recorded; June executable not hashed or retained \\
+        \texttt{llama-server} &
+        Multi-slot and shared-state experiments &
+        June binary linkage unknown; October CPU-only rebuild retained for reference \\
+        LM~Studio &
+        Wrapper logging and network behaviour &
+        llmster daemon 0.0.15-2; bundled backend 2.17.0 \\
+        Ollama &
+        Wrapper and network behaviour &
+        Version not recorded in retained run metadata \\
+        SGLang &
+        Reproduction check for GGUF/Jinja hardening &
+        0.5.13.post1, reported historical configuration \\
+        glibc allocator &
+        Heap-residue and allocator experiments &
+        2.39, reported historical configuration \\
+        \texttt{gdb} &
+        Host-memory inspection &
+        15.1, reported historical configuration \\
+        \texttt{cuda-gdb} &
+        GPU-memory inspection &
+        12.0 (V12.0.140), reported historical configuration \\
+        Python &
+        Measurement harnesses and analysis &
+        3.14.6, reported historical configuration \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+Source revision 721354f (full SHA
+721354fbdfb7743e2be\allowbreak2183d918a3cdb9276c70f) is recorded in the project
+reports; the binaries executed in June 2026 were not hashed and are no
+longer available. An October 2026 CPU-only rebuild is retained for
+reference, is not claimed byte-identical, and its equivalence to the
+executed binary is unknown. LM~Studio runs used its bundled llama.cpp
+backend; the GPU runs used a CUDA build whose revision is not recorded.
+Experiments were run in June 2026 on the Table~S1 hardware, are reported
+from retained records, and were not re-run for this revision.
+
+\paragraph{Runtime configurations.}
+We use the default \texttt{glibc} allocator configuration as our runtime
+baseline. To determine whether allocator configuration changes the
+observed prompt residue, we separately evaluate:
+
+\begin{itemize}
+    \item \texttt{MALLOC\_ARENA\_MAX=1}, which restricts the number of
+    per-thread allocator arenas; and
+    \item \texttt{MALLOC\_PERTURB\_=165}, which overwrites allocated or
+    released memory with a deterministic byte pattern.
+\end{itemize}
+
+These controls require neither source-code modification nor binary
+recompilation. We evaluate them separately from the code-level
+zeroisation patch so that we can distinguish allocator-level effects
+from explicit application-level sanitisation. Allocator-tunable outcomes are
+reported only where a numerical comparison and retained logs support them; an
+unreported allocator setting is not treated as evidence of mitigation.
+
+\paragraph{Isolation and network monitoring.}
+We execute network-behaviour experiments inside an isolated network
+namespace and monitor outbound connections throughout each run. We
+exclude loopback communication between the wrapper and its local
+inference runtime from the external-connection count.
+
+\paragraph{Patched and unpatched binaries.}
+For the runtime-mitigation experiments, we compare an unmodified baseline
+against instrumented binaries implementing the sanitisation invariants
+identified through our provenance analysis. The principal patch
+configurations are:
+
+\begin{description}
+    \item[$I_2$:] deterministic sanitisation of released KV-cache cells;
+    \item[$I_3$:] sanitisation of selected request and response buffers;
+    and
+    \item[$I_4$:] secure allocator handling for selected sensitive
+    objects.
+\end{description}
+
+For each comparison, we keep the model, prompt sequence, inference
+parameters, and runtime configuration identical between the patched and
+unpatched conditions.
+
+
+%------------------------------------------------------------------------------
+\subsection{Experimental Corpora, Models, and Parameters}
+\label{app:models_parameters}
+%------------------------------------------------------------------------------
+
+We do not use a conventional training or benchmark dataset because our
+objective is not to measure model accuracy. Instead, we construct
+boundary-specific experimental corpora that provide known ground truth
+for each confidentiality test. These corpora comprise malformed GGUF
+artifacts, synthetic UUID-tagged prompts, controlled multi-tenant
+conversations, wrapper-persistence workloads, timing probes, and
+Internet deployment metadata.
+
+\paragraph{Evaluated models.}
+We evaluate four model families selected to vary architecture, parameter
+scale, chat-template behaviour, stopping behaviour, and reasoning style.
+This diversity allows us to distinguish serving-stack behaviour that
+persists across models from effects attributable to a particular model
+family.
+
+\begin{table}[!t]
+    \centering
+    \caption{Models used throughout the boundary-oriented
+    evaluation.}
+    \label{tab:evaluated_models}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \scalebox{0.90}{\begin{tabular}{lll}
+        \toprule
+        \textbf{Model} &
+        \textbf{Short name} &
+        \textbf{Role in evaluation} \\
+        \midrule
+        \texttt{gemma-4-e4b-it} &
+        Gemma &
+        Instruction-following architecture \\
+        \texttt{qwen-3.5-9b} &
+        Qwen &
+        Reasoning-capable model family \\
+        \texttt{nemotron-3-nano-4b} &
+        Nemotron &
+        Compact reasoning model \\
+        \texttt{phi-4-reasoning-plus} &
+        Phi-4 &
+        Explicit reasoning-output model \\
+        \bottomrule
+    \end{tabular}
+}            
+\end{table}
+
+We execute all models locally using their GGUF-compatible
+representations. Unless an experiment explicitly requires stochastic
+generation, we use greedy decoding to reduce variation between repeated
+trials.
+
+%==============================================================================
+\subsection{Confidentiality Boundaries and Adversary Models}
+\label{app:boundary_summary}
+%==============================================================================
+
+Table~\ref{tab:S1} provides the comprehensive boundary-to-adversary
+mapping referenced in the main manuscript.
+
+\begin{table}[!t]
+\centering
+\small
+\caption{Confidentiality boundaries and corresponding adversary models.}
+\label{tab:S1}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{p{1.7cm}p{0.7cm}p{4.5cm}}
+\toprule
+\textbf{Boundary} & \textbf{Adv.} & \textbf{Security objective} \\
+\midrule
+Integrity    & ${A}_3$ & Reject malformed model artifacts without
+                         compromising trusted execution. \\
+Lifetime     & $F$      & Characterize residual prompt data and conditional
+                         forensic recoverability after inference. \\
+Persistence  & ${A}_1$ & Prevent unintended prompt retention on local
+                         storage. \\
+Isolation    & ${A}_2$ & Prevent one client from recovering another
+                         client's prompt or conversation state. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The Isolation objective is a threat-model property. The retained slot and
+continuation workloads used one unauthenticated process and did not instantiate
+two authenticated clients, distinct credentials, or ownership controls.
+
+Table~\ref{tab:S2} specifies the evidence source and
+measured property for each boundary.
+
+\begin{table}[!t]
+\centering
+\small
+\caption{Boundary-specific evidence collected by LLAnalyzer.}
+\label{tab:S2}
+\begin{tabular}{p{1.6cm}p{2.2cm}p{3.1cm}}
+\toprule
+\textbf{Boundary} & \textbf{Evidence} & \textbf{Measured property} \\
+\midrule
+Integrity &
+Parser execution &
+Safe rejection of malformed artifacts \\
+
+Lifetime &
+Process memory &
+Post-inference prompt recoverability \\
+
+Persistence &
+Wrapper artifacts &
+Prompt retention on persistent storage \\
+
+Isolation &
+Serving protocol &
+Shared-state separation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%==============================================================================
+\subsection{Model Specifications}
+\label{app:model_specs}
+%==============================================================================
+
+Table~\ref{tab:S3} provides the full model specifications referenced
+in the main manuscript, including parameter counts, architectures, and
+artifact sizes.
+
+\begin{table}[!th]
+    \centering
+    \resizebox{\columnwidth}{!}{%
+        \footnotesize
+        \begin{tabular}{@{}llll@{}}
+            \toprule
+            Model & Params & Architecture & Size (Bytes) \\
+            \midrule
+            NVIDIA Nemotron-3-Nano
+                & 4\,B & hybrid attn/SSM & 2{,}837{,}072{,}896 \\
+            Qwen3.5
+                & 9\,B & transformer & 5{,}627{,}044{,}256 \\
+            Gemma-4-E4B-it
+                & 7.5\,B & transformer & 5{,}335{,}289{,}664 \\
+            Phi-4-reasoning-plus
+                & 14\,B & transformer (reasoning) & 9{,}053{,}116{,}128 \\
+            \bottomrule
+        \end{tabular}%
+    }
+    \caption{Open-weight models evaluated by LLAnalyzer. All model 
+    artifacts use GGUF Q4\_K\_M quantisation and were obtained from the 
+    \texttt{lmstudio-community} organization on Hugging Face.}
+    \label{tab:S3}
+\end{table}
+
+\paragraph{Model-file corpus.}
+We evaluate the integrity boundary using complementary structured and
+coverage-guided approaches. The structured corpus contains malformed GGUF
+artifacts targeting tensor dimensions, names, metadata lengths, header
+fields, and related consistency constraints. We additionally exercise
+the parser through coverage-guided fuzzing to explore states not captured
+by manually constructed mutations.
+
+For the structured component, we use:
+
+\begin{enumerate}
+    \item an 80-case malformed-input battery targeting the
+    post-allocation-validation path of the C++ GGUF reader; and
+    \item a 21-file structural-header corpus containing malformed tensor
+    dimensions, tensor names, metadata lengths, and related header
+    inconsistencies.
+\end{enumerate}
+
+We load each artifact independently and classify the resulting behaviour
+as clean rejection, handled parsing error, unhandled exception, process
+termination, successful malformed loading, or memory-safety failure. We
+also process the 21 structural-header artifacts through the repository's
+\texttt{gguf-py} tooling to compare behaviour between the C++ and Python
+parsers.
+
+Older manuscript text described a 24-hour AFL++ campaign, but no campaign
+log, queue, executable, coverage record, or manifest is retained. This
+revision does not use that campaign total as evidence.
+
+\paragraph{Synthetic confidentiality workload.}
+We establish experimental ground truth using fresh UUID canaries
+generated separately for each experimental client and trial. Before injecting a
+canary, we verify that it does not occur in the corresponding
+pre-experiment evidence source. We then embed the identifier directly
+into the controlled prompt and record its association with the
+originating request.
+
+This design gives us a direct attribution criterion. When $F$
+subsequently recovers an exact canary from process memory, a
+wrapper-managed file, a protocol response, or a continuation response, we
+can associate that occurrence with the request in which we introduced it
+rather than infer its provenance from surrounding plaintext. The phrase
+``another client's execution context'' is a threat-model possibility, not a
+capability exercised by the retained slot or continuation workloads: those
+workloads used one unauthenticated process and did not provide distinct
+clients, credentials, or ownership controls.
+
+Depending on the confidentiality boundary under evaluation, we record a
+direct disclosure when the originating request's canary appears in:
+
+\begin{itemize}
+    \item process heap memory collected through the authorized $F$ path;
+    \item KV-cache or associated runtime buffers;
+    \item GPU or pinned host memory;
+    \item wrapper-generated files or logs;
+    \item protocol response content;
+    \item reasoning-output fields; or
+    \item another client's continuation response.
+\end{itemize}
+
+\paragraph{Runtime-memory workload.}
+The retained headline twelve-tenant scans are two Nemotron single-run
+observations. The separate multilayer-v2 diagnostic family is Phi-4-only,
+while the allocator probe contains paths for all four models but retains
+only aggregate summary evidence rather than per-repetition records. The
+four-model slot, continuation, injection, KV-overhead, and D4 families are
+described separately below and should not be conflated with the
+twelve-tenant rows. For each retained workload, $F$ is the harness process
+that launches the serving process as a direct child. The Python scanners
+open \texttt{/proc/<pid>/maps} and then read writable regions through
+\texttt{/proc/<pid>/mem}; these reads are subject to Linux's
+\texttt{PTRACE\_MODE\_ATTACH\_FSCREDS} checks~\cite{linux_process_permissions}.
+The retained runtime-memory protocols include:
+
+\begin{enumerate}
+    \item the unmodified runtime;
+    \item each code-level mitigation configuration;
+    \item \texttt{MALLOC\_ARENA\_MAX=1};
+    \item \texttt{MALLOC\_PERTURB\_=165}; and
+    \item selected combinations of code-level and allocator-level
+    mitigations.
+\end{enumerate}
+
+We measure both the number of residual cleartext prompt copies and the
+aggregate number of bytes associated with matching regions. The KV-cache
+diagnostic code can enumerate 56 targeted cache cells after release, but no
+per-cell result file is retained. We therefore treat that number as a
+configured diagnostic scope, not as an independently verified headline
+outcome.
+
+\paragraph{Wrapper-application workload.}
+We submit repeated UUID-tagged prompts to LM~Studio and Ollama and inspect
+their application-managed files before and after each run. We evaluate
+the reported logging configuration and, where supported, repeat the
+measurement after explicitly disabling sensitive-data logging. For
+LM~Studio, the retained mitigation report identifies llmster daemon
+0.0.15-2 and bundled backend 2.17.0. The original plaintext log is not
+retained, and no clean-install default is claimed.
+
+The retained Ollama tree contains 206 metadata records, 203 successful
+trigger files, two explicit model-memory failures, and one metadata-only
+incomplete record. No Ollama executable version is recorded in those
+metadata files. Six LM~Studio hook summaries show external connections but
+no canary in visible captured or hooked payloads; TLS was not decrypted.
+
+\paragraph{Shared-process slot workload.}
+The retained slot script uses one unauthenticated loopback server and one
+Python process. It creates a UUID-bearing request in slot~0, saves an
+attacker-selected filename, restores that file into slot~1, and scores
+success only when \texttt{n\_saved = n\_restored}. No second client,
+distinct API key, wrong-key control, or ownership check was tested.
+
+We retain 200 slot-transfer equality trials in total, comprising 50 per
+model. Each trial consists of:
+
+\begin{enumerate}
+    \item creating a victim session containing a unique secret;
+    \item saving the victim's slot state;
+    \item restoring that file into slot~1; and
+    \item comparing the returned saved and restored token counts.
+\end{enumerate}
+
+We separately evaluate model-level continuation. The retained files are
+dated July 3--4, 2026 and contain 126/200 KV-channel hits (Gemma 50/50,
+Qwen 50/50, Nemotron 25/50, Phi-4 1/50) and 200/200 memory-channel hits.
+These records are not attributed here to the June campaign and do not test
+distinct credentials. The logical protocol is shared, but retained GPU
+offload settings differ by model: 999 layers for Gemma, Qwen, and Nemotron,
+and 20 layers for Phi-4. This configuration difference is retained as a
+nuisance factor rather than treated as a balanced hardware comparison.
+
+\paragraph{Cross-model residue workload (D4).}
+The retained D4 family contains 200 timestamped primary records, divided
+into 50 Gemma-to-Phi-4, 50 Qwen-to-Gemma, 50 Nemotron-to-Qwen, and 50
+Phi-4-to-Nemotron swaps. Each trial keeps the same serving process while
+model~A is replaced by model~B, then scans writable mappings for the
+model-A canary. All 200 records retain the same process identity and a
+positive post-swap model-A memory observation. One separately named debug
+JSON is excluded from the primary denominator. The measurement is a
+byte-occurrence residue observation, not a model-output disclosure or a
+two-principal authorization test.
+
+\paragraph{Timing workload.}
+An older report describes a cached-versus-uncached TTFT workload, but the
+per-request vectors and original analysis script are not retained. We
+therefore treat timing separation as historical context only and do not use
+it as an independently validated quantitative result or deployment-wide
+claim.
+
+\paragraph{Reasoning-channel workload.}
+We separately inspect conventional response content and
+reasoning-specific response fields when evaluating model-dependent
+disclosure. We record a disclosure when the target secret appears in
+either channel. We make this distinction because some evaluated models,
+particularly Qwen and Phi-4, may place recovered information in
+reasoning fields that are not exposed through the conventional response
+content.
+
+\paragraph{External-scope limitation.}
+No Internet-prevalence count is used as evidence in this revision. All
+shared-serving observations are from researcher-controlled processes and
+synthetic canaries. No vendor decision or finding-specific disposition is
+inferred from policy text.
+
+\paragraph{Disclosure status.}
+No disclosure report has been transmitted and no vendor decision is
+established for the observations reported here. The dated
+\texttt{DISCLOSURE\_PLAN.md} entry is a researcher-side scope determination.
+Policy text is not treated as a finding-specific assessment. We present the
+saved-state and wrapper observations as controlled findings and
+deployment-hardening guidance.
+
+\paragraph{Summary of experimental scales.}
+Table~\ref{tab:experiment_scale} summarises the principal workloads used
+throughout the study.
+
+\begin{table}[!t]
+    \centering
+    \caption{Scale of the principal experimental workloads.}
+    \label{tab:experiment_scale}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \resizebox{\columnwidth}{!}{\begin{tabular}{lrl}
+        \toprule
+        \textbf{Experiment} &
+        \textbf{Scale} &
+        \textbf{Unit} \\
+        \midrule
+        Structured GGUF battery &
+        80 &
+        malformed inputs \\
+        Structural-header analysis &
+        21 &
+        malformed files \\
+        Coverage-guided fuzzing &
+        Not retained &
+        historical campaign total \\
+        KV-cell sanitisation &
+        56 &
+        scope only; per-cell records absent \\
+        Same-process slot transfer &
+        200 &
+        trials; 50 per model \\
+        KV continuation &
+        200 &
+        trials; 50 per model \\
+        Timing side channel &
+        Historical only &
+        vectors/script not retained \\
+        Ollama telemetry &
+        206 metadata; 203/2/1 &
+        successful/failed/incomplete \\
+        \bottomrule
+    \end{tabular}
+}
+\end{table}
+
+
+%==============================================================================
+\section{Statistical Analysis}
+\label{app:statistics}
+%==============================================================================
+
+We choose the statistical treatment according to the observable produced
+by each boundary experiment rather than applying a single statistical
+test across all measurements. Our analysis emphasises repeated
+measurement, effect magnitude, and explicit reporting of both positive
+and negative results.
+
+\paragraph{Binary outcomes.}
+For experiments producing a success-or-failure outcome, we report the
+observed proportion
+
+\[
+\hat{p}=\frac{x}{n},
+\]
+
+where \(x\) is the number of successful disclosures or anomalous trials
+and \(n\) is the total number of trials.
+
+We report binomial uncertainty using two-sided 95\% Wilson score
+intervals~\cite{wilson1927}. We use Wilson intervals because several of
+our measurements lie close to the boundaries of zero or one, where
+normal approximations are inappropriate. For example, observing zero
+successes in 50 trials does not establish a true probability of zero;
+the corresponding Wilson interval instead provides an explicit bound on
+the unobserved event probability.
+
+\paragraph{Deterministic findings.}
+We use the term \emph{deterministic} only when every repeated trial under
+a fixed experimental condition produces the same outcome. Examples
+include direct slot-state equality succeeding in 200 of 200 trials. Our use of
+the term refers to repeatability under the evaluated configuration and
+does not imply universal behaviour across all software versions,
+hardware platforms, or deployment environments.
+
+\paragraph{Memory-residue measurements.}
+For runtime-memory experiments, we report:
+
+\begin{itemize}
+    \item the number of residual cleartext copies;
+    \item the aggregate bytes occupied by matching memory regions; and
+    \item the direct observed values for each retained configuration.
+\end{itemize}
+
+The two Nemotron twelve-tenant configurations are single-run observations with
+different executable and runtime settings. We therefore report their copy
+and byte metrics directly and do not calculate a causal relative-reduction
+effect. Copy counts are byte occurrences in scanned mappings, not
+independent secrets, tenants, or trials.
+
+\paragraph{Timing-side-channel analysis.}
+The historical timing vectors and analysis script are not retained. We do
+not recompute or validate the historical timing separation in this revision,
+and no timing number is used in the main quantitative conclusions.
+
+\paragraph{Cross-model reporting.}
+We report results separately for Gemma, Qwen, Nemotron, and Phi-4 where
+model-specific behaviour affects the outcome. We avoid pooling these
+measurements into a single aggregate proportion because differences in
+chat templates, stopping behaviour, reasoning channels, and allocation
+patterns are themselves relevant to the confidentiality analysis.
+
+We describe a result as applying across model families only for a named
+retained four-model family (slot equality, July continuation, direct
+injection, KV overhead, D4 residue, LM~Studio hooks, or Ollama telemetry).
+The Nemotron-only twelve-tenant and GPU-v5 rows, Phi-4-only multilayer
+diagnostics, and aggregate-only allocator summary are not generalized to
+the other models. Where quantitative differences occur, we retain and
+discuss them rather than obscuring them through pooled averages.
+
+\paragraph{Analysis of null results.}
+We retain negative results when they meaningfully constrain a plausible
+security hypothesis rather than omitting experiments that fail to
+produce an attack. Before interpreting an observation as a negative
+result, we verify that:
+
+\begin{enumerate}
+    \item the relevant instrumentation and response fields are active;
+    \item an appropriate positive-control condition produces the expected
+    observable;
+    \item the serving process remains operational after the trial; and
+    \item the null outcome is reproducible under the stated experimental
+    condition.
+\end{enumerate}
+
+We do not infer universal security from any null result. Negative
+observations are retained only with the instrumentation, controls, and
+deployment conditions that produced them.
+
+\paragraph{Reproducibility.}
+For each quantitative claim, we identify the retained measurement script,
+configuration, raw experimental log, or historical report in the audit
+artifacts. The harness generates randomised identifiers and UUID canaries
+and records them alongside the trial in which they are introduced. Claims
+whose historical per-request data or binary linkage are not retained are
+marked as such rather than described as independently recomputed.
+% 	\section*{Appendix}
+% 	\renewcommand{\thesubsection}{\Alph{subsection}}
+% 	\setcounter{subsection}{0}
+	
+% 	\subsection{Probabilistic Reconstruction of the KV-Continuation
+% 		Channel --- A Null Result that Bounds the Per-Model Rates
+% 		\label{app:B}}
+% 	The KV-continuation channel of \S\ref{sec:scope} recovers the
+% 	sender's secret via the greedy (argmax) decode path after a
+% 	cross-tenant \texttt{/slots} restore. The per-model rates are
+% 	gemma-4-e4b-it 50/50, qwen-3.5-9b 50/50, nemotron-3-nano-4b
+% 	21/50, and phi-4-reasoning-plus 3/50. A natural objection to
+% 	the phi-4 3\% rate is that the greedy path halted at
+% 	end-of-sequence before the secret's tokens, while probability
+% 	mass for those tokens remained in the top-$K$ distribution.
+% 	Primitive~B (\emph{probabilistic reconstruction}) sets
+% 	$n_{\mathrm{probs}}\!=\!20$ and scores a hit if the secret's
+% 	leading eight characters appear anywhere in the top-20 token
+% 	string across all harvested positions, not only as the greedy
+% 	choice. Per-model results at $n{=}50$:
+	
+% 	\begin{table}[!t]
+% 		\centering
+% 		\begin{tabular}{lrrr}
+% 			\toprule
+% 			Model & Greedy hits & Prob hits & Prob recovers \\
+% 			\midrule
+% 			\texttt{gemma-4-e4b-it}        & 50/50 & 50/50 & 0 \\
+% 			\texttt{qwen-3.5-9b}          & 50/50 & 50/50 & 0 \\
+% 			\texttt{nemotron-3-nano-4b}   & 21/50 & 21/50 & 0 \\
+% 			\texttt{phi-4-reasoning-plus}  &  3/50 &  3/50 & 0 \\
+% 			\bottomrule
+% 		\end{tabular}
+% 		\caption{Probabilistic reconstruction of the KV-continuation
+% 			channel. The top-20 distribution never recovers a greedy
+% 			miss. The reported per-model rates in
+% 			\S\ref{sec:scope} are a true ceiling on the channel
+% 			under both argmax and top-$K$ decoding, not a
+% 			decoding-strategy artifact.}
+% 		\label{tab:primitiveB}
+% 	\end{table}
+	
+% 	\noindent\textbf{Why the null result is real, not a failure of the
+% 		experiment.} We verified (i) the top-20 distribution is being
+% 	harvested correctly by inspecting the raw response schema
+% 	(\texttt{completion\_probabilities} with
+% 	\texttt{top\_probs[]} per position); (ii) on the models where
+% 	the greedy channel already succeeds (gemma-4, qwen-3.5), the
+% 	probabilistic channel matches the greedy channel exactly
+% 	($p_{\mathrm{prob}}\!=\!p_{\mathrm{greedy}}$), confirming the
+% 	parse is identical between success and miss cases; and
+% 	(iii) the miss cases on phi-4 and the misses on nemotron are
+% 	not in the top-20 --- the secret's tokens carry no
+% 	non-trivial probability mass at the harvested positions.
+% 	This confirms the per-model rates in \S\ref{sec:scope} are a
+% 	genuine upper bound on the channel under any single-prompt
+% 	decode, not a greedy-decoding artifact.
+	
+% 	\subsection{Stealth KV Backdoor --- A Null Result that Bounds the
+% 		Integrity Threat to Confidentiality-Only
+% 		\label{app:D}}
+% 	The cross-tenant \texttt{/slots} primitive transfers KV state
+% 	between slots; Primitive~D asks whether an attacker who
+% 	restores a \emph{crafted} KV state into a victim's slot can
+% 	make the victim's own subsequent generation follow a
+% 	hidden instruction the victim's visible prompt never
+% 	contains --- an integrity attack, not a confidentiality leak.
+% 	The benign proof-of-control is a marker
+% 	\texttt{[SILENTSLOT-OWNED-<id>]} that the injected state
+% 	instructs the victim model to prepend. We restore the
+% 	crafted state, then issue a benign unrelated question to
+% 	the same slot, and score a hit if the marker appears in
+% 	the response. Per-model results at $n{=}50$:
+	
+% 	\begin{table}[!t]
+% 		\centering
+% 		\begin{tabular}{lr}
+% 			\toprule
+% 			Model & Behavioral control achieved \\
+% 			\midrule
+% 			\texttt{gemma-4-e4b-it}        & 0/50 \\
+% 			\texttt{qwen-3.5-9b}          & 0/50 \\
+% 			\texttt{nemotron-3-nano-4b}   & 0/50 \\
+% 			\texttt{phi-4-reasoning-plus}  & 0/50 \\
+% 			\bottomrule
+% 		\end{tabular}
+% 		\caption{Stealth KV backdoor at $n{=}50$. Zero control
+% 			achieved on any model. Wilson 95\% CI on every model
+% 			upper-bounds at $0.07$. The cross-tenant
+% 			\texttt{/slots} primitive is a confidentiality attack
+% 			on the same-channel KV state, not a cross-channel
+% 			behavioral-injection vector.}
+% 		\label{tab:primitiveD}
+% 	\end{table}
+	
+% 	\noindent\textbf{Why the null result is real.} The same
+% 	prefix-reset mechanism that caused the original 0/13
+% 	KV-continuation result (and was fixed for the \emph{read}
+% 	direction via the \texttt{/apply-template} bypass in
+% 	\S\ref{sec:scope}) defeats the \emph{write} direction here:
+% 	the victim's chat-template rendering, applied to its own
+% 	benign question, discards the non-shared backdoor prefix
+% 	before generation, so the injected instruction never
+% 	conditions the output. This is the same null class as the
+% 	one the original P1 pilot demonstrated for the read
+% 	direction; the fix does not transfer because the
+% 	write-path bypass would require the victim to issue the
+% 	\texttt{/apply-template} request, which it does not.
+% 	The honest framing is that the threat is bounded to
+% 	\emph{confidentiality on the same-channel KV state}; a
+% 	successful integrity injection would require a different
+% 	vector (e.g. poison the chat template at the \texttt{tokenizer.chat\_template}
+% 	field, which the paper's existing
+% 	\S\ref{sec:rel-gguf} ecosystem analysis already covers at
+% 	the file-format layer).
+	
+% 	\subsection{Concurrency Race (TOCTOU) on \texttt{/slots} Save/Restore ---
+% 		A Null Result that Bounds the Race-Surface
+% 		\label{app:E}}
+% 	A TOCTOU race is a bug
+% 	where the state a request validated changes before the request acts on it. This appendix tests for one.
+% 	Primitive~E fires four concurrent slot operations per trial
+% 	(save-slot-0, restore-slot-1-from-slot-0, save-slot-1,
+% 	restore-slot-0-from-slot-1) to maximize interleaving of the
+% 	checkpoint-search path. The post-race state is checked
+% 	for HTTP errors, server death, and cross-tenant state
+% 	contamination (a slot echoing the other slot's seed
+% 	secret). Per-model results at $n{=}50$:
+	
+% 	\begin{table}[!t]
+% \centering
+% \caption{Concurrency TOCTOU on \texttt{/slots} save/restore at
+% $n{=}50$. Anomaly trials (AT) report HTTP-level request
+% failures (recoverable errors; the server remains
+% healthy and serves subsequent requests). Server crashes
+% (SC) and cross-tenant contamination (CTC) are zero
+% across all four models. The save/restore path is
+% isolation-safe under the tested race workload.}
+% \label{tab:primitiveE}
+% \setlength{\tabcolsep}{4pt}
+% \begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lccc}
+% \toprule
+% Model & AT & SC & CTC \\
+% \midrule
+% \texttt{gemma-4-e4b-it}       & 20/50 & 0 & 0 \\
+% \texttt{qwen-3.5-9b}          & 20/50 & 0 & 0 \\
+% \texttt{nemotron-3-nano-4b}   & 17/50 & 0 & 0 \\
+% \texttt{phi-4-reasoning-plus} & 26/50 & 0 & 0 \\
+% \bottomrule
+% \end{tabular*}
+% \end{table}
+	
+% 	\noindent\textbf{Why the null result is real.} The HTTP errors
+% 	observed are recoverable (the server continues to serve
+% 	on the same socket), and the cross-tenant check after
+% 	the race is unambiguous: each slot's post-race generation
+% 	echoes only the seed secret of the request that completed
+% 	on that slot. The race-safe negative is itself a
+% 	publication-quality result --- it bounds the
+% 	multi-tenant race surface for this primitive and shows
+% 	that an attacker who relies on race timing gains nothing
+% 	beyond occasional request errors (visible to both
+% 	parties, recoverable by the client).
+	
+% 	\subsection{Total-Surface-Decomposition Audit
+% 		\label{app:audit}}
+% 	Beyond the four primitives above, we conducted a
+% 	\emph{parallel-code-audit pass} of the \texttt{llama.cpp}
+% 	server tree, with each of four sonnet subagents owning one
+% 	unexplored surface. Every agent was scoped to read-only
+% 	analysis of the local source tree and to design a
+% 	localhost-only experiment for the surface it owned; no
+% 	external hosts were scanned or probed. The findings:
+	
+% 	\begin{description}
+% 		\item[\textbf{HTTP-endpoint surface, $\bm{0}$ (clean
+% 			negative).}] \texttt{/infill}, \texttt{/embedding},
+% 		\texttt{/rerank}, \texttt{/tokenize}, and \texttt{/props}
+% 		expose no per-tenant state and are not cross-tenant
+% 		vectors. \texttt{/rerank} uses a
+% 		\texttt{string\_replace\_all} substitution on the model's
+% 		\texttt{rerank} chat template, \emph{not} a Jinja render;
+% 		it is not in an unrelated template-escape class. The
+% 		process-global \texttt{/lora-adapters} channel is
+% 		documented as a separate preliminary finding in
+% 		Appendix~\ref{app:LoRA}.
+% 		\item[\textbf{Minja chat-template SSTI, $\bm{0}$ (clean
+% 			negative).}] This build ships its own in-tree jinja
+% 		engine (\texttt{common/jinja/}, a Jinja2 subset) that
+% 		replaces the upstream \texttt{minja} library. The engine
+% 		sandbox-checks attribute access, and the attack class of
+% 		SGLang's unrelated template-escape pattern
+% 		does not parse: every attribute access through
+% 		\texttt{.\,} on a non-builtin object is rejected. A
+% 		malicious GGUF's \texttt{tokenizer.chat\_template} cannot
+% 		achieve SSTI when the server loads it with
+% 		\texttt{--jinja}.
+% 		\item[\textbf{Slot-restore blob parser, $\bm{0}$ (clean
+% 			negative).}] The deserializer at
+% 		\texttt{llama-context.cpp} / \texttt{llama-kv-cache.cpp}
+% 		validates every attacker-controlled length field read
+% 		from the file (\texttt{cell\_count}, \texttt{n\_seq\_id},
+% 		\texttt{v\_trans}, \texttt{n\_layer}, key types and
+% 		row sizes) against the live model's
+% 		\texttt{layers.size()} and the per-row size computed
+% 		from \texttt{ggml\_row\_size} before any allocation or
+% 		memcpy. The single-seq path rejects
+% 		\texttt{n\_seq\_id $\neq$ 1}. We did not find a
+% 		memory-safety candidate in the audited parse
+% 		sequence.
+% 		\item[\textbf{Sampler/grammar cross-slot bleed, $\bm{0}$
+% 			(clean negative).}] \texttt{slot.smpl.reset(\\
+% 			common\_sampler\_init(model\_tgt, task.params.sampling))}
+% 		inside \texttt{launch\_slot\_task}
+% 		(server-context.cpp:~1824) and
+% 		\texttt{common\_sampler\_reset} (line:~369) on
+% 		\texttt{init\_sampler} clear all stateful-sampler
+% 		residual state, and \texttt{reset()} wipes
+% 		\texttt{json\_schema} (line:~339) and calls
+% 		\texttt{llama\_set\_sampler(ctx\_tgt, id, nullptr)}
+% 		(line:~359). Under the canonical
+% 		tenant-A-completes~$\to$~tenant-B-starts path, no
+% 		observable bleed. The design is defensively correct.
+% 	\end{description}
+	
+% 	\noindent The audit's \emph{net} contribution to the paper is a
+% 	bound on four adjacent surfaces and one well-scoped
+% 	follow-up experiment (the LoRA behavioural-shift
+% 	reproduction, to be reported separately). The body
+% 	findings (\S\ref{sec:r-protocol}--\ref{sec:r-bypass})
+% 	together with this appendix establish that the
+% 	cross-tenant threat in the consumer local-LLM stack is
+% 	\emph{real, broad, and partially orthogonal to the
+% 		flag-level mitigations} the vendor already documents, and
+% 	\emph{bounded} on the surfaces where intuition would
+% 	predict a worse outcome.
+	
+% 	\subsection{Preliminary Finding --- \texttt{/lora-adapters} Process-Global
+% 		Mutation Crosses Tenants
+% 		\label{app:LoRA}}
+% 	The HTTP-endpoint audit of Appendix~\ref{app:audit} identified
+% 	a \emph{control-channel} cross-tenant primitive: the
+% 	\texttt{POST /lora-adapters} handler mutates
+% 	\texttt{params\_base.lora\_adapters} (server-context.cpp,~line~2723),
+% 	which is a \emph{process-global} handle. The maintainer's own
+% 	\texttt{TODO @ngxson : make lora\_adapters a dedicated member of
+% 		server\_context} at the same lines is the upstream self-flag.
+% 	A subsequent tenant request that does not carry a
+% 	per-request \texttt{lora} field silently inherits the swapped
+% 	adapter via \texttt{slot.lora = params\_base.lora\_adapters}
+% 	at server-context.cpp,~line~1763. On a multi-tenant server
+% 	sharing one \texttt{--api-key}, the \texttt{POST} handler is
+% 	gated by the same authentication as the rest of the API but
+% 	not by any per-tenant scope check, and the mutation persists
+% 	for the lifetime of the process.
+	
+% 	This is recorded as a \emph{preliminary} finding because the
+% 	end-to-end behavioural-shift experiment requires (i)~a
+% 	clean \texttt{llama-server} binary independent of the
+% 	paper's \texttt{secure\_zero(res->content)} patch, and (ii)~a
+% 	real LoRA adapter for one of the four test models. The
+% 	harness we built (\texttt{scripts/silentslot\_LoRA\_hot\_swap.py})
+% 	ran on the only binary available in the local tree, which is
+% 	the patched one; the behavioural-shift measurement was
+% 	confounded by the patch's own response-zeroisation bug
+% 	(Appendix~\ref{app:audit},~\S\ref{sec:r-bypass}). The
+% 	\emph{control-channel} result --- that the global is reachable,
+% 	mutation persists, and the slot's fallback to the global is
+% 	unconditional on the absence of a per-request \texttt{lora}
+% 	field --- is verified by the source-of-truth citations
+% 	above and is itself a publication-quality audit finding.
+	
+% 	Reproducing the full behavioural-shift result on a clean
+% 	binary is a clear next step; we plan to include it in a
+% 	revised version of the paper once the cross-binary
+% 	experiment is complete.
+	
+% 	\subsection{Structural-Header Fuzzing: C++ Reader Hardened,
+% 		\texttt{gguf-py} Tooling Is Not
+% 		\label{app:gguf-header}}
+% 	\S\ref{sec:r-file} reports 21 malformed GGUF headers rejected
+% 	cleanly by the C++ reader. The same 21-file corpus was also loaded
+% 	through \texttt{gguf-py}'s \texttt{gguf\_dump} utility --- the
+% 	Python reference parser shipped in the same \texttt{llama.cpp}
+% 	repository and used by third-party conversion, quantisation, and
+% 	metadata-inspection tooling that does not link against
+% 	\texttt{ggml/src/gguf.cpp} directly. Unlike the C++ reader, several
+% 	cases (\texttt{zero\_tensor\_dimension}, \texttt{oversized\_tensor\_name},
+% 	\texttt{gigantic\_tensor\_dim}) do not produce a caught,
+% 	user-facing error: they raise an \emph{unhandled} Python exception
+% 	(\texttt{IndexError} / \texttt{struct.error}) from inside
+% 	\texttt{gguf\_reader.py}'s \texttt{\_get\_field\_parts}, terminating
+% 	the calling process with a raw traceback rather than a diagnostic
+% 	message.
+	
+% 	\begin{findingbox}
+% 		0/21 process crashes in either parser (no memory corruption). But
+% 		the C++ reader's bounds-checked design (\S\ref{sec:r-file}) is not
+% 		mirrored in \texttt{gguf-py}: a subset of the same malformed
+% 		headers that the C++ reader rejects gracefully instead crash the
+% 		Python tooling with an unhandled exception. Any pipeline that calls
+% 		\texttt{gguf-py} programmatically on an untrusted file (automated
+% 		conversion services, metadata scrapers, HuggingFace-hub ingestion
+% 		scripts) without wrapping the call in its own exception handling
+% 		inherits an uncaught-exception denial-of-service on attacker-supplied
+% 		input, despite the underlying C++ server being hardened against the
+% 		identical byte patterns.
+% 	\end{findingbox}
+	
+% 	This is a tooling-hardening gap, not a memory-safety vulnerability:
+% 	impact is bounded to process termination of the calling script, with
+% 	no evidence of memory corruption or code execution. We flag it
+% 	because it is a natural, low-effort target for an operator who
+% 	assumes ``the parser is hardened'' from the C++ side and pipes
+% 	untrusted files through the Python tooling on that assumption alone.
+	
+% 	%==============================================================================
+% 	% USENIX Open Artifacts / Artifacts Available statement
+% 	%==============================================================================
+% 	\section*{Open Science and Artifacts}
+	
+% 	The complete measurement harness, per-phase logs, the
+% 	$n\!\ge\!50$ / 4-of-4-model statistical-power audit results, runtime
+% 	zeroisation patches, the cross-tenant exploit re-implementation, the
+% 	memorisation-volume extraction script, the network-namespaces
+% 	isolation harness, and the responsible-disclosure record are
+% 	released publicly under the MIT License (code) and CC-BY (data) at:
+% 	\begin{center}
+% 		\url{https://github.com/youseefhamdi/Local-LLM-Forensics}
+% 	\end{center}
+% 	The package is additionally archived via Zenodo to ensure long-term
+% 	accessibility and citability:
+% 	\begin{center}
+% 		\url{https://doi.org/10.5281/zenodo.20998459}
+% 	\end{center}
+	
+% 	%==============================================================================
+% 	% CRediT authorship contribution statement
+% 	%==============================================================================
+% 	\section*{Authorship Contributions}
+	
+% 	\textbf{Youssef Hamdi Zafaan Ibrahim:}
+% 	Conceptualisation, Methodology, Software, Investigation, Data Curation,
+% 	Formal Analysis, Resources, Validation, Visualisation, Writing ---
+% 	Original Draft, Writing --- Review \& Editing.
+	
+% 	\textbf{Mohammed Khalaf Salama:}
+% 	Conceptualisation, Methodology, Investigation, Formal Analysis,
+% 	Writing --- Review \& Editing.
+	
+% 	%==============================================================================
+% 	% Declaration of Generative AI use in writing process
+% 	%==============================================================================
+% 	\section*{Declaration of Generative AI and AI-Assisted Technologies}
+	
+% 	During the preparation of this manuscript, the authors used
+% 	AI-assisted language tools for grammar correction and formatting
+% 	assistance. All scientific content---including the four-layer
+% 	measurement design, file-format fuzzing battery, heap-residue
+% 	forensics methodology, live-debugger root-cause analysis,
+% 	cross-tenant exploit re-implementation, memorisation volume
+% 	extraction, network-namespaces isolation harness, the patch stack
+% 	with formal invariants $I_2$/$I_3$/$I_4$, and all numerical
+% 	results---was conceived, executed, and verified by the authors.
+% 	Every quantitative claim in this paper is supported by a released
+% 	artefact: the measurement harness, per-phase logs, the
+% 	$n\!\ge\!50$ / 4-of-4-model statistical-power audit results, runtime
+% 	patches, and the responsible-disclosure record. The authors reviewed
+% 	and edited all AI-assisted content and take full responsibility for
+% 	the integrity of the published work.
+	
+% 	%==============================================================================
+% 	% Disclosure of any competing interests
+% 	%==============================================================================
+% 	\section*{Disclosure of Competing Interests}
+	
+% 	The authors declare that they have no known competing financial
+% 	interests or personal relationships that could have appeared to
+% 	influence the work reported in this paper.
+	

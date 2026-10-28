@@ -1,0 +1,634 @@
+%==============================================================================
+% REFERENCES - Complete Bibliography for USENIX Security 2026 Submission
+% Updated: August 2026
+%==============================================================================
+
+% --- KV-Cache Privacy and Side Channels ---
+
+@misc{safekv2025,
+      title={Selective KV-Cache Sharing to Mitigate Timing Side-Channels in LLM Inference}, 
+      author={Kexin Chu and Zecheng Lin and Dawei Xiang and Zixu Shen and Jianchang Su and Cheng Chu and Yiwei Yang and Wenhui Zhang and Wenfei Wu and Wei Zhang},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2508.08438}, 
+}
+
+@misc{prefixwall2026,
+      title={PrefixWall: Mitigating Prefix Caching Side Channels in Shared LLM Systems}, 
+      author={Panagiotis Georgios Pennas and Konstantinos Papaioannou and Marco Guarnieri and Thaleia Dimitra Doudali},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2603.10726}, 
+}
+
+@inproceedings{shadowcache2026,
+  author    = {Zhifan Luo and Shuo Shao and Su Zhang and Lijing Zhou and Yuke Hu and Chenxu Zhao and Zhihao Liu and Zhan Qin},
+  title     = {Shadow in the Cache: Unveiling and Mitigating Privacy Risks of {KV}-cache in {LLM} Inference},
+  booktitle = {Proc.\ NDSS},
+  address   = {San Diego, CA, USA},
+  month     = feb,
+  year      = {2026},
+}
+
+@inproceedings{wu2025iknowwhatyouasked,
+  author    = {Wu, Guanlong and Zhang, Zheng and Zhang, Yao and Wang, Weili and Niu, Jianyu and Wu, Ye and Zhang, Yinqian},
+  title     = {I Know What You Asked: Prompt Leakage via {KV}-Cache Sharing in Multi-Tenant {LLM} Serving},
+  booktitle = {Proc.\ NDSS},
+  address   = {San Diego, CA, USA},
+  month     = feb,
+  year      = {2025},
+}
+
+@misc{optileak2026,
+      title={OptiLeak: Efficient Prompt Reconstruction via Reinforcement Learning in Multi-tenant LLM Services}, 
+      author={Longxiang Wang and Xiang Zheng and Xuhao Zhang and Yao Zhang and Ye Wu and Cong Wang},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2602.20595}, 
+}
+
+@misc{multitenant_llm2026,
+      title={BlockLLM: Multi-tenant Finer-grained Serving for Large Language Models}, 
+      author={Bodun Hu and Jiamin Li and Le Xu and Myungjin Lee and Akshay Jajoo and Geon-Woo Kim and Hong Xu and Aditya Akella},
+      year={2024},
+      archivePrefix={arXiv},
+      primaryClass={cs.DC},
+      url={https://arxiv.org/abs/2404.18322}, 
+}
+
+@article{sidechannel_survey2024,
+  author  = {A. Maji and S. Banerjee and R. Choudhury},
+  title   = {{A Survey of Microarchitectural and Software
+             Side-Channel Attacks on Modern ML Accelerators}},
+  journal = {IEEE Communications Surveys \& Tutorials},
+  volume  = {26},
+  number  = {8},
+  pages   = {1--38},
+  year    = {2024}
+}
+
+@inproceedings{timing_attack_classic,
+  author    = {Paul C. Kocher},
+  title     = {{Timing Attacks on Implementations of
+               Diffie-Hellman, RSA, DSS, and Other Systems}},
+  booktitle = {Advances in Cryptology---CRYPTO '96},
+  address   = {Santa Barbara, CA, USA},
+  month     = aug,
+  year      = {1996}
+}
+
+@misc{llmserving_survey2024,
+    title={LLM Inference Serving: Survey of Recent Advances and Opportunities}, 
+      author={Baolin Li and Yankai Jiang and Vijay Gadepally and Devesh Tiwari},
+      year={2024},
+      eprint={2407.12391},
+      archivePrefix={arXiv},
+      primaryClass={cs.DC},
+      url={https://arxiv.org/abs/2407.12391}, 
+}
+
+
+% --- Training-Data Memorization ---
+
+@inproceedings{carlini2025,
+author = {Nicholas Carlini and Florian Tram{\`e}r and Eric Wallace and Matthew Jagielski and Ariel Herbert-Voss and Katherine Lee and Adam Roberts and Tom Brown and Dawn Song and {\'U}lfar Erlingsson and Alina Oprea and Colin Raffel},
+title = {Extracting Training Data from Large Language Models},
+booktitle = {30th USENIX Security Symposium (USENIX Security 21)},
+year = {2021},
+isbn = {978-1-939133-24-3},
+pages = {2633--2650},
+url = {https://www.usenix.org/conference/usenixsecurity21/presentation/carlini-extracting},
+publisher = {USENIX Association},
+month = aug
+}
+@misc{carlini2023memorization,
+        title={Quantifying Memorization Across Neural Language Models}, 
+      author={Nicholas Carlini and Daphne Ippolito and Matthew Jagielski and Katherine Lee and Florian Tramer and Chiyuan Zhang},
+      year={2023},
+      eprint={2202.07646},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2202.07646}, 
+}
+
+
+% --- File-Format Vulnerabilities (GGUF/llama.cpp CVE family) ---
+
+@misc{cve_bleedingllama,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2026-7482: Bleeding Llama --- Out-of-Bounds
+                  Read in Ollama GGUF Quantization Path}},
+  year         = {2026},
+  month        = mar,
+  note         = {CVSS 9.1},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2026-7482}
+}
+
+@misc{cve_databricks,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2024-25664--25668: Heap-Overflow Family
+                  in llama.cpp GGUF Parser}},
+  year         = {2024},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2024-25664}
+}
+
+@misc{cve_vocab_overflow,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2025-49847: Signed-Cast Vocabulary Buffer
+                  Overflow in llama.cpp Token-to-Piece Conversion}},
+  year         = {2025},
+  note         = {CVSS 9.1},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2025-49847}
+}
+
+@misc{cve_int_overflow_bypass,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2026-27940: Integer-Overflow Bypass of
+                  CVE-2025-53630 Fix in llama.cpp GGUF Parser}},
+  year         = {2026},
+  note         = {CVSS 7.8},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2026-27940}
+}
+
+@misc{cve_ggml_nbytes,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2026-33298: ggml\_nbytes Integer Overflow
+                  Leading to Heap Overflow}},
+  year         = {2026},
+  note         = {CVSS 7.8},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2026-33298}
+}
+
+@misc{cve_jinja2_ssti,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2026-5760: Jinja2 Server-Side Template Injection
+                  via Malicious GGUF chat\_template Field,
+                  Achieving RCE on SGLang}},
+  year         = {2026},
+  note         = {CVSS 9.8},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2026-5760}
+}
+
+@misc{cve_2024_37032,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2024-37032: Ollama Path Traversal Vulnerability
+                  (Probllama)}},
+  year         = {2024},
+  month        = may,
+  note         = {Fixed in v0.1.34},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2024-37032}
+}
+
+@misc{cve_ollama_updater,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2026-42248 / CVE-2026-42249: Ollama Windows
+                  Auto-Updater RCE Chain}},
+  year         = {2026},
+  note         = {CVSS 9.8; reported as unpatched past the
+                  90-day disclosure window},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2026-42248}
+}
+
+@misc{cve_vllm_62164,
+  author       = {{National Vulnerability Database}},
+  title        = {{CVE-2025-62164: vLLM RCE via Malicious
+                  Request Payloads}},
+  year         = {2025},
+  note         = {CVSS 8.8},
+  howpublished = {National Vulnerability Database},
+  url          = {https://nvd.nist.gov/vuln/detail/CVE-2025-62164}
+}
+
+@misc{pillar2024gguf,
+  author       = {{Pillar Security}},
+  title        = {{GGUF Template Injection Attack}},
+  year         = {2024},
+  howpublished = {Pillar Security Advisory},
+  url          = {https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-how-it-was-fixed}
+}
+
+@misc{oss_2026_gguf,
+  author       = {{oss-security}},
+  title        = {{Six New GGUF Vulnerabilities}},
+  year         = {2026},
+  month        = may,
+  howpublished = {oss-security Mailing List},
+  url          = {https://www.openwall.com/lists/oss-security/2026/05/}
+}
+
+@misc{raxe_2026,
+  author       = {{RAXE Security}},
+  title        = {{RAXE-2026-042: llama.cpp GGUF Integer Overflow
+                  Heap Buffer Overflow}},
+  year         = {2026},
+  howpublished = {RAXE Security Advisory}
+}
+
+% --- Software and Infrastructure ---
+
+@misc{llamacpp,
+  author       = {Georgi Gerganov and contributors},
+  title        = {{llama.cpp: LLM Inference in C/C++}},
+  year         = {2026},
+  howpublished = {GitHub repository},
+  url          = {https://github.com/ggml-org/llama.cpp},
+  note         = {Accessed: 2026}
+}
+
+@misc{gguf,
+  author       = {{ggml-org}},
+  title        = {{GGUF: GGML Universal File Format Specification}},
+  year         = {2026},
+  howpublished = {GitHub repository},
+  url          = {https://github.com/ggml-org/ggml/blob/master/docs/gguf.md},
+  note         = {Accessed: 2026}
+}
+
+@misc{lmstudio,
+  author       = {{LM Studio}},
+  title        = {{LM Studio: Local LLM Inference Desktop Application}},
+  year         = {2026},
+  howpublished = {LM Studio Documentation},
+  url          = {https://lmstudio.ai/docs},
+  note         = {Accessed: 2026}
+}
+
+@misc{ollama,
+  author       = {{Ollama}},
+  title        = {{Ollama}},
+  year         = {2023},
+  howpublished = {GitHub repository},
+  note         = {Continuously maintained; accessed August 20, 2026},
+  url          = {https://github.com/ollama/ollama}
+}
+
+% --- Prevalence and Exposure ---
+
+@misc{shodan_query2026,
+  author       = {{Shodan}},
+  title        = {{Shodan Internet-Wide Search Measurements for
+                  Ollama and llama.cpp}},
+  year         = {2026},
+  howpublished = {Shodan Search Engine},
+  note         = {Queries: \texttt{product:"Ollama"} and
+                  \texttt{product:"llama.cpp"}; conducted July 4, 2026},
+  url          = {https://www.shodan.io/}
+}
+
+@misc{upguard_llamacpp2025,
+  author       = {Greg Pollock},
+  title        = {{Analyzing llama.cpp Servers for Prompt Leaks}},
+  year         = {2025},
+  month        = jul,
+  howpublished = {UpGuard},
+  note         = {Published July 25, 2025; accessed August 1, 2026},
+  url          = {https://www.upguard.com/blog/llama-cpp-prompt-leak}
+}
+
+@misc{censys_ollama_drama2026,
+  author  = {{Censys ARC Research Team}},
+  title   = {{Ollama Drama: Investigating the Prevalence of Ollama
+             Open Instances with Censys}},
+  date    = {2025-09-24},
+  url     = {https://censys.com/blog/ollama-drama-investigating-the-prevalence-of-ollama-open-instances-with-censys/},
+  urldate = {2026-08-26}
+}
+
+@misc{thn_ollama175k2026,
+  author       = {Gabriel Bernadett-Shapiro and Silas Cutler},
+  title        = {{Silent Brothers: Ollama Hosts Form Anonymous AI
+                  Network Beyond Platform Guardrails}},
+  year         = {2026},
+  month        = jan,
+  howpublished = {SentinelLABS and Censys},
+  note         = {Published January 29, 2026; accessed August 11, 2026},
+  url          = {https://www.sentinelone.com/labs/silent-brothers-ollama-hosts-form-anonymous-ai-network-beyond-platform-guardrails/}
+}
+@misc{opendoors_lmstudio2026,
+  author       = {Vibhek Soni},
+  title        = {{The Hidden Risks of Exposed LM Studio Servers}},
+  year         = {2025},
+  month        = jan,
+  howpublished = {OpenDoors},
+  note         = {Published January 23, 2025; accessed August 12, 2026},
+  url          = {https://opendoors.wtf/blog/lmstudio-api-security/}
+}
+% --- Memory Forensics and Zeroization ---
+
+@book{procfs_forensics,
+  author    = {Michael Kerrisk},
+  title     = {{The Linux Programming Interface}},
+  edition   = {1},
+  publisher = {No Starch Press},
+  address   = {San Francisco, CA, USA},
+  year      = {2010},
+  note      = {Chapter 12: The /proc Filesystem}
+}
+
+@misc{glibc_arena,
+  author       = {{Free Software Foundation}},
+  title        = {{The GNU C Library Reference Manual}},
+  year         = {2026},
+  howpublished = {GNU C Library Documentation},
+  note         = {Version 2.44; accessed August 26, 2026},
+  url          = {https://sourceware.org/glibc/manual/}
+}
+
+@misc{explicit_bzero,
+  author       = {{Linux man-pages Project}},
+  title        = {{bzero(3), explicit\_bzero(3) --- Zero a Byte String}},
+  year         = {2026},
+  howpublished = {Linux man-pages 6.18},
+  note         = {Accessed: August 26, 2026},
+  url          = {https://man7.org/linux/man-pages/man3/bzero.3.html}
+}
+
+@misc{securestring2025,
+ author       = {{The libsodium Project}},
+  title        = {{Secure Memory}},
+  howpublished = {libsodium Documentation},
+  year         = {2026},
+  note         = {Accessed: August 2, 2026},
+  url          = {https://doc.libsodium.org/memory_management}
+}
+
+@misc{zeroonfree2024,
+  author       = {{LLVM Project}},
+  title        = {{Scudo Hardened Allocator}},
+  howpublished = {LLVM Documentation},
+  note         = {Accessed: August 26, 2026},
+  url          = {https://llvm.org/docs/ScudoHardenedAllocator.html}
+}
+
+@inproceedings{xu2026mobilellmforensics,
+  author={Xu, Haichuan and Oygenblik, David and Zhang, Runze and Yao, Mingxuan and Ibrahim, Muhammad and Saltaformaggio, Brendan},
+  booktitle={2026 IEEE Symposium on Security and Privacy (SP)}, 
+  title={Recovering and Rehosting Mobile Local LLM Conversations and Contexts via Memory Forensics}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={345-363},
+  doi={10.1109/SP63933.2026.00252}}
+
+% --- Wrapper Forensics ---
+
+@misc{murtuza2026,
+      title={Forensic Implications of Localized AI: Artifact Analysis of Ollama, LM Studio, and llama.cpp}, 
+      author={Shariq Murtuza},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2603.23996}, 
+}
+@misc{localnotprivate2026,
+      title={Local Is Not a Sufficient Privacy Boundary: Governing OS-Integrated On-Device AI}, 
+      author={Jonghyun Chung and Sanket Badhe},
+      year={2026},
+      eprint={2606.10173},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2606.10173}, 
+}
+
+% --- Prompt Injection and Agentic Security ---
+
+@misc{agentprompt2026,
+      title={Prompt Injection Attacks on Agentic Coding Assistants: A Systematic Analysis of Vulnerabilities in Skills, Tools, and Protocol Ecosystems}, 
+      author={Narek Maloyan and Dmitry Namiot},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2601.17548}, 
+}
+
+@misc{owasp_llm2026,
+  title={OWASP Top 10 for LLM Applications},
+  author={N Versio},
+  url={https://api.semanticscholar.org/CorpusID:265018081},
+  year = {2026}
+}
+
+@inproceedings{greshake2023,
+  title={Not what you've signed up for: Compromising real-world llm-integrated applications with indirect prompt injection},
+  author={Greshake, Kai and Abdelnabi, Sahar and Mishra, Shailesh and Endres, Christoph and Holz, Thorsten and Fritz, Mario},
+  booktitle={Proceedings of the 16th ACM workshop on artificial intelligence and security},
+  pages={79--90},
+  year={2023}
+}
+
+@misc{perez2022,
+      title={Ignore Previous Prompt: Attack Techniques For Language Models}, 
+      author={Fábio Perez and Ian Ribeiro},
+      year={2022},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2211.09527}
+}
+
+@article{ferrag2025promptinjection,
+   title={From prompt injections to protocol exploits: Threats in LLM-powered AI agents workflows},
+   volume={12},
+   ISSN={2405-9595},
+   DOI={10.1016/j.icte.2025.12.001},
+   number={2},
+   journal={ICT Express},
+   publisher={Elsevier BV},
+   author={Ferrag, Mohamed Amine and Tihanyi, Norbert and Hamouda, Djallel and Maglaras, Leandros and Lakas, Abderrahmane and Debbah, Merouane},
+   year={2026},
+   month=Apr, pages={353–383} 
+   }
+
+
+@misc{kim2026agenticlandscape,
+      title={The Attack and Defense Landscape of Agentic AI: A Comprehensive Survey}, 
+      author={Juhee Kim and Xiaoyuan Liu and Zhun Wang and Shi Qiu and Bo Li and Wenbo Guo and Dawn Song},
+      year={2026},
+      eprint={2603.11088},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2603.11088}, 
+}
+
+@misc{agentsurvey2026,
+      title={A Systematic Survey of Security Threats and Defenses in LLM-Based AI Agents: A Layered Attack Surface Framework}, 
+      author={Kexin Chu},
+      year={2026},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2604.23338}, 
+}
+
+@misc{mempoisoning2026,
+      title={Memory Poisoning Attack and Defense on Memory Based LLM-Agents}, 
+      author={Balachandra Devarangadi Sunil and Isheeta Sinha and Piyush Maheshwari and Shantanu Todmal and Shreyan Mallik and Shuchi Mishra},
+      year={2026},
+      eprint={2601.05504},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2601.05504}, 
+}
+@misc{ltmsecurity2026,
+      title={A Survey on Long-Term Memory Security in LLM Agents: Attacks, Defenses, and Governance Across the Memory Lifecycle}, 
+      author={Zehao Lin and Xixuan Hao and Renyu Fu and Shaobo Cui and Kai Chen and Chunyu Li and Zhiyu Li and Feiyu Xiong},
+      year={2026},
+      eprint={2604.16548},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2604.16548}, 
+}
+
+% --- Methodology ---
+
+@article{wilson1927,
+  title={Probable inference, the law of succession, and statistical inference},
+  author={Wilson, Edwin B},
+  journal={Journal of the American Statistical Association},
+  volume={22},
+  number={158},
+  pages={209--212},
+  year={1927},
+  publisher={Taylor \& Francis}
+}
+
+@article{mcnemar1947,
+ title={Note on the sampling error of the difference between correlated proportions or percentages},
+  author={McNemar, Quinn},
+  journal={Psychometrika},
+  volume={12},
+  number={2},
+  pages={153--157},
+  year={1947},
+  publisher={Cambridge University Press \& Assessment},
+  doi ={10.1007/BF02295996}
+}
+
+@article{fuzzing_taxonomy2024,
+  title={The art, science, and engineering of fuzzing: A survey},
+  author={Man{\`e}s, Valentin JM and Han, HyungSeok and Han, Choongwoo and Cha, Sang Kil and Egele, Manuel and Schwartz, Edward J and Woo, Maverick},
+  journal={IEEE Transactions on Software Engineering},
+  volume={47},
+  number={11},
+  pages={2312--2331},
+  year={2019},
+  publisher={IEEE}
+}
+
+@misc{cwe862,
+  author       = {{MITRE Corporation}},
+  title        = {{CWE-862: Missing Authorization}},
+  year         = {2024},
+  howpublished = {Common Weakness Enumeration},
+  url          = {https://cwe.mitre.org/data/definitions/862.html}
+}
+
+@misc{cwe639,
+  author       = {{MITRE Corporation}},
+  title        = {{CWE-639: Authorization Bypass Through User-Controlled Key}},
+  year         = {2024},
+  howpublished = {Common Weakness Enumeration},
+  url          = {https://cwe.mitre.org/data/definitions/639.html}
+}
+
+@misc{llamacpp_security,
+  author       = {{ggml-org}},
+  title        = {{llama.cpp Security Policy}},
+  year         = {2026},
+  howpublished = {GitHub},
+  note         = {Accessed: Oct. 8, 2026},
+  url          = {https://github.com/ggml-org/llama.cpp/security/policy}
+}
+
+@misc{linux_process_permissions,
+  author       = {{Linux kernel documentation and Michael Kerrisk}},
+  title        = {{Linux process-memory access: Yama, ptrace(2), and proc\_pid\_mem(5)}},
+  year         = {2026},
+  howpublished = {Linux kernel documentation and Linux manual pages},
+  note         = {Accessed: Oct. 8, 2026. See the Yama documentation and the ptrace(2) and proc-pid-mem(5) manual pages.},
+  url          = {https://docs.kernel.org/admin-guide/LSM/Yama.html}
+}
+
+% --- CWE entries referenced in main text ---
+
+@misc{cwe200,
+  author       = {{MITRE Corporation}},
+  title        = {{CWE-200: Exposure of Sensitive Information to an Unauthorized Actor}},
+  year         = {2024},
+  howpublished = {Common Weakness Enumeration},
+  url          = {https://cwe.mitre.org/data/definitions/200.html}
+}
+
+@misc{cwe285,
+  author       = {{MITRE Corporation}},
+  title        = {{CWE-285: Improper Authorization}},
+  year         = {2024},
+  howpublished = {Common Weakness Enumeration},
+  url          = {https://cwe.mitre.org/data/definitions/285.html}
+}
+
+% --- Regulatory / governance frameworks referenced in discussion ---
+
+@misc{gdpr2016,
+  title        = {{Regulation (EU) 2016/679 (General Data Protection Regulation)}},
+  year         = {2016},
+  howpublished = {Official Journal of the European Union},
+  url          = {https://eur-lex.europa.eu/eli/reg/2016/679/oj}
+}
+
+@misc{hipaa1996,
+  title        = {{Health Insurance Portability and Accountability Act of 1996}},
+  year         = {1996},
+  howpublished = {United States Department of Health and Human Services},
+  url          = {https://www.hhs.gov/hipaa/for-professionals/privacy/}
+}
+
+@misc{nist_ai_rmf,
+  title        = {{Artificial Intelligence Risk Management Framework (AI RMF 1.0)}},
+  year         = {2023},
+  howpublished = {National Institute of Standards and Technology},
+  url          = {https://www.nist.gov/itl/ai-risk-management-framework}
+}
+
+% --- OAuth / authorization context ---
+
+@misc{oauth2020,
+  title        = {{The OAuth 2.0 Authorization Framework (RFC 6749)}},
+  year         = {2012},
+  howpublished = {IETF},
+  url          = {https://datatracker.ietf.org/doc/html/rfc6749}
+}
+
+% --- OWASP LLM Top 10 ---
+
+@misc{owasp_llm2025,
+  title        = {{OWASP Top 10 for LLM Applications (2025)}},
+  year         = {2025},
+  howpublished = {OWASP Foundation},
+  url          = {https://owasp.org/www-project-top-ten-for-large-language-model-applications/}
+}
+
+% --- Serving-stack components referenced for broader context ---
+
+@misc{sglang,
+  title        = {{SGLang: Efficient Execution of Structured Language Model Programs}},
+  year         = {2025},
+  howpublished = {GitHub repository},
+  url          = {https://github.com/sgl-project/sglang}
+}
+
+@misc{vllm,
+  title        = {{vLLM: Easy, Fast, and Cheap LLM Serving with PagedAttention}},
+  year         = {2025},
+  howpublished = {GitHub repository},
+  url          = {https://github.com/vllm-project/vllm}
+}

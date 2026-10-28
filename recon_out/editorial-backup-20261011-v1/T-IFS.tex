@@ -1,0 +1,1386 @@
+%==============================================================================
+% The Illusion of Local: A Four-Layer Forensic Measurement of Privacy
+% Boundaries in Consumer Local-LLM Serving Stacks
+%
+% Target venue : USENIX Security (Symposium on Usable Privacy and Security /
+%                USENIX Security '26)
+% Document class: article + usenix.sty -- two-column, 10pt, USENIX camera-ready
+% Build        : pdflatex main && pdflatex main  (references are INLINE via
+%                thebibliography; no .bib file needed)
+%
+% Style        : USENIX two-column camera-ready. Voice/structure conventions
+%                inherited from the authors' ESWA D-26-11044 benchmark
+%                paper (custom commands, finding boxes, cmark/xmark
+%                tables, pgfplots with nodes near coords, etc.).
+%
+% ----------------------------------------------------------------------------
+% NOTES
+%  * Architecture diagrams and data charts that should be VECTOR/REPRODUCIBLE
+%    are drawn natively in TikZ/pgfplots (no external image needed) so the
+%    numbers in the charts stay tied to the measured data.
+%  * Citations identify the publications and technical documents used here.
+%==============================================================================
+\documentclass[journal,tifs]{IEEEtran}
+
+% usenix.sty already loads: mathptmx, fontenc, inputenc, pslatex, microtype,
+% cite, url, xcolor, hyperref. Do NOT re-load these.
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{balance}
+\usepackage{rotating}
+\usepackage{xcolor}
+\usepackage{enumitem} % Required for customizing list environments
+\usepackage{wrapfig}
+\usepackage{xurl}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{shapes.geometric,arrows.meta,positioning,fit,backgrounds,calc,shadows}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[most]{tcolorbox}
+\usepackage{pifont}
+\emergencystretch=1em
+\usepackage{lineno}
+\usepackage{doi}
+
+% ---- Custom commands ----------
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\hmark}{\ensuremath{\circ}}
+\newcommand{\gguf}{\textsc{Gguf}}
+\newcommand{\lms}{\textsc{Lm~Studio}}
+\newcommand{\kvc}{KV-cache}
+\newcommand{\tikzmark}[1]{\tikz[remember picture,overlay]\node(#1){};}
+
+\newcommand{\ik}[1]{{\em\color{red}{[#1 ---ikram]}}}
+\newcommand{\zc}[1]{{\em\color{blue}{[#1 ---zodiac]}}}
+\newcommand{\revised}[1]{{\color{blue}#1}}
+\newcommand{\artifacturl}[1]{\texttt{#1}}
+% ---- Colors ------------------
+\definecolor{vulncol}{RGB}{214,39,40}
+\definecolor{fixcol}{RGB}{44,160,44}
+\definecolor{partialcol}{RGB}{255,127,14}
+\definecolor{netcol}{RGB}{31,119,180}
+\definecolor{tableheader}{RGB}{240,240,240}
+\definecolor{findingbg}{RGB}{255,250,230}
+\definecolor{findingframe}{RGB}{200,160,40}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue!60!black,
+	citecolor=green!50!black,
+	urlcolor=purple!70!black,
+	pdfstartview={FitH}
+}
+
+\newtcolorbox{findingbox}{
+	colback=findingbg,
+	colframe=findingframe,
+	boxrule=0.6pt,
+	arc=2pt,
+	left=4pt, right=4pt, top=3pt, bottom=3pt,
+	fonttitle=\bfseries\small
+} % <--- تم إضافة قوس الإغلاق هنا
+
+
+
+
+\begin{document}
+
+	%\title{LLAnalyzer: The Illusion of ``Local'': A Four-Layer Forensic Measurement of Privacy Boundaries in Consumer Local-LLM Serving Stacks}
+    \title{The Illusion of Local Privacy:
+Confidentiality Boundary Failures in Consumer LLM Serving Systems}
+
+	% \author{
+	% 	{\rm Youssef~Hamdi~Zafaan~Ibrahim} \\
+	% 	Independent Researcher \\
+	% 	{\tt youssefhamdi329@gmail.com}
+	% 	\and
+	% 	{\rm Mohammed~Khalaf~Salama} \\
+	% 	Independent Researcher \\
+	% 	{\tt mkhalafsalama@gmail.com}
+ %        \and
+	% 	{\rm Muhammad~Ikram} \\
+	% 	Macquarie University \\
+	% 	{\tt muhammad.ikram@mq.edu.au}
+	% }
+\author{}
+% \vspace{-2cm}
+	\maketitle
+% \textcolor{red}{Usenix Security review is double blind, so comment the authors list.}
+% \vsp
+	\begin{abstract}
+
+Local inference is often treated as a privacy guarantee because prompts need not leave the user's device. Local execution, however, specifies where computation occurs, not how serving software controls prompt data before, during, or after inference. We present \textbf{LLAnalyzer}, a measurement framework that traces prompt exposure across four confidentiality boundaries: model-artifact integrity, runtime lifetime, wrapper-managed persistence, and shared-serving isolation. We evaluate four open-weight model families and two consumer deployment platforms using structured artifact tests, memory forensics, persistent-artifact acquisition, and shared-serving measurements. Retained GGUF reports contain assertion-abort observations but no recorded SIGSEGV; no independent artifact supports the historical coverage-guided campaign total. Under the documented memory-acquisition path, post-inference prompt bytes remained recoverable from writable process mappings, including 11 of 12 sequential Nemotron tenants in each of two single-run observations. In the recorded LM~Studio configuration, sensitive-data logging produced 10/10 canary recoveries and disabling it produced none in the examined artifacts; six hook summaries show external connections but no canary in visible outbound payloads. In one unauthenticated shared-server process, slot save/restore produced 200/200 token-count equality checks. A separate retained continuation workload produced 126/200 KV-channel hits (Gemma 50/50, Qwen 50/50, Nemotron 25/50, Phi-4 1/50) and 200/200 memory-channel hits; its records are dated July 3--4, 2026. These observations show that local execution is a deployment property, not a complete prompt-confidentiality guarantee.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+Large language models, information privacy, memory forensics, access control, side-channel analysis, security measurement.
+\end{IEEEkeywords}
+%================== Paper structure ===========    
+% 1. Introduction (1.5 pages)
+
+% 2. Confidentiality Boundary Framework
+%    (Background + Threat Model) (1.5 pages)
+
+% 3. LLAnalyzer
+%    (Methodology) (2 pages)
+
+% 4. Evaluation
+%       Finding 1
+%       Finding 2
+%       Finding 3
+%       Finding 4
+%    (5 pages)
+
+% 5. Discussion
+%    (1 page)
+
+% 6. Related Work
+%    (1 page)
+
+% 7. Conclusion
+%    (0.5 page)
+%================== Paper structure ===========
+%==============================================================================
+%==============================================================================
+\section{Introduction}
+\label{sec:introduction}
+%==============================================================================
+
+Large language models (LLMs) can now run entirely on personal computers through tools such as \emph{LM Studio}~\cite{lmstudio}, \emph{Ollama}~\cite{ollama}, and \texttt{llama.cpp}~\cite{llamacpp}. For privacy-sensitive workloads, the appeal is straightforward: prompts can be processed without sending them to a cloud inference provider. But what does ``local'' actually guarantee about a prompt after it reaches the serving software?
+
+We find that this distinction matters. Keeping computation on-device determines where inference takes place; it says much less about what happens to a prompt while inference is being prepared, executed, and torn down. A single request may pass through model-loading code, HTTP and JSON parsers, chat-template processing, runtime memory, application storage, and a serving interface shared by multiple clients. These components make independent decisions about copying, retaining, persisting, and exposing prompt data. We therefore ask whether the privacy intuition associated with local inference survives this broader software lifecycle.
+
+Research on LLM privacy has examined different parts of the problem: memorisation of training examples~\cite{carlini2023memorization,carlini2025}, forensic recovery of local prompts and conversation artifacts~\cite{murtuza2026,localnotprivate2026,xu2026mobilellmforensics}, and timing leakage or reconstruction from shared KV-cache state~\cite{wu2025iknowwhatyouasked,safekv2025,prefixwall2026,shadowcache2026,optileak2026}. These strands motivate a systems-level question: what happens to a user's prompt across the ordinary software stack of a consumer local-LLM deployment?
+
+This leads us to a systems question: \emph{when inference stays on the user's machine, which components of the serving stack actually determine whether the prompt stays confidential?} Answering it requires more than searching for individual implementation bugs. If we treat the entire local stack as one trusted component, a failure observed at the serving interface is indistinguishable, conceptually, from one caused by runtime-memory retention or application-level persistence. It also becomes difficult to determine where a mitigation should be applied.
+
+We instead study prompt confidentiality as a composition of explicit software boundaries. We develop \textbf{LLAnalyzer}, a measurement framework that separates a consumer local-LLM serving stack into four boundaries that we can exercise independently: \emph{(i)} an \textbf{Integrity Boundary}, covering model admission and loading; \emph{(ii)} a \textbf{Lifetime Boundary}, covering the lifetime of prompt data in runtime memory; \emph{(iii)} a \textbf{Persistence Boundary}, covering prompt material retained by wrapper applications; and \emph{(iv)} an \textbf{Isolation Boundary}, covering separation between clients of the serving interface. For each boundary, we inject controlled inputs, acquire boundary-specific evidence, and trace an observed failure back to the software layer in which it occurs.
+
+Applying LLAnalyzer to four open-weight model families and two consumer deployment platforms produces a markedly uneven security picture. At the integrity boundary, retained structured reports show assertion aborts in malformed-input testing and no recorded SIGSEGV; the available evidence does not establish the historical AFL++ campaign total. The runtime boundary behaves differently. We recover prompt bytes after inference and trace the residue to multiple representations created during ordinary request processing and subsequently retained in allocator-managed memory. The two retained Nemotron twelve-tenant configurations are single-run observations and show the same 11/12 tenant-level outcome, so they do not identify a causal mitigation effect.
+
+The failures are not confined to volatile memory. We find that consumer wrappers can extend prompt lifetime through plaintext persistence. At the serving interface, one unauthenticated loopback server and one Python process performed 200/200 token-count equality checks when a saved slot file was restored into another slot. The script did not use a second client, distinct API keys, an ownership control, or a wrong-key control; the result therefore demonstrates same-process state transfer under the tested configuration, not a cross-principal authorization bypass. A separate July-dated continuation workload observed 126/200 KV-channel hits and 200/200 memory-channel hits after restoration. We report these as boundary-specific observations and deployment-hardening guidance, without attributing them to a vendor decision. Timing vectors and the original analysis script are not retained, so timing separation is not used as a validated quantitative result.
+
+These results change how we think about the privacy claim attached to local inference. Moving computation from a cloud provider onto a user's machine removes an important external trust relationship, but it does not establish what happens to prompt data inside the local serving stack. In the systems we study, confidentiality depends on the composition of model admission, runtime data lifetime, persistent storage, and client isolation. Local execution is therefore one condition in this trust model, rather than its endpoint.
+
+\textbf{Contributions.}
+Our work makes the following contributions:
+
+\begin{itemize}
+
+\item \textbf{A boundary-oriented model of local-LLM prompt
+confidentiality.}
+We formulate prompt confidentiality as a systems property spanning model admission, runtime lifetime, application persistence, and client isolation. This decomposition gives us explicit security objectives against which each layer can be measured.
+
+\item \textbf{LLAnalyzer.}
+We design and implement LLAnalyzer, a measurement framework for exercising these boundaries independently and attributing observed prompt-confidentiality failures to the software components responsible for them.
+
+\item \textbf{An empirical study of confidentiality across the local
+serving stack.}
+Across four model families and two consumer deployment platforms, we find sharply different behaviour across boundaries: assertion-abort observations in retained GGUF reports, persistent post-inference prompt residue, configuration-dependent wrapper-level plaintext persistence, and same-process saved-state transfer under a shared-server configuration. We additionally report the limitations of the retained timing record rather than treating it as an independently validated result.
+
+\item \textbf{Mechanisms, mitigations, and evidence limits.}
+We trace the mechanisms underlying the observed runtime residue, compare the recorded sanitisation configurations descriptively, and report provenance and disclosure status conservatively. The retained records contain no vendor decision for the LM~Studio persistence or \texttt{llama-server} observations. The dated \texttt{DISCLOSURE\_PLAN.md} entry is a researcher-side scope determination. The executed June binaries were not hashed and are no longer available; later CPU-only rebuilds are retained for reference but are not claimed equivalent. Missing timing vectors, aggregate-only allocator records, and chronology limits are documented in the Supplement.
+\end{itemize}
+
+\noindent\textbf{Paper Structure.}
+Section~\ref{sec:framework} defines our confidentiality boundaries and threat model. Section~\ref{sec:methodology} describes LLAnalyzer and our measurement methodology. Section~\ref{sec:evaluation} evaluates each boundary and investigates the mechanisms behind the observed failures. In Section~\ref{sec:related}, we position our findings against prior work, and conclude our work in Section~\ref{sec:conclusion}. 
+
+\begin{figure*}[ht]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/fig_llanalyzer_arch.pdf}
+	\caption{Architecture and evidence map for LLAnalyzer. The concrete
+		request path is shown above the four confidentiality boundaries:
+		model-file integrity (B1), runtime lifetime (B2), wrapper-managed
+		persistence (B3), and shared serving-state isolation (B4).}
+	\label{fig:pb-llanalyzer}
+\end{figure*} 
+
+%==============================================================================
+\section{Confidentiality Boundary Framework}
+\label{sec:framework}
+%==============================================================================
+
+We begin by defining what prompt confidentiality means in a consumer
+local-LLM deployment. We do not treat the deployment as a single trusted
+environment. Instead, we follow a prompt through the serving stack and
+identify the points at which different software components assume
+responsibility for protecting it. This gives us four boundaries with
+distinct security objectives and, importantly, distinct ways of failing.
+
+%==============================================================================
+\subsection{Prompt Lifecycle in Consumer LLM Serving Systems}
+%==============================================================================
+
+A typical local-LLM request begins in a consumer application such as
+\emph{LM Studio} or \emph{Ollama} and eventually reaches an inference
+engine such as \texttt{llama.cpp}. Between receiving the user's text and
+returning a response, the stack loads the model, parses and transforms
+the request, constructs the prompt, tokenizes it, manages inference
+state, and may record conversation state or expose it through a serving
+API.
+
+Although this appears to the user as one local operation, the prompt does
+not remain in one representation or under the control of one component.
+It can be copied during parsing, transformed by a chat template, retained
+in runtime memory, written to application storage, or associated with
+state exposed through a serving interface. A confidentiality guarantee
+at one of these stages therefore says little about the others.
+
+Figure~\ref{fig:pb-llanalyzer} follows this lifecycle and shows where
+LLAnalyzer places the corresponding confidentiality boundaries.
+
+%==============================================================================
+\subsection{Confidentiality Boundaries}
+%==============================================================================
+
+We define four boundaries according to the security decision being made
+about prompt data.
+
+\noindent\textbf{Integrity Boundary.}
+Before inference begins, the model-loading pipeline decides whether an
+input model artifact can safely enter execution. GGUF parsing, metadata
+validation, tensor validation, and model initialisation form this
+boundary. Its objective is to prevent malformed model artifacts from
+compromising trusted model loading or subsequent execution.
+
+\noindent\textbf{Lifetime Boundary.}
+Once a request is processed, prompt data can exist simultaneously in
+several runtime representations produced by parsing, template
+construction, tokenisation, request processing, and memory allocation.
+The lifetime boundary concerns whether those representations remain
+recoverable after they are no longer required for inference.
+
+\noindent\textbf{Persistence Boundary.}
+Outside process memory, wrapper applications may retain conversation
+histories, logs, caches, temporary files, and other application
+artifacts. This boundary concerns whether prompt data are written to
+persistent storage, for how long, and under what configuration.
+
+\noindent\textbf{Isolation Boundary.}
+When multiple clients interact with the same serving process, the
+serving interface must keep their state separate. Authentication,
+authorization, conversation-state management, cache sharing, and session
+handling form this boundary. Its objective is to prevent one client from
+learning prompt or conversation information belonging to another.
+
+These boundaries are deliberately separated because satisfying one does
+not imply satisfying another. A model may load safely while prompts
+remain in memory; runtime memory may be sanitised while a wrapper writes
+the same prompt to disk; and a locally protected process may still expose
+another tenant's state through its API. We use this decomposition to
+identify which guarantee is being tested in each experiment.
+
+%==============================================================================
+\subsection{Threat Model}
+\label{sec:threat}
+%==============================================================================
+
+We consider adversaries that can exercise one of these boundaries without
+already controlling the operating system or inference process. We assume
+that the underlying operating system, hardware, and cryptographic
+primitives operate correctly unless an experiment explicitly states
+otherwise. Our goal is therefore not to model a fully compromised host,
+but to determine what prompt information becomes available through the
+ordinary privileges and interfaces surrounding a local-LLM deployment.
+
+\noindent\textbf{${A}_1$ (Co-resident Local Adversary).}
+${A}_1$ is an unrelated, unprivileged same-UID process with no assumed
+root access, $\texttt{CAP\_SYS\_PTRACE}$, global Yama relaxation,
+target-side $\texttt{PR\_SET\_PTRACER}$ permission, or parent/supervisor
+relationship. Same UID therefore does not imply arbitrary access to
+$\texttt{/proc/<pid>/mem}$; unauthorized access claims are made only when
+directly demonstrated.
+
+\noindent\textbf{$F$ (Authorized Forensic Collector).}
+$F$ is the researcher-controlled collector used for memory measurement. It
+uses a child or explicit-permission path and the documented
+$\texttt{/proc/<pid>/maps}$ and $\texttt{/proc/<pid>/mem}$ reads. Its results
+establish residual-data existence and conditional forensic recoverability,
+not ${A}_1$ accessibility.
+
+\noindent\textbf{${A}_2$ (Network Client).}
+${A}_2$ is an authenticated client restricted to the published serving
+interface. It has no direct access to process memory, the host filesystem,
+or the underlying operating system. We use this adversary to test whether
+the serving protocol preserves isolation between clients. The retained slot
+and continuation workloads did not instantiate two such clients or distinct
+credentials; they therefore do not provide an $A_2$ authorization result.
+
+\noindent\textbf{${A}_3$ (Malicious Model Provider).}
+${A}_3$ can supply a crafted or malformed GGUF artifact to an otherwise
+unmodified inference engine. We use this capability to test whether the
+model-loading pipeline rejects malformed artifacts without compromising
+trusted execution.
+
+Table~S4 in Supplementary Sec.~S1 connects each boundary
+to the actor capable of challenging it and to the property we subsequently
+measure. For Lifetime, $F$ is the measurement actor, whereas ${A}_1$ remains
+the unauthorized co-resident adversary. Throughout, we distinguish (i)
+residual-data existence, (ii) conditional forensic recoverability under
+documented permissions, (iii) adversarial accessibility, and (iv) the
+resulting confidentiality consequence.
+
+%==============================================================================
+\section{LLAnalyzer}
+\label{sec:methodology}
+%==============================================================================
+
+LLAnalyzer operationalizes the four boundaries above as controlled
+measurement experiments. Its central design principle is simple: when
+testing one boundary, we vary the mechanism relevant to that boundary
+while keeping the remainder of the serving configuration fixed. The
+result is not a single vulnerability scanner, but a collection of
+boundary-specific measurement harnesses connected by a common
+experimental workflow.
+
+%==============================================================================
+\subsection{Design Goals}
+%==============================================================================
+
+We designed LLAnalyzer around three goals.
+
+\noindent{\bf Boundary attribution.}
+A recovered prompt is useful evidence only if we can determine how it
+became exposed. LLAnalyzer therefore associates every measurement with a
+specific boundary and collects evidence from the software component that
+implements that boundary. This lets us distinguish, for example,
+runtime-memory residue from wrapper persistence or protocol-level
+shared-state exposure.
+
+\noindent{\bf Methodological consistency.}
+The boundaries cannot all be tested using the same instrumentation:
+model admission requires parser testing, runtime lifetime requires memory
+forensics, persistent storage requires artifact analysis, and tenant
+isolation requires protocol-level experiments. We nevertheless impose
+the same experimental sequence on each measurement so that the resulting
+evidence answers the same question: did the target boundary satisfy its
+security objective?
+
+\noindent{\bf Reproducibility.}
+We establish experimental ground truth using randomly generated UUID
+canaries and controlled execution configurations. The retained
+implementation, configurations, and supporting artifacts are described in
+the Supplement. Source revision 721354f (full SHA
+721354fbdfb7743e2be2183d918a3cdb9276c70f) is recorded in the project
+reports; the binaries executed in June 2026 were not hashed and are no
+longer available. An October 2026 CPU-only rebuild is retained for
+reference, is not claimed byte-identical, and its equivalence to the
+executed binary is unknown. LM~Studio runs used its bundled llama.cpp backend; the
+GPU runs used a CUDA build whose revision is not recorded. Experiments
+were run in June 2026 on the Table~S1 hardware, are reported from retained
+records, and were not re-run for this revision.
+For each experiment, LLAnalyzer generates
+a fresh canary and embeds it in the submitted prompt, providing an
+experiment-specific marker whose subsequent recovery can be attributed
+to the originating request rather than inferred from surrounding content.
+
+%==============================================================================
+\subsection{Framework Architecture}
+%==============================================================================
+
+Figure~\ref{fig:pb-llanalyzer} shows how these measurement components map
+onto the serving stack. For each boundary, LLAnalyzer follows five steps:
+(\textit{i}) state the security objective;
+(\textit{ii}) select the corresponding adversary;
+(\textit{iii}) exercise the target boundary under a controlled
+configuration;
+(\textit{iv}) acquire evidence from that boundary; and
+(\textit{v}) test the evidence against the security objective.
+
+The instrumentation used in Step~(\textit{iv}) changes with the boundary;
+the experimental logic does not. This gives us a common structure for
+interpreting evidence obtained from otherwise different parts of the
+serving system.
+
+%==============================================================================
+\subsection{Boundary-Oriented Measurement}
+%==============================================================================Table~S5 in Supplementary
+Sec.~S1 shows the
+evidence source used for each boundary. During an experiment, we change
+only the conditions needed to exercise the target boundary and preserve
+the remaining configuration. Where a UUID canary is subsequently recovered,
+LLAnalyzer uses the boundary-specific evidence to determine the software
+path through which that disclosure occurred.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Measurement Pipeline}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Although each confidentiality boundary requires different
+instrumentation, every LLAnalyzer experiment follows the same measurement
+pipeline, shown in Figure~\ref{fig:pb-llanalyzer}.
+
+\textit{First, establish ground truth.}
+For each inference request $r$, LLAnalyzer generates a fresh UUIDv4 using
+the operating system's cryptographically secure random-number generator
+and embeds its canonical representation directly into the submitted
+prompt as \texttt{CANARY:<uuid>}. Before inference begins, the harness
+records
+$\langle
+r,\mathrm{UUID}_r,\mathrm{boundary},\mathrm{timestamp}
+\rangle$
+%
+in the experiment manifest. This provides a deterministic mapping between
+every injected marker and its originating request. A UUIDv4 contains 122 random bits, making an accidental exact match
+negligibly probable. Before each experiment, LLAnalyzer additionally
+checks that the newly generated canary is absent from the target evidence
+source. An exact post-inference match can therefore be associated with
+the corresponding injected request with negligible probability of
+accidental collision.
+
+\textit{Second, exercise the target boundary.}
+LLAnalyzer executes the experiment under a controlled configuration,
+isolating the boundary under evaluation while holding unrelated
+experimental factors constant wherever possible. The specific condition
+being exercised depends on the corresponding security objective.
+
+\textit{Third, acquire boundary-specific evidence.}
+The evidence source depends on the boundary: parser execution for the
+Integrity Boundary, process memory for the Lifetime Boundary,
+wrapper-managed artifacts for the Persistence Boundary, and
+protocol-level observations for the Isolation Boundary.
+
+\textit{Finally, test the boundary objective.}
+LLAnalyzer searches the acquired evidence for exact UUID matches and maps
+each recovered occurrence to its originating request through the
+experiment manifest. A boundary failure is recorded when recovery
+satisfies the predefined disclosure criterion for that boundary. The
+precise success and failure criteria are specified with the corresponding
+experiments in Section~\ref{sec:evaluation}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experimental Configuration}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The experiments were run in June 2026 on the Table~S1 hardware and are
+reported from retained records; they were not re-run for this revision.
+Conditions differ by experiment. The headline CPU lifetime and slot
+records use the script-declared CPU server path; the GPU records use a
+CUDA build whose revision is not recorded. GPU scope is partial CUDA
+offload only; no full-offload or non-\texttt{llama.cpp} serving stacks were
+tested. Earlier WSL2 records are not used to broaden the headline claims.
+
+Memory-acquisition discipline: the headline harness launches the target as a
+child and reads writable \texttt{/proc/}\textless pid\textgreater\texttt{/mem}
+regions listed in \texttt{/proc/}\textless pid\textgreater\texttt{/maps};
+\linebreak
+these opens use \texttt{PTRACE\_MODE\_ATTACH\_FSCREDS} without an explicit
+\texttt{PTRACE\_ATTACH}. Retained records report Yama~1 with no root,
+\texttt{CAP\_SYS\_PTRACE}, or global relaxation; GDB and GPU host scans are
+separate from ${A}_1$ evidence.
+
+We select four open-weight model families spanning different parameter
+scales and architectural designs. All evaluated artifacts use GGUF
+Q4\_K\_M quantisation and were obtained from the
+\texttt{lmstudio-community} organization on Hugging Face. The retained
+records do not provide a run-local model SHA-256 manifest, so this paper
+does not claim byte-identity across every historical condition.
+Table~S6 in Supplementary Sec.~S1 summarizes the evaluated models.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experimental Controls and Statistical Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We use controlled comparisons to separate boundary-specific effects from
+changes elsewhere in the serving stack. Within a retained experiment family,
+the hardware, operating system, model artifact, software revision, and
+inference parameters are held fixed unless the corresponding variable is
+under evaluation; this is the basis for the slot, continuation, injection,
+KV-overhead, and D4 comparisons. Across families, however, the retained
+records are heterogeneous: the twelve-tenant rows are Nemotron-only, the
+multilayer diagnostics are Phi-4-only, and the GPU-v5 campaign is a
+Nemotron CUDA configuration. These observations are therefore interpreted
+descriptively rather than as a hardware- or binary-equivalent factorial
+design. When comparing configurations, we use identical prompt inputs and
+model artifacts wherever the retained protocol permits.
+
+For each boundary, we define an explicit success and failure criterion
+and apply it to the retained records. A disclosure is recorded only when
+an exact UUID match satisfies the corresponding boundary-specific
+criterion. We report descriptive proportions and denominators; Wilson
+intervals are used only where the retained trial unit supports them.
+Continuous measurements, including inference latency and recovered-memory
+volume, are summarized descriptively. No paired significance test is
+claimed because the retained records do not provide a complete matched
+analysis for the relevant comparisons.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsection{Reproducibility}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% LLAnalyzer records an experiment manifest for every run containing the
+% hardware and software configuration, model identity and SHA-256 digest,
+% inference parameters, generated canaries, timestamps, and
+% boundary-specific measurement settings. We retain the corresponding
+% forensic evidence and analysis outputs required to reconstruct each
+% reported result.
+
+% We release the LLAnalyzer implementation, experiment configurations,
+% analysis scripts, patches, and supporting artifacts to support independent
+% reproduction and extension of our measurements. The artifacts are
+% available at
+% \url{https://github.com/0xzodiac/Local-LLMs-Forensics}.
+
+%==============================================================================
+\section{Evaluation}
+\label{sec:evaluation}
+%==============================================================================
+
+We use LLAnalyzer to evaluate prompt confidentiality across the four
+boundaries defined in Section~\ref{sec:framework}. We organize the
+evaluation around research questions rather than individual measurement
+tools. For each question, we state the security property under test,
+describe the experimental design, present the resulting evidence, and
+interpret what the observations establish about the corresponding
+boundary.
+
+Our evaluation addresses four research questions:
+
+\begin{itemize}[left=0pt]
+
+\item \textbf{RQ1. Integrity Boundary.}
+Can malicious model artifacts bypass model-admission controls or trigger
+memory-safety failures before inference begins?
+
+\item \textbf{RQ2. Lifetime Boundary.}
+Does prompt plaintext remain recoverable from runtime memory after
+inference, and if so, what mechanisms determine its persistence and
+mitigation?
+
+\item \textbf{RQ3. Persistence Boundary.}
+Do consumer wrapper applications extend prompt lifetime by retaining
+prompt data in persistent local artifacts?
+
+\item \textbf{RQ4. Isolation Boundary.}
+Can saved state and subsequent continuation be observed across slot
+identifiers in one shared serving process? Cross-principal authorization,
+distinct credentials, ownership controls, and remotely observable side
+channels are explicit untested boundaries in the retained experiments.
+
+\end{itemize}
+
+Together, these questions test our central hypothesis: 
+%
+% \begin{quote}
+\emph{Local execution alone does not establish prompt confidentiality;
+confidentiality depends on the security properties enforced across the
+software boundaries through which prompt data pass.} 
+% \end{quote}
+%
+We evaluate the boundaries in prompt-lifecycle order. We begin with model
+admission (RQ1), then follow prompt data through runtime memory (RQ2) and
+wrapper-managed persistent storage (RQ3), before examining information
+separation between clients of a shared serving instance (RQ4). For each
+experiment, we isolate the target boundary while holding unrelated
+experimental factors constant wherever possible, following the controls
+described in Section~\ref{sec:methodology}.
+
+
+%==============================================================================
+\subsection{RQ1. Integrity Boundary}
+\label{sec:rq1}
+%==============================================================================
+
+Before a prompt can be processed, the serving framework must parse and
+initialize the supplied GGUF model artifact. A failure at this stage can
+invalidate assumptions made by later confidentiality measurements: if a
+malformed model compromises the serving process before inference begins,
+subsequent prompt disclosures may be consequences of an already
+compromised execution environment. We therefore ask: \emph{Can a maliciously crafted GGUF artifact bypass parser validation or trigger memory-safety failures before inference begins?}
+
+
+{\bf Experimental Design.}
+We exercise the model-admission path with retained structured malformed
+GGUF artifacts targeting tensor metadata, architecture identifiers,
+dimensions, allocation sizes, offsets, RoPE parameters, and header
+fields. The retained report families use different corpora and overlap;
+we therefore keep their denominators separate. A separate historical
+coverage-guided campaign is mentioned in older manuscript text, but no
+fuzzer log, queue, executable, coverage record, or campaign manifest is
+retained. It is not used as a quantitative result here.
+
+
+{\bf Evidence.}
+Table~\ref{tab:model_boundary_results} summarizes the retained reports.
+The cross-model report describes 96 structured tests with seven SIGABRT
+assertion aborts, 36 clean loads, 53 rejections, and zero SIGSEGV. The
+surgical and tensor reports document additional assertion-abort outcomes,
+including one non-deterministic tensor case, and no recorded SIGSEGV. These
+families overlap and do not form a single deduplicated crash rate. The
+reports describe four architectures, but their fourth column is labelled
+`phi3` while the retained test scripts use the `phi4` key; the raw outputs
+needed to establish that identity are not retained. No retained artifact
+establishes the historical AFL++ execution total.
+
+
+\begin{table}[!t]
+\centering
+\caption{Integrity-boundary evaluation using retained structured malformed
+GGUF reports. Report families overlap; counts are not pooled into one crash
+rate.}
+\label{tab:model_boundary_results} 
+
+\scriptsize
+\begin{tabular}{@{}p{0.31\columnwidth}p{0.31\columnwidth}p{0.25\columnwidth}@{}}
+\toprule
+\textbf{Metric} & \textbf{Observation} & \textbf{Outcome} \\
+\midrule
+Cross-model structured tests & 96 & Reported \\
+Model families             & 4                 & Reported   \\
+Additional report families & -- & Overlapping \\
+\midrule
+SIGABRT assertion aborts   & 7 in cross-model report & Observed \\
+Additional SIGABRT reports & 9 plus 1 non-deterministic & Observed \\
+SIGSEGV                    & 0 recorded          & Not observed \\
+Malformed model loaded     & Not established     & No retained positive \\
+Fuzzer execution total     & Not retained        & Unverifiable \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+{\bf Analysis.}
+The retained evidence supports a narrower statement: malformed-input
+testing produced assertion-abort process terminations in some report
+families and no recorded SIGSEGV. It does not support a global parser-crash
+zero, a unified crash rate, or the historical campaign total. The later
+runtime and persistence observations were collected from serving processes
+that completed their respective setup, but this does not turn the GGUF
+results into a universal parser-security claim.
+
+
+{\bf Scope of the Integrity Result.}
+The reports do not establish universal GGUF-parser robustness. Their
+corpora, denominators, and outcomes differ, and generated variants and
+fuzzer artifacts are not retained for deduplication. The supported result
+is an observation about the retained tests: assertion aborts occurred,
+SIGSEGV was not recorded, and the available evidence cannot establish the
+unretained campaign total or a complete memory-safety classification.
+
+
+{\bf Takeaway.}
+The integrity evidence is mixed rather than cleanly negative: retained
+structured reports contain SIGABRT assertion aborts, while no retained
+report records SIGSEGV. We next examine confidentiality observations that
+arise in runtime memory, wrapper artifacts, and shared serving state.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{RQ2. Lifetime Boundary}
+\label{sec:rq2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We next examine what happens to prompt data after the serving process has
+completed its setup. During inference, a prompt passes through
+multiple runtime representations, including formatted templates, JSON
+request structures, token buffers, temporary application objects, and
+allocator-managed memory. Although these representations are transient
+from the application's perspective, their underlying contents may
+outlive the request that created them.
+
+This section therefore addresses the following research question: \emph{Does runtime memory preserve prompt confidentiality after
+inference, or does prompt plaintext remain recoverable beyond execution
+completion?}  We address this question through four progressively deeper
+sub-questions. We first establish whether plaintext remains recoverable
+after inference (RQ2.1), trace the mechanisms responsible for its
+persistence (RQ2.2), evaluate whether runtime sanitisation can reduce
+this exposure at acceptable cost (RQ2.3), and finally examine whether
+GPU-assisted execution changes these confidentiality properties (RQ2.4).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{RQ2.1: Does Prompt Plaintext Persist After Inference?}
+\label{sec:rq2_plaintext}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We examine runtime state after inference and ask whether prompt plaintext
+remains recoverable from process memory. The acquisition path is a
+researcher-controlled parent process reading writable mappings of its
+serving child; it is not a claim about an arbitrary same-UID or remote
+attacker.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Evidence.} Using the UUID-based forensic methodology described in
+Section~\ref{sec:methodology}, $F$ acquires a post-inference memory
+snapshot. Each prompt contains a fresh UUID canary, so an exact match can
+be attributed to its originating request. In two retained Nemotron
+twelve-tenant single-run configurations, canaries from 11 of 12 tenants were recovered
+from writable, non-GGUF mappings. The corresponding exact byte-occurrence
+totals were 110 copies and 10\,834~KB in one record, and 78 copies and
+3\,352~KB in the other. These are byte-occurrence and printable-cleartext
+measurements, not counts of independent secrets or attacker sessions.
+
+\begin{table}[!t]
+    \centering
+    \caption{Retained Nemotron twelve-tenant runtime-memory observations.
+    Each row is a single run; copy counts are exact byte occurrences in the
+    scanned mappings and printable-cleartext volume is a scan metric.}
+    \label{tab:residue}
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        Configuration & Tenants recovered & Copies & Cleartext (KB) \\
+        \midrule
+        Unpatched & 11/12 & 110 & 10\,834 \\
+        Sanitised & 11/12 & 78 & 3\,352 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.} The two experiments establish complementary properties of runtime
+residue. First, post-inference memory inspection shows that prompt
+plaintext survives response generation: every measured inference leaves
+multiple recoverable copies in process memory. The small variation in
+copy count does not change the underlying observation that plaintext
+recovery occurs consistently after inference. Second, the sequential-tenant experiment shows that this residue is not
+confined to the most recent request. Canaries associated with earlier
+tenants remain recoverable after subsequent requests have completed.
+Prompt lifetime therefore extends beyond both response generation and
+the execution of later inference requests within the same serving
+process. These observations expose a mismatch between application-level and
+memory-level lifetime: plaintext remains conditionally recoverable under
+the documented $F$ path.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Validating Runtime Residue.} We perform several checks to establish that the recovered plaintext
+originates from the serving runtime rather than from LLAnalyzer's
+acquisition procedure. First, prompt instances are tracked using fresh UUID canaries, enabling
+recovered strings to be attributed to specific inference requests
+through exact matching. Second, recovery is reproducible across
+independent executions: although the precise number of copies may vary
+slightly, residual prompt plaintext is recovered consistently after
+inference. Third, the retained four-model slot, continuation, injection,
+KV-overhead, and D4 families all provide model-labelled observations,
+although their logical protocols and measurement channels differ. The two
+twelve-tenant rows themselves are Nemotron-only, and the multilayer-v2
+diagnostics are Phi-4-only; neither should be read as a balanced four-model
+runtime-memory baseline. Most importantly, the sequential-tenant experiment provides temporal
+provenance for the recovered residue. Canaries associated with earlier
+tenants remain recoverable after subsequent inference requests have
+completed, demonstrating that the recovered plaintext represents
+historical runtime state rather than merely the currently executing
+request. Together, these checks support attribution of the recovered plaintext
+to post-inference state retained within the serving process rather than
+to content introduced by LLAnalyzer's acquisition procedure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+Prompt lifetime extends beyond inference completion in the evaluated
+serving environment. Multiple plaintext representations remain
+recoverable after response generation, and historical prompt contents
+survive subsequent inference requests within the same serving process.
+Runtime confidentiality therefore cannot be inferred from
+application-level request completion alone.
+
+% Having established that prompt plaintext persists after inference, 
+We next investigate where these residual copies originate and why their
+contents remain recoverable.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{RQ2.2: Why Does Prompt Residue Persist?}
+\label{sec:rq2_mechanism}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+RQ2.1 established that prompt plaintext remains recoverable after
+inference and can persist across successive tenant requests within the
+same serving process. We next investigate the mechanisms responsible
+for extending prompt lifetime beyond the visible execution of an
+inference request. Unlike conventional memory-forensics studies that identify surviving
+objects without necessarily explaining their origin, LLAnalyzer
+reconstructs the provenance of UUID-tagged prompt copies through
+debugger-assisted runtime inspection. Rather than treating each
+recovered copy as an independent artefact, we trace how a single user
+prompt propagates through successive software layers during normal
+inference execution.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Evidence.}
+Debugger-assisted provenance analysis follows the prompt throughout the
+inference pipeline, including HTTP request decoding, JSON parsing,
+chat-template rendering, inference request construction, token
+generation, and response teardown. Across the evaluated executions,
+recovered UUID-tagged prompt data are associated with three recurring
+mechanisms:
+% \begin{enumerate}
+\textit{(1). Dynamic \texttt{std::string} growth.}
+During prompt construction and template expansion, \texttt{std::string}
+objects may repeatedly increase their capacity. When reallocation
+occurs, the previous character buffer is released back to the allocator
+without necessarily being overwritten immediately, allowing its
+previous plaintext contents to remain recoverable.
+\textit{(2). Transient runtime objects.} 
+Intermediate processing stages, including JSON parsing, chat-template
+construction, request serialisation, and related request-processing
+operations, generate short-lived runtime objects containing copies or
+derived representations of the original prompt. Although these objects
+are destroyed after their immediate use, their underlying memory can
+continue to contain recoverable prompt data. 
+\textit{(3). Allocator-managed memory reuse.}
+After object destruction, released buffers enter allocator-managed
+reuse mechanisms, including per-thread caches and arena-managed regions
+~\cite{glibc_arena}. These mechanisms retain released memory for subsequent
+allocation rather than immediately clearing its previous contents,
+thereby extending the period during which prompt plaintext can remain
+recoverable. 
+%
+% \end{enumerate}
+%
+Collectively, these mechanisms account for the provenance of the
+multiple prompt representations observed in RQ2.1.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.}
+The provenance analysis shows that prompt persistence is not caused by a
+single programming error or forgotten deallocation. Instead, it emerges
+from the interaction of software components that create multiple
+plaintext representations during ordinary inference.
+
+Importantly, the analysis separates prompt \emph{duplication} from
+\emph{retention}. Multiple independent representations are created
+before memory enters glibc's reuse structures through JSON parsing,
+chat-template expansion, request construction, serialisation, and
+repeated \texttt{std::string} reallocations. After the corresponding
+objects are released, allocator behaviour extends the period during
+which their underlying contents remain recoverable. Application-level data handling therefore explains why multiple prompt
+representations exist, whereas allocator-managed memory reuse explains
+why released representations may survive beyond their intended
+application lifetime. The distinction is important because these two
+mechanisms imply different mitigation requirements.
+
+If allocator retention alone were responsible for the observed residue,
+clearing allocator-managed memory would be sufficient to restore
+confidentiality. The debugger traces instead show that sensitive
+plaintext is propagated through several stages of the inference
+pipeline before those allocations are released. Effective sanitisation
+must therefore account for the lifecycle of prompt-derived
+representations across the serving stack rather than targeting only
+allocator state.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Root-Cause Attribution.}
+The debugger traces identify two successive mechanisms:
+application-level prompt duplication followed by allocator-level
+retention. Application processing creates the plaintext
+representations; allocator behaviour subsequently extends their
+recoverable lifetime. We therefore attribute prompt proliferation to
+application-level data handling and persistence to subsequent memory
+retention.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+Prompt residue results from the combined effect of application-level
+duplication and subsequent memory retention. Prompt data are copied
+across multiple stages of request processing, while allocator behaviour
+allows some of those representations to remain recoverable after their
+application objects have been released. Runtime prompt confidentiality
+is therefore a lifecycle problem spanning multiple software components,
+rather than an isolated property of the memory allocator.
+
+% Having established how prompt plaintext is duplicated and retained, 
+\textit{Next}, we investigate whether practical runtime mitigations can interrupt
+this propagation chain and restore prompt confidentiality after
+inference.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Cross-model residue (D4).}
+As a separate runtime-residue workload, we switched models within one
+serving process and inspected the writable mappings before and after the
+swap. The retained family contains 200 timestamped primary records: 50
+Gemma-to-Phi-4, 50 Qwen-to-Gemma, 50 Nemotron-to-Qwen, and 50
+Phi-4-to-Nemotron trials. The process identity is unchanged in all 200
+records, and the canary from model~A remains present after the swap in all
+200 records. A separately named debug JSON is not counted as an additional
+trial. These are byte-occurrence observations in scanned mappings; the
+records do not establish a model-generated disclosure or a cross-principal
+access path.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{RQ2.3: Can Runtime Sanitisation Reduce Residual
+Recoverability at Acceptable Cost?}
+\label{sec:rq2_mitigation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%RQ2.1 established that prompt plaintext remains recoverable after
+%inference, while RQ2.2 showed that this persistence arises from multiple
+%runtime representations created during normal request processing and
+%subsequently retained in memory. 
+We ask whether runtime sanitisation reduces residual prompt data and
+conditional forensic recoverability at acceptable inference cost.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Evidence.}
+The two retained Nemotron twelve-tenant rows are single-run observations collected
+under different executable paths and runtime configurations. Both recover
+canaries from 11 of 12 tenants, with 110 versus 78 exact byte-occurrence
+copies and 10\,834 versus 3\,352~KB of reported printable cleartext. The
+rows therefore describe residual exposure under two configurations; they
+do not identify a causal sanitisation effect or a confidence interval.
+We separately measure KV-cache zeroisation overhead using 50 requests per
+model. Table~\ref{tab:overhead} reports the retained mean latencies and
+their arithmetic differences. These are descriptive workload observations,
+not equivalence tests or universal performance bounds.
+
+\begin{table}[!t]
+    \centering
+    \caption{Single-run Nemotron runtime-memory observations after twelve
+    sequential tenants. Copy counts are exact byte occurrences in scanned
+    mappings and printable-cleartext volume is a recovered-memory metric, not
+    an exact count of secret-bearing bytes. Both rows recover canaries from
+    11/12 tenants; the protocols are not a causal matched comparison.}
+    \label{tab:blast}
+    \footnotesize
+    \begin{tabular*}{\columnwidth}{@{}l@{\extracolsep{\fill}}lccr@{}}
+        \toprule
+        Configuration & Tenants & Copies & Printable cleartext (KB) \\
+        \midrule
+        Unpatched & 11/12 & 110 & 10\,834 \\
+        Sanitised & 11/12 & \textbf{78} & \textbf{3\,352} \\
+        \bottomrule
+    \end{tabular*}
+\end{table}
+
+
+
+\begin{table}[!t]
+    \centering
+    \caption{Descriptive KV-cache zeroisation overhead ($n=50$ requests per
+    model). Mean request latency is reported in seconds; no equivalence
+    margin or formal equivalence test was specified.}
+    \label{tab:overhead}
+    \footnotesize
+    \begin{tabular}{@{}lrrr@{}}
+        \toprule
+        Model & Patched & Unpatched & $\Delta$ (s) \\
+        \midrule
+        Nemotron-3-Nano-4B      & 2.822 & 2.838 & $-0.016$ \\
+        Qwen3.5-9B              & 4.705 & 4.692 & $+0.013$ \\
+        Gemma-4-E4B-it          & 2.908 & 2.891 & $+0.017$ \\
+        Phi-4-reasoning-plus    & 8.422 & 8.403 & $+0.020$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.}
+The observations distinguish residual magnitude from tenant-level
+recoverability. The second row has fewer observed byte occurrences and a
+smaller printable-cleartext metric, but both rows recover canaries from
+11/12 tenants. Because the protocols differ in binary path, thread and
+offload settings, startup and cleanup, and patch state, the retained rows
+cannot support a causal percentage reduction. They instead motivate
+matched repeated experiments as future work.
+
+The latency arrays provide a separate descriptive result. The retained
+mean differences are $-0.016$~s (Nemotron), $+0.013$~s (Qwen3.5),
+$+0.017$~s (Gemma), and $+0.020$~s (Phi-4), corresponding to
+$-0.5515$\%, $+0.2684$\%, $+0.5999$\%, and $+0.2324$\% when computed
+from the retained means. No inferential or equivalence conclusion is made.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Residual Exposure Analysis.}
+The remaining exposure provides evidence about where sanitisation must
+operate. RQ2.2 showed that prompt-derived plaintext can appear during
+template expansion, JSON processing, request serialisation,
+\texttt{std::string} growth, and subsequent allocator-managed retention.
+A mitigation that clears only selected structures therefore protects
+only the copies passing through those sanitised paths. This distinction also affects how mitigation effectiveness should be
+measured. Copy count and recovered byte volume quantify the
+\emph{magnitude} of residual exposure, whereas the number of tenants
+whose prompts remain recoverable captures whether historical
+confidentiality has been restored. Under the latter criterion, the two
+retained configurations leave the same 11/12 tenant outcome.
+Restoring the evaluated lifetime boundary therefore requires
+lifecycle-wide handling of prompt-bearing representations, such that no
+recoverable copy remains after its intended use. The results do not show
+that runtime sanitisation is inherently incapable of achieving this
+goal; rather, they show that the evaluated sanitisation coverage does
+not yet encompass every surviving prompt representation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+The retained twelve-tenant records show differences in raw copy and
+printable-cleartext metrics, but both are single-run observations with
+11/12 tenant recovery and confounded protocols. They support a descriptive
+warning that selected sanitisation paths did not eliminate historical
+recovery under the tested configurations, not a causal effect size. The KV
+overhead arrays likewise support model-specific descriptive latency
+differences only.
+
+We next examine whether these runtime confidentiality properties change
+when model execution is accelerated through GPU offloading.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{RQ2.4: Does GPU Execution Fundamentally Change Runtime
+Confidentiality?}
+\label{sec:rq2_gpu}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now examine whether GPU-assisted inference changes the host-memory
+residue observed in the lifetime experiments.
+
+A plausible hypothesis is that moving model computation to the GPU also
+moves sensitive prompt state away from host memory. The test below is
+limited to the recorded partial-offload configuration and host-memory
+scan.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Evidence.}
+The retained v5 records contain 50 timestamped primary trials of a
+Nemotron CUDA configuration. Immediately after one request, the recorded
+	\texttt{canary\_hit\_count} is 9 in 47 trials and 10 in 3 trials. After two further
+	requests, the \texttt{extra\_tenants[*].hits} value is 16 in every primary record.
+	After process termination, the retained \texttt{vram\_after\_shutdown} field is
+the tuple $(101,8192)$ in those 50 records. These fields are mapping/copy
+measurements, not counts of successful attacks; the raw records do not
+retain the previously described idle row, and they do not establish direct
+device-memory recovery.
+
+\begin{table}[!t]
+    \centering
+    \caption{\small Host-memory observations in the retained 50-trial CUDA
+    record. The fields are measurement-specific and are not a binary
+    exploit-success oracle.}
+    \label{tab:vram}
+    \scriptsize
+    \begin{tabular}{@{}p{0.29\columnwidth}p{0.25\columnwidth}p{0.34\columnwidth}@{}}
+        \toprule
+        Observation point & Retained field & Interpretation \\
+        \midrule
+        After one request
+            & 9 (47/50), 10 (3/50)
+            & \texttt{canary\_hit\_count} distribution \\
+        After two additional requests
+            & 16 in all 50
+            & extra-tenant hits field \\
+        After server termination
+            & $(101,8192)$ in all 50
+            & \texttt{vram\_after\_shutdown} mapping tuple \\
+        \bottomrule
+    \end{tabular}
+    \vspace{-0.5cm}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.}
+The retained record shows host-memory observations under partial CUDA
+offload, including a 9/10-hit distribution after one request and a value
+of 16 in the extra-tenant field after two further requests. The shutdown
+tuple is a mapping observation, not proof that all memory recovery was
+zero. Prompt construction and request processing remain host-side in this
+configuration, but the records do not establish direct device-memory
+contents or physical-page erasure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Host-Side Attribution.}
+The provenance results from RQ2.2 help explain why GPU offloading does
+not remove the observed residue. The recovered prompt representations
+originate from host-side stages such as JSON parsing, template expansion,
+request construction, tokenisation, \texttt{std::string} operations, and
+subsequent allocator-managed retention. These operations occur before or
+around GPU execution and therefore remain relevant even when substantial
+model computation is offloaded. This attribution also defines the scope of
+our result. The retained 50-trial GPU-v5 campaign directly evaluates
+Nemotron-3-Nano-4B under partial CUDA offloading; it does not establish that
+every fully offloaded model or alternative GPU-serving architecture exhibits
+identical persistence. A historical report separately describes a Qwen3.5
+GPU reproduction, but no linked primary record places that observation in
+the retained GPU-v5 denominator. Nevertheless, within the
+evaluated serving architecture, relocating model computation does not
+remove the host-side software paths responsible for the recovered
+plaintext. GPU offloading therefore cannot substitute for explicit
+lifecycle management of prompt-bearing host memory in this configuration.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+The retained CUDA record shows host-memory mapping/copy observations after
+one request and after two further requests in a partial-offload
+configuration. It does not establish direct device-memory recovery,
+physical-page erasure, or a universal GPU result. Fully offloaded models
+and other GPU-serving architectures require separate evaluation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{RQ3. Persistence Boundary}
+\label{sec:rq3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+RQ2 showed that prompt plaintext can outlive an inference request within
+process memory. We next examine a distinct confidentiality boundary:
+whether consumer wrapper applications independently extend prompt
+lifetime by writing prompt-derived data to persistent storage. This distinction matters because runtime-memory sanitisation cannot
+protect prompt data that have already been copied to wrapper-managed
+files. We therefore ask: \emph{Do consumer local-LLM wrappers persist prompt plaintext beyond the
+runtime lifetime of an inference request, and can such persistence be
+disabled?}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Evidence.}
+We evaluate LM~Studio and Ollama under their recorded configurations by
+searching retained wrapper artifacts for exact UUID matches. The LM~Studio
+mitigation report identifies llmster daemon 0.0.15-2 with bundled backend
+2.17.0. With \texttt{logSensitiveData=true}, 10/10 canaries were found;
+with it disabled, none were found in the examined artifacts. The original
+plaintext log is not retained, so this is a report-backed configuration
+comparison rather than a fresh-install default claim.
+
+The Ollama tree contains 206 metadata records: 203 trigger files completed
+successfully, two contain explicit model-memory failures, and one metadata
+record is incomplete without a trigger file. No Ollama executable version
+is linked to these records. Six LM~Studio hook summaries show external
+connections to lmstudio.ai-related hosts, but no canary in the captured or
+hooked payloads; TLS was not decrypted. These observations separate local
+logging from network-payload visibility.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.}
+These measurements show that persistent prompt lifetime is determined
+independently of the runtime-memory behaviour examined in RQ2. In the
+recorded LM~Studio daemon/backend configuration, enabling sensitive-data
+logging produced 10/10 canary recoveries and disabling it produced none in
+the examined artifacts. The original log is not retained, so the result is
+configuration-specific rather than a clean-install default claim.
+
+The Ollama accounting is descriptive: 203 trigger files completed, two
+failed because of model-memory errors, and one metadata record lacks a
+trigger file. The six LM~Studio hook summaries observed external
+connections but no canary in visible captured payloads; because TLS was not
+decrypted, this does not establish absence of all external transmission.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Configuration Attribution.}
+The LM~Studio intervention provides a direct configuration-level
+comparison. With sensitive-data logging enabled, injected canaries remain
+recoverable from wrapper-managed persistent storage; after disabling the
+corresponding setting and restarting the application, the same
+acquisition procedure yields no canary matches in the examined
+persistent artifacts. This result bounds our conclusion to the wrapper versions,
+configurations, and artifacts evaluated in this study. It does not imply
+that LM~Studio can never create other prompt-bearing artifacts, nor that
+Ollama never persists prompt information under every possible
+configuration. Rather, it demonstrates that wrapper-level configuration
+can independently determine whether prompt plaintext survives on disk
+after inference.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+Prompt persistence is not determined solely by the inference runtime.
+Under the recorded LM~Studio configuration, the logging toggle changed
+whether canaries were found in the examined artifacts. The Ollama tree
+provides a separate run-accounting and artifact-visibility result, not a
+version-independent guarantee. External connections without visible
+canaries are likewise bounded by the capture instrumentation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{RQ4. Isolation Boundary}
+\label{sec:rq4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+RQ2 and RQ3 examine prompt lifetime within one serving environment. We
+now consider shared serving state. The retained slot experiment uses one
+unauthenticated loopback server and one Python process; it does not test
+two clients, distinct credentials, or ownership controls. We therefore ask:
+\emph{Can saved state and subsequent continuation be observed across slot
+identifiers in the evaluated shared process?} Timing evidence is treated
+only as a historical, non-recomputed limitation.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Same-Process Saved-State Restoration.}
+When slot saving (\texttt{--slot-save-path}) is enabled, the
+\texttt{/slots/:id\_slot} interface exposes operations for saving and
+restoring conversation state. The retained script starts one loopback
+server, sends a UUID-bearing prompt to slot~0, saves an attacker-selected
+filename, and restores that filename into slot~1. It scores success only
+when the reported \texttt{n\_saved} equals \texttt{n\_restored}. Across
+200 trials (50 per model), this equality holds in 200/200 records. The
+script has no \texttt{--api-key}, no Authorization header, no second client,
+and no wrong-key or ownership control. The result is therefore same-process
+unauthenticated state transfer under the tested configuration, not a
+demonstrated cross-principal authorization bypass.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Model-Mediated Disclosure.}
+We separately test whether restored state produces a model-visible
+continuation. The retained continuation files are dated July 3--4, 2026
+and are not attributed here to the June campaign. They contain 126/200
+KV-channel hits: Gemma 50/50, Qwen 50/50, Nemotron 25/50, and Phi-4 1/50.
+The same files report 200/200 memory-channel hits. This continuation
+workload is separate from the direct LM~Studio injection workload, whose
+any-channel union is 150/200. The logical continuation protocol is shared,
+but its retained GPU offload settings differ by model (999 offloaded layers
+for Gemma, Qwen, and Nemotron versus 20 for Phi-4), so the results are not a
+hardware-equivalent factorial comparison. Neither workload tests distinct
+client credentials or resource ownership.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Historical timing record.}
+An older report describes a cached-versus-uncached timing workload, but the
+per-request vectors and original analysis script are not retained. We do
+not use its historical separation value as a validated quantitative result
+or as evidence of arbitrary-network distinguishability.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Analysis.}
+The two retained workloads expose different aspects of shared-state
+handling. The slot script demonstrates same-process state transfer between
+slot identifiers, while the later continuation files show model- and
+channel-specific recovery after restoration. Because no two-client or
+two-key control was run, the records do not identify a cross-principal
+authorization failure.
+
+Model continuation is an additional model-dependent observation after
+state restoration; it is not a direct test of authorization. The historical
+timing record cannot be independently recomputed and is therefore omitted
+from the quantitative isolation conclusion.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Isolation Attribution.}
+The slot equality result localises an observed state-transfer primitive to
+the serving interface under one process and one credential-free protocol.
+The later continuation result is a separate July-dated artifact family.
+Neither provides the controls needed to infer behavior between distinct
+principals.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\bf Takeaway.}
+Under the evaluated one-process configuration, slot-file state transfer is
+observed in 200/200 token-count equality checks. A separate July-dated
+continuation workload records 126/200 KV-channel hits and 200/200
+memory-channel hits. These are evidence of shared-state behavior under the
+tested protocol, not demonstrations of cross-principal authorization
+failure. Distinct credentials, ownership, and wrong-key controls remain
+future experiments.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-0.2cm}
+\section{Related Work}
+\label{sec:related}
+\vspace{-0.2cm}
+Prior work covers local-serving vulnerabilities and multi-tenant isolation,
+including malicious model parsing, template injection, authorization flaws,
+and shared-architecture risks~\cite{cve_vocab_overflow,cve_bleedingllama,
+cve_jinja2_ssti,cve_vllm_62164,cve_databricks,
+cve_int_overflow_bypass,cve_ggml_nbytes,cve_2024_37032,cve_ollama_updater,
+multitenant_llm2026,llmserving_survey2024}. Murtuza et al.~\cite{murtuza2026}
+and Chung and Badhe~\cite{localnotprivate2026} document local prompt and
+artifact exposure, while Xu et al.~\cite{xu2026mobilellmforensics} study
+mobile-LLM forensics. Wu et al.~\cite{wu2025iknowwhatyouasked} and related
+NDSS/S\&P work study shared-cache timing and reconstruction~\cite{safekv2025,
+prefixwall2026,shadowcache2026,optileak2026}. Secure-memory work motivates
+zeroisation and allocator controls~\cite{explicit_bzero,securestring2025,
+zeroonfree2024,procfs_forensics,glibc_arena}. LLAnalyzer complements these
+efforts by connecting model admission, runtime lifetime, wrapper persistence,
+and shared serving state in one evidence-bounded framework.
+\vspace{-0.15cm}
+ %==============================================================================
+ \section{Conclusion}\label{sec:conclusion}
+ \vspace{-0.15cm}
+ %==============================================================================
+We introduced \textbf{LLAnalyzer}, a boundary-oriented framework for evaluating
+prompt confidentiality across local LLM serving systems. Across the four
+boundaries---\emph{Integrity}, \emph{Lifetime}, \emph{Persistence}, and
+\emph{Isolation}---retained GGUF reports contain assertion-abort observations
+and no recorded SIGSEGV, while runtime scans recover prompt canaries after
+inference. The wrapper results are configuration-specific: LM~Studio
+sensitive-data logging produced 10/10 canary recoveries in the recorded
+mitigation test and disabling it produced none in the examined artifacts.
+The slot workload produced 200/200 same-process token-count equality checks;
+a separate July-dated continuation workload produced 126/200 KV-channel hits
+and 200/200 memory-channel hits. These are not two-principal authorization
+tests. Thus, \emph{locality is a deployment property, not a confidentiality
+guarantee}: protecting prompts requires lifecycle-wide controls over
+admission, copying, retention, and sharing, together with explicit evidence
+for any claimed principal boundary.
+
+%==============================================================================
+% REFERENCES (inline; IEEE TIFS format. Every entry has a verifiable DOI / arXiv / CVE / official URL.)
+%==============================================================================
+
+
+
+% (single \appendix[...] with title kept after the bibliography; no bare \appendix here)
+\section*{Open Science}
+\label{app:open_science}
+%==============================================================================
+
+The project reports record source revision 721354f (full SHA
+721354fbdfb7743e2be2183d918a3cdb9276c70f). The binaries executed in June
+2026 were not hashed and are no longer available. An October 2026 CPU-only
+rebuild is retained for reference, is not claimed byte-identical, and its
+equivalence to the executed binary is unknown. LM~Studio runs used its
+bundled llama.cpp backend; the GPU runs used a CUDA build whose revision is
+not recorded. A public artifact URL remains \artifacturl{TODO}; the
+retained records include scripts, reports, and selected raw evidence, but
+not every historical binary or timing vector.
+
+
+%==============================================================================
+\section*{Ethical Considerations}
+\label{app:ethics}
+%==============================================================================
+
+All experiments used researcher-controlled systems, accounts, tenants, and
+synthetic UUID-tagged prompts; no human-subject data, third-party conversations,
+production systems, or public-host state were accessed.
+
+Internet measurements were passive and non-destructive. Observations involving
+shared-serving behaviour are reported as operator-managed deployment-hardening
+guidance. No vendor report has been transmitted and no vendor decision is
+established; the dated scope statement is researcher-side.
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,122 @@
+{
+  "all_checks_pass": true,
+  "conditions": {
+    "baseline": {
+      "all_structural_checks_pass": true,
+      "binary": "/home/elaref/research/llama-cpp-build/build/bin/llama-server",
+      "checks": {
+        "copy_total_equals_per_tenant_sum": true,
+        "recovered_tenant_count_equals_positive_copy_count": true,
+        "recovery_rate_matches_counts": true,
+        "sample_list_has_no_duplicates": true,
+        "samples_are_nonempty_strings": true,
+        "tenant_key_count_matches_n_tenants": true,
+        "tenant_values_are_nonnegative_integers": true,
+        "zero_cell_data_flag_is_true": true
+      },
+      "iso": "2026-06-23T21:42:09.566333",
+      "model": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+      "n_tenants": 12,
+      "path": "/home/elaref/Documents/research/Local-LLMs-Forensics/Runs/logs/leak_blast_radius_20260623_213831.json",
+      "per_tenant_copies": {
+        "tenant_0": 0,
+        "tenant_1": 10,
+        "tenant_10": 10,
+        "tenant_11": 10,
+        "tenant_2": 10,
+        "tenant_3": 10,
+        "tenant_4": 11,
+        "tenant_5": 9,
+        "tenant_6": 9,
+        "tenant_7": 11,
+        "tenant_8": 11,
+        "tenant_9": 9
+      },
+      "positive_copy_tenant_count": 11,
+      "printable_cleartext_kb_recorded": 10834,
+      "recovery_rate_recomputed": 0.9166666666666666,
+      "recovery_rate_recorded": 0.9167,
+      "required_fields_missing": [],
+      "run_id": "20260623_213831",
+      "sample_count": 3,
+      "sha256": "4d54ac8bd771420a93617a0e63f1ab1fa786cdfdeb5dca9815b86c7337dfb3f6",
+      "tenants_recovered": 11,
+      "total_copies_recomputed": 110,
+      "total_copies_recorded": 110
+    },
+    "sanitised": {
+      "all_structural_checks_pass": true,
+      "binary": "/home/elaref/research/llama-cpp-build/build/bin/llama-server",
+      "checks": {
+        "copy_total_equals_per_tenant_sum": true,
+        "recovered_tenant_count_equals_positive_copy_count": true,
+        "recovery_rate_matches_counts": true,
+        "sample_list_has_no_duplicates": true,
+        "samples_are_nonempty_strings": true,
+        "tenant_key_count_matches_n_tenants": true,
+        "tenant_values_are_nonnegative_integers": true,
+        "zero_cell_data_flag_is_true": true
+      },
+      "iso": "2026-06-24T12:11:44.986439",
+      "model": "/home/elaref/.lmstudio/models/lmstudio-community/NVIDIA-Nemotron-3-Nano-4B-GGUF/NVIDIA-Nemotron-3-Nano-4B-Q4_K_M.gguf",
+      "n_tenants": 12,
+      "path": "/home/elaref/Documents/research/Local-LLMs-Forensics/Runs/logs/leak_blast_radius_20260624_120421.json",
+      "per_tenant_copies": {
+        "tenant_0": 0,
+        "tenant_1": 7,
+        "tenant_10": 7,
+        "tenant_11": 8,
+        "tenant_2": 6,
+        "tenant_3": 8,
+        "tenant_4": 8,
+        "tenant_5": 6,
+        "tenant_6": 6,
+        "tenant_7": 8,
+        "tenant_8": 8,
+        "tenant_9": 6
+      },
+      "positive_copy_tenant_count": 11,
+      "printable_cleartext_kb_recorded": 3352,
+      "recovery_rate_recomputed": 0.9166666666666666,
+      "recovery_rate_recorded": 0.9167,
+      "required_fields_missing": [],
+      "run_id": "20260624_120421",
+      "sample_count": 3,
+      "sha256": "ef6f5cecf832cabdb4d31620af371951ae727c75ed7644383662e00be7169c63",
+      "tenants_recovered": 11,
+      "total_copies_recomputed": 78,
+      "total_copies_recorded": 78
+    }
+  },
+  "cross_condition_checks": {
+    "same_binary_path": true,
+    "same_model": true,
+    "same_tenant_count": true,
+    "same_zero_cell_data_flag": true
+  },
+  "inputs": {
+    "baseline": "/home/elaref/Documents/research/Local-LLMs-Forensics/Runs/logs/leak_blast_radius_20260623_213831.json",
+    "sanitised": "/home/elaref/Documents/research/Local-LLMs-Forensics/Runs/logs/leak_blast_radius_20260624_120421.json"
+  },
+  "interpretation_boundary": {
+    "not_supported_by_retained_schema": [
+      "Independent byte-level recomputation of printable_cleartext_kb.",
+      "Independent counting of memory regions, raw matches, or recovered plaintext bytes.",
+      "Causal attribution to the prompt-zeroization patch without a verified source-to-binary-to-run chain."
+    ],
+    "supported": [
+      "The aggregate copy totals equal the sums of the retained per-tenant counts.",
+      "The recorded recovery rates equal tenants_recovered divided by n_tenants.",
+      "The retained records support descriptive reductions of the recorded aggregate metrics."
+    ]
+  },
+  "recomputed": {
+    "baseline_copies": 110,
+    "baseline_printable_cleartext_kb": 10834,
+    "copy_reduction_percent": 29.09090909090909,
+    "printable_cleartext_reduction_percent": 69.06036551596824,
+    "sanitised_copies": 78,
+    "sanitised_printable_cleartext_kb": 3352
+  },
+  "validator": "remediation1/validation/verify_memory_results.py"
+}
